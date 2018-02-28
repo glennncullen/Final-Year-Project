@@ -1,32 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.WSA;
 
 public class Car : MonoBehaviour {
 
 	//	private Vector2 move;
-	private Rigidbody2D rigidbodyComponent;
-	public int turnRotation = 3;
-	public Vector2 speed = new Vector2(5, 5);
+	private Rigidbody2D _rigidbodyComponent;
+	public float TurnRotation = 3f;
+	public Vector2 Speed = new Vector2(5, 5);
 
-	private List<Transform> nodes;
-	private int currentNode = 0;
-	public Transform path;
+	private List<Transform> _nodes;
+	private int _currentNode;
+	public Transform Path;
+
+	[Header("Sensors")] 
+	public Transform SensorOriginPoint;
+	public float SensorLength = 3.5f;
+	public float RaycastOffset = 0.35f;
+	public float SensorAngle = 25f;
+	
 
 	// Use this for initialization
 	void Start () {
-		rigidbodyComponent = GetComponent<Rigidbody2D> ();
-		Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
-		nodes = new List<Transform>();
+		_rigidbodyComponent = GetComponent<Rigidbody2D> ();
+		Transform[] pathTransforms = Path.GetComponentsInChildren<Transform>();
+		_nodes = new List<Transform>();
 		foreach(Transform pathTransform in pathTransforms){
-			if(pathTransform != path.transform){
-				nodes.Add (pathTransform);
+			if(pathTransform != Path.transform){
+				_nodes.Add (pathTransform);
 			}
 		}
+
+		_currentNode = 0;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// 	Update is called once per frame
+//	private void Update () {
 //		float inputX = Input.GetAxis ("Horizontal");
 //		float inputY = Input.GetAxis ("Vertical");
 //
@@ -34,56 +44,110 @@ public class Car : MonoBehaviour {
 //			inputX * speed.x,
 //			inputY * speed.y
 //		);
+//	}
 
+
+	private void FixedUpdate()
+	{
+		CheckSensors();
+//		Drive ();
+		CheckCurrentWaypoint();
+	}
+	
+	
+
+	private void CheckSensors()
+	{
+		Vector2 direction = transform.up;
+		Vector2 leftSensor = new Vector2(SensorOriginPoint.position.x - RaycastOffset, SensorOriginPoint.position.y);
+		Vector2 middleSensor = SensorOriginPoint.position;
+		Vector2 rightSensor = new Vector2(SensorOriginPoint.position.x + RaycastOffset, SensorOriginPoint.position.y);
+		
+		// left sensor
+		RaycastHit2D hit = Physics2D.Raycast(leftSensor, direction, SensorLength);
+		if (hit)
+		{
+			Debug.DrawLine(leftSensor, hit.point, Color.green);
+		}
+		
+		// left angled sensor
+		hit = Physics2D.Raycast(leftSensor, Quaternion.AngleAxis(SensorAngle, SensorOriginPoint.position) * direction, SensorLength);
+		if (hit)
+		{
+			Debug.DrawLine(leftSensor, hit.point, Color.green);
+		}	
+		
+		// middle sensor
+		hit = Physics2D.Raycast(middleSensor, direction, SensorLength);
+		if (hit)
+		{
+			Debug.DrawLine(middleSensor, hit.point, Color.green);
+		}
+		
+		// right sensor
+		hit = Physics2D.Raycast(rightSensor, direction, SensorLength);
+		if (hit)
+		{
+			Debug.DrawLine(rightSensor, hit.point, Color.green);
+		}		
+		
+		// right angled sensor
+		hit = Physics2D.Raycast(rightSensor, Quaternion.AngleAxis(-SensorAngle, SensorOriginPoint.position) * direction, SensorLength);
+		if (hit)
+		{
+			Debug.DrawLine(rightSensor, hit.point, Color.green);
+		}	
+		
 	}
 
-	void OnTriggerEnter2D(Collider2D otherCollider){
-		BoxCollider2D boundary = otherCollider.GetComponent<BoxCollider2D> ();
-		if(boundary != null){
 
-		}
-	}
-
-	void FixedUpdate(){
-		moveWaypoint ();
-		if(Input.GetKey(KeyCode.UpArrow)){
-			rigidbodyComponent.AddForce (transform.up * speed.x);
-		}
-		if(Input.GetKey(KeyCode.DownArrow)){
-			rigidbodyComponent.AddForce (-transform.up * speed.y);
-		}
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Rotate (Vector3.forward * -turnRotation);
-		}
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Rotate (Vector3.forward * turnRotation);
-		}
-	}
-
-
-
-	void moveWaypoint(){
-		Vector3 relativeVector = transform.InverseTransformPoint (nodes[currentNode].position);
-//		print (relativeVector.x + " || " + relativeVector.y);
-		if(relativeVector.x > 0.5){ // waypoint to the right
-			transform.Rotate (Vector3.forward * -turnRotation);
-		}
-		if(relativeVector.x < -0.5){ // waypoint is to the left
-			transform.Rotate (Vector3.forward * turnRotation);
-		}
-		if(relativeVector.y > 0.5){ // waypoint is above
-			rigidbodyComponent.AddForce (transform.up * speed.x);
-		}
-		if(relativeVector.y > -0.5){ // waypoint is below
-			rigidbodyComponent.AddForce (-transform.up * speed.y);
-		}
+	private void CheckCurrentWaypoint()
+	{
+		Vector3 relativeVector = transform.InverseTransformPoint (_nodes[_currentNode].position);
 		if(relativeVector.x < 2 && relativeVector.x > -2 && relativeVector.y < 2 && relativeVector.y > -2){
-			if (currentNode != nodes.Count - 1) {
-				currentNode++;
+			if (_currentNode != _nodes.Count - 1) {
+				_currentNode++;
 			} else {
-				currentNode = 0;
+				_currentNode = 0;
 			}
 		}
 	}
 
+
+	void Drive(){
+		Vector3 relativeVector = transform.InverseTransformPoint (_nodes[_currentNode].position);
+//		print (relativeVector.x + " || " + relativeVector.y);
+		if(relativeVector.x > 0.5){ // waypoint to the right
+			transform.Rotate (Vector3.forward * -TurnRotation);
+		}
+		if(relativeVector.x < -0.5){ // waypoint is to the left
+			transform.Rotate (Vector3.forward * TurnRotation);
+		}
+		if(relativeVector.y > 0.5){ // waypoint is above
+			_rigidbodyComponent.AddForce (transform.up * Speed.x);
+		}
+		if(relativeVector.y > -0.5){ // waypoint is below
+			_rigidbodyComponent.AddForce (-transform.up * Speed.y);
+		}
+	}
+
+	
+	// CODE SNIPPETS
+	
+	// Manual Drive
+//	void FixedUpdate(){
+//		if(Input.GetKey(KeyCode.UpArrow)){
+//			_rigidbodyComponent.AddForce (transform.up * Speed.x);
+//		}
+//		if(Input.GetKey(KeyCode.DownArrow)){
+//			_rigidbodyComponent.AddForce (-transform.up * Speed.y);
+//		}
+//		if (Input.GetKey (KeyCode.RightArrow)) {
+//			transform.Rotate (Vector3.forward * -TurnRotation);
+//		}
+//		if (Input.GetKey (KeyCode.LeftArrow)) {
+//			transform.Rotate (Vector3.forward * TurnRotation);
+//		}
+//	}
+	
 }

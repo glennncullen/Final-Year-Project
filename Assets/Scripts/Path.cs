@@ -9,7 +9,7 @@ public class Path : MonoBehaviour {
 	public List<Transform> nodes = new List<Transform>();
 
 
-	void OnDrawGizmosSelected(){
+	private void OnDrawGizmosSelected(){
 		Gizmos.color = lineColour;
 		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
 		if(nodes != null){

@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1700614709744556}
   m_IsPrefabParent: 1
+--- !u!1 &1348004361133606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4512957206480066}
+  m_Layer: 0
+  m_Name: SensorOriginPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7240890024493199768, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1700614709744556
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,10 +52,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700614709744556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.28, y: -2.37, z: 2}
+  m_LocalPosition: {x: -5.35, y: -8.38, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4512957206480066}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4512957206480066
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348004361133606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4107823759726734}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50057514740233088
@@ -99,9 +128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03fffbcd68dc4ce7ae7336afc12c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnRotation: 5
-  speed: {x: 35, y: 10}
-  path: {fileID: 0}
+  TurnRotation: 4
+  Speed: {x: 35, y: 10}
+  Path: {fileID: 0}
+  SensorOriginPoint: {fileID: 4512957206480066}
+  SensorLength: 3.5
+  RaycastOffset: 0.35
+  SensorAngle: 25
 --- !u!212 &212888128592571986
 SpriteRenderer:
   m_ObjectHideFlags: 1
