@@ -15,7 +15,9 @@ public class Car : MonoBehaviour {
 	public Transform Path;
 
 	[Header("Sensors")] 
-	public Transform SensorOriginPoint;
+	public Transform CenterSensor;
+	public Transform LeftSensor;
+	public Transform RightSensor;
 	public float SensorLength = 3.5f;
 	public float RaycastOffset = 0.35f;
 	public float SensorAngle = 25f;
@@ -50,7 +52,7 @@ public class Car : MonoBehaviour {
 	private void FixedUpdate()
 	{
 		CheckSensors();
-//		Drive ();
+		Drive ();
 		CheckCurrentWaypoint();
 	}
 	
@@ -59,43 +61,40 @@ public class Car : MonoBehaviour {
 	private void CheckSensors()
 	{
 		Vector2 direction = transform.up;
-		Vector2 leftSensor = new Vector2(SensorOriginPoint.position.x - RaycastOffset, SensorOriginPoint.position.y);
-		Vector2 middleSensor = SensorOriginPoint.position;
-		Vector2 rightSensor = new Vector2(SensorOriginPoint.position.x + RaycastOffset, SensorOriginPoint.position.y);
 		
 		// left sensor
-		RaycastHit2D hit = Physics2D.Raycast(leftSensor, direction, SensorLength);
+		RaycastHit2D hit = Physics2D.Raycast(LeftSensor.position, direction, SensorLength);
 		if (hit)
 		{
-			Debug.DrawLine(leftSensor, hit.point, Color.green);
+			Debug.DrawLine(LeftSensor.position, hit.point, Color.green);
 		}
 		
 		// left angled sensor
-		hit = Physics2D.Raycast(leftSensor, Quaternion.AngleAxis(SensorAngle, SensorOriginPoint.position) * direction, SensorLength);
+		hit = Physics2D.Raycast(LeftSensor.position, Quaternion.AngleAxis(SensorAngle, transform.position) * direction, SensorLength);
 		if (hit)
 		{
-			Debug.DrawLine(leftSensor, hit.point, Color.green);
+			Debug.DrawLine(LeftSensor.position, hit.point, Color.green);
 		}	
 		
 		// middle sensor
-		hit = Physics2D.Raycast(middleSensor, direction, SensorLength);
+		hit = Physics2D.Raycast(CenterSensor.position, direction, SensorLength);
 		if (hit)
 		{
-			Debug.DrawLine(middleSensor, hit.point, Color.green);
+			Debug.DrawLine(CenterSensor.position, hit.point, Color.green);
 		}
 		
 		// right sensor
-		hit = Physics2D.Raycast(rightSensor, direction, SensorLength);
+		hit = Physics2D.Raycast(RightSensor.position, direction, SensorLength);
 		if (hit)
 		{
-			Debug.DrawLine(rightSensor, hit.point, Color.green);
+			Debug.DrawLine(RightSensor.position, hit.point, Color.green);
 		}		
 		
 		// right angled sensor
-		hit = Physics2D.Raycast(rightSensor, Quaternion.AngleAxis(-SensorAngle, SensorOriginPoint.position) * direction, SensorLength);
+		hit = Physics2D.Raycast(RightSensor.position, Quaternion.AngleAxis(-SensorAngle, transform.position) * direction, SensorLength);
 		if (hit)
 		{
-			Debug.DrawLine(rightSensor, hit.point, Color.green);
+			Debug.DrawLine(RightSensor.position, hit.point, Color.green);
 		}	
 		
 	}
