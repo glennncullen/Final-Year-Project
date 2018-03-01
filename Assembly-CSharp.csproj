@@ -52,9 +52,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Car.cs" />
-    <Compile Include="Assets\Scripts\Path.cs" />
+    <Compile Include="Assets\Scripts\2D\CameraController.cs" />
+    <Compile Include="Assets\Scripts\2D\Car.cs" />
+    <Compile Include="Assets\Scripts\2D\Path.cs" />
+    <Compile Include="Assets\Scripts\3D\CarAI.cs" />
+    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERHelper.cs" />
+    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERMeshGen.cs" />
+    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERNavPoint.cs" />
+    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERPointSnap.cs" />
+    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\RiverFlow.cs" />
+    <None Include="Assets\Sprites\EasyRoadsMeshGen_CS\ReadMe.txt" />
+    <None Include="Assets\Sprites\EasyRoadsMeshGen_CS\Change Log.txt" />
     <Reference Include="UnityEngine.UI">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
