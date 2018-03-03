@@ -52,10 +52,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\2D\CameraController.cs" />
     <Compile Include="Assets\Scripts\2D\Car.cs" />
     <Compile Include="Assets\Scripts\2D\Path.cs" />
     <Compile Include="Assets\Scripts\3D\CarAI.cs" />
+    <Compile Include="Assets\Scripts\3D\CarWheel.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERHelper.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERMeshGen.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERNavPoint.cs" />

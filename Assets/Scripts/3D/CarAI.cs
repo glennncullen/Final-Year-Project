@@ -6,29 +6,36 @@ using UnityEngine.Scripting.APIUpdating;
 public class CarAI : MonoBehaviour {
 	
 	private Rigidbody _rigidbodyComponent;
-	public float MaxForwardSpeed = 35f;
-	public float MaxReverseSpeed = 10f;
-	private float _currentSpeed = 0f;
+	public float MaxSpeed = 100f;
+	public float MaxTorque = 35f;
+	public float MaxBrakeTorque = 150f;
+	public Vector3 CenterOfMass;
+	private float _currentSpeed;
+	public bool isBraking = false;
 	
 	public float MaxSteerAngle = 45f;
+	
+	[Header("Wheel Colliders")]
 	public WheelCollider WheelFrontLeft;
 	public WheelCollider WheelFrontRight;
+	public WheelCollider WheelBackLeft;
+	public WheelCollider WheelBackRight;
 
 	public Transform Road;
 	private List<Transform> _nodes;
 	private int _currentNode;
 	
 	[Header("Sensors")] 
-	public Transform SensorOriginPosition;
-	public float SensorLength = 3.5f;
-	public float RaycastOffset = 0.35f;
-	public float SensorAngle = 25f;
+	public float SensorLength = 5f;
+	public float frontSensorPosition = 0.5f;
+	public float SensorAngle = 30f;
 	private bool _isAvoiding;
 	private float _avoidMultiplier = 0;
 
 	// Use this for initialization
 	void Start () {
 		_rigidbodyComponent = GetComponent<Rigidbody> ();
+		_rigidbodyComponent.centerOfMass = CenterOfMass;
 		Transform[] pathTransforms = Road.GetComponentsInChildren<Transform>();
 		_nodes = new List<Transform>();
 		foreach(Transform navPoint in pathTransforms){
@@ -43,9 +50,11 @@ public class CarAI : MonoBehaviour {
 	// Update is called once per frame
 	private void FixedUpdate ()
 	{
+//		CheckSensors();
 		Steer();
 		Move();
 		CheckCurrentNodeDistance();
+		CheckBraking();
 	}
 
 	// functionality to steer car in correct direction
@@ -61,8 +70,17 @@ public class CarAI : MonoBehaviour {
 	// functionality for moving the car
 	private void Move()
 	{
-		WheelFrontLeft.motorTorque = 50f;
-		WheelFrontRight.motorTorque = 50f;
+		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
+		if (_currentSpeed < MaxSpeed && !isBraking)
+		{
+			WheelFrontLeft.motorTorque = MaxTorque;
+			WheelFrontRight.motorTorque = MaxTorque;
+		}
+		else
+		{
+			WheelFrontLeft.motorTorque = 0f;
+			WheelFrontRight.motorTorque = 0f;
+		}
 	}
 	
 	
@@ -78,4 +96,33 @@ public class CarAI : MonoBehaviour {
 		}
 	}
 	
+	
+	// functionality for car to brake
+	private void CheckBraking()
+	{
+		if (isBraking)
+		{
+			WheelBackLeft.brakeTorque = MaxBrakeTorque;
+			WheelBackRight.brakeTorque = MaxBrakeTorque;
+		}
+		else
+		{
+			WheelBackLeft.brakeTorque = 0;
+			WheelBackRight.brakeTorque = 0;
+		}
+	}
+	
+	
+	// functionality to check sensors
+	private void CheckSensors()
+	{
+		RaycastHit hit;
+		Vector3 sensorOriginPosition = transform.position;
+		sensorOriginPosition.z += frontSensorPosition;
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			
+		}
+		Debug.DrawLine(sensorOriginPosition, hit.point);
+	}
 }
