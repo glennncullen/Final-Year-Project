@@ -238,13 +238,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390773484074480}
-  m_LocalRotation: {x: 0.051922616, y: -0.54092354, z: 0.066302165, w: 0.8368452}
-  m_LocalPosition: {x: 0.31900024, y: 0.039, z: -0.11800003}
+  m_LocalRotation: {x: 0.32655075, y: -0.4533892, z: 0.3781869, w: 0.73809046}
+  m_LocalPosition: {x: 0.185, y: 0.399, z: 0.057}
   m_LocalScale: {x: 0.540448, y: 0.5404475, z: 0.5404479}
   m_Children: []
   m_Father: {fileID: 4828025524628632}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 9.127001, y: -65.50201, z: 3.1820002}
+  m_LocalEulerAnglesHint: {x: 55.586002, y: -48.348003, z: 27.637001}
 --- !u!4 &4158042920848282
 Transform:
   m_ObjectHideFlags: 1
@@ -708,20 +708,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1994f9e6dcf43d2b602da7a3c0e8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 100
-  MaxTorque: 35
+  CenterOfMass: {x: 0, y: -0.2, z: 0.2}
+  MaxSpeed: 120
+  MaxTorque: 80
   MaxBrakeTorque: 150
-  CenterOfMass: {x: 0, y: -0.2, z: 0}
-  isBraking: 0
+  TurnSpeed: 2
   MaxSteerAngle: 45
+  IsBraking: 0
   WheelFrontLeft: {fileID: 146541649900519294}
   WheelFrontRight: {fileID: 146569338311310516}
   WheelBackLeft: {fileID: 146805476850533166}
   WheelBackRight: {fileID: 146710865841354696}
   Road: {fileID: 0}
-  SensorLength: 5
-  frontSensorPosition: 0.7
-  SensorAngle: 30
+  SensorLength: 4
+  FrontSensorPosition: {x: 0, y: 0.25, z: 0.5}
+  SideSensorPosition: 0.2
+  FrontSensorAngle: 30
 --- !u!114 &114364866154878130
 MonoBehaviour:
   m_ObjectHideFlags: 1

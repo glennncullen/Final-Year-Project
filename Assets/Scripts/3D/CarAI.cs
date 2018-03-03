@@ -1,188 +1,214 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace _3D
-{
-	public class CarAi : MonoBehaviour {
+public class CarAI : MonoBehaviour {
 	
-		private Rigidbody _rigidbodyComponent;
-		public float MaxSpeed = 80f;
-		public float MaxTorque = 100f;
-		public float MaxBrakeTorque = 150f;
-		public Vector3 CenterOfMass;
-		private float _currentSpeed;
-		public bool IsBraking = false;
+	[Header("Vehicle Properties")]
+	public Vector3 CenterOfMass;
+	public float MaxSpeed = 80f;
+	public float MaxTorque = 100f;
+	public float MaxBrakeTorque = 150f;
+	public float TurnSpeed = 5f;
+	public float MaxSteerAngle = 30f;
+	public bool IsBraking = false;
 	
-		public float MaxSteerAngle = 45f;
-	
-		[Header("Wheel Colliders")]
-		public WheelCollider WheelFrontLeft;
-		public WheelCollider WheelFrontRight;
-		public WheelCollider WheelBackLeft;
-		public WheelCollider WheelBackRight;
+	[Header("Wheel Colliders")]
+	public WheelCollider WheelFrontLeft;
+	public WheelCollider WheelFrontRight;
+	public WheelCollider WheelBackLeft;
+	public WheelCollider WheelBackRight;
 
-		public Transform Road;
-		private List<Transform> _nodes;
-		private int _currentNode;
+	[Header("Route To Follow")]
+	public Transform Road;
 	
-		[Header("Sensors")] 
-		public float SensorLength = 5f;
-		public Vector3 FrontSensorPosition = new Vector3(0f, 0.25f, 0.75f);
-		public float SideSensorPosition = 0.3f;
-		public float FrontSensorAngle = 30f;
-		private bool _isAvoiding;
-		private float _avoidMultiplier = 0;
+	[Header("Sensors")] 
+	public float SensorLength = 5f;
+	public Vector3 FrontSensorPosition = new Vector3(0f, 0.25f, 0.75f);
+	public float SideSensorPosition = 0.3f;
+	public float FrontSensorAngle = 30f;
+	
+	// private variables
+	private Rigidbody _rigidbodyComponent;
+	private float _currentSpeed;
+	private List<Transform> _pathNodes;
+	private int _currentPathNode;
+	private bool _isAvoiding;
+	private float _targetSteerAngle;
+	
 
-		// Use this for initialization
-		private void Start () {
-			_rigidbodyComponent = GetComponent<Rigidbody> ();
-			_rigidbodyComponent.centerOfMass = CenterOfMass;
-			Transform[] pathTransforms = Road.GetComponentsInChildren<Transform>();
-			_nodes = new List<Transform>();
-			foreach(Transform navPoint in pathTransforms){
-				if(navPoint.GetComponent<ERNavPoint>() != null){
-					_nodes.Add (navPoint);
-				}
+	// initialization
+	private void Start () {
+		_rigidbodyComponent = GetComponent<Rigidbody> ();
+		_rigidbodyComponent.centerOfMass = CenterOfMass;
+		Transform[] pathTransforms = Road.GetComponentsInChildren<Transform>();
+		_pathNodes = new List<Transform>();
+		foreach(Transform navPoint in pathTransforms){
+			if(navPoint.GetComponent<ERNavPoint>() != null){
+				_pathNodes.Add (navPoint);
 			}
-			_isAvoiding = false;
-			_currentNode = 0;
 		}
+		_isAvoiding = false;
+		_currentPathNode = 0;
+	}
 	
-		// Update is called once per frame
-		private void FixedUpdate ()
-		{
-			CheckSensors();
-			Steer();
-			Move();
-			CheckCurrentNodeDistance();
-			CheckBraking();
-		}
+	// Update is called once per frame
+	private void FixedUpdate ()
+	{
+		CheckSensors();
+		CheckSteerAngle();
+		Move();
+		CheckCurrentNodeDistance();
+		CheckBraking();
+		SmoothSteer();
+	}
 
-		// functionality to steer car in correct direction
-		private void Steer()
+	// functionality to steer car in correct direction
+	private void CheckSteerAngle()
+	{
+		if (_isAvoiding) return;
+		Vector3 relativeVector = transform.InverseTransformPoint(_pathNodes[_currentPathNode].position);
+		relativeVector /= relativeVector.magnitude;
+		float turnAngle = (relativeVector.x / relativeVector.magnitude) * MaxSteerAngle;
+		_targetSteerAngle = turnAngle;
+	}
+	
+	// functionality for moving the car
+	private void Move()
+	{
+		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
+		if (_currentSpeed < MaxSpeed && !IsBraking)
 		{
-			Vector3 relativeVector = transform.InverseTransformPoint(_nodes[_currentNode].position);
-			relativeVector /= relativeVector.magnitude;
-			float angle = (relativeVector.x / relativeVector.magnitude) * MaxSteerAngle;
-			WheelFrontLeft.steerAngle = angle;
-			WheelFrontRight.steerAngle = angle;
+			WheelFrontLeft.motorTorque = MaxTorque;
+			WheelFrontRight.motorTorque = MaxTorque;
 		}
-	
-		// functionality for moving the car
-		private void Move()
+		else
 		{
-			if (_isAvoiding) return;
-			_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
-			if (_currentSpeed < MaxSpeed && !IsBraking)
-			{
-				WheelFrontLeft.motorTorque = MaxTorque;
-				WheelFrontRight.motorTorque = MaxTorque;
-			}
-			else
-			{
-				WheelFrontLeft.motorTorque = 0f;
-				WheelFrontRight.motorTorque = 0f;
-			}
+			WheelFrontLeft.motorTorque = 0f;
+			WheelFrontRight.motorTorque = 0f;
 		}
+	}
 	
 	
-		// functionality to update nodes
-		private void CheckCurrentNodeDistance()
-		{
-			if (!(Vector3.Distance(transform.position, _nodes[_currentNode].position) < 0.5f)) return;
-			if (_currentNode != _nodes.Count - 1) {
-				_currentNode++;
-			} else {
-				_currentNode = 0;
-			}
+	// functionality to update nodes
+	private void CheckCurrentNodeDistance()
+	{
+		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > 2.5f)) return;
+		if (_currentPathNode != _pathNodes.Count - 1) {
+			_currentPathNode++;
+		} else {
+			_currentPathNode = 0;
 		}
+	}
 	
 	
-		// functionality for car to brake
-		private void CheckBraking()
+	// functionality for car to brake
+	private void CheckBraking()
+	{
+		if (IsBraking)
 		{
-			if (IsBraking)
-			{
-				WheelBackLeft.brakeTorque = MaxBrakeTorque;
-				WheelBackRight.brakeTorque = MaxBrakeTorque;
-			}
-			else
-			{
-				WheelBackLeft.brakeTorque = 0;
-				WheelBackRight.brakeTorque = 0;
-			}
+			WheelBackLeft.brakeTorque = MaxBrakeTorque;
+			WheelBackRight.brakeTorque = MaxBrakeTorque;
 		}
-	
-	
-		// functionality to check sensors
-		private void CheckSensors()
+		else
 		{
-			RaycastHit hit;
-			Vector3 sensorOriginPosition = transform.position;
-			sensorOriginPosition += transform.forward * FrontSensorPosition.z;
-			sensorOriginPosition += transform.up * FrontSensorPosition.y;
-			_isAvoiding = false;
+			WheelBackLeft.brakeTorque = 0;
+			WheelBackRight.brakeTorque = 0;
+		}
+	}
+	
+	
+	// functionality to check sensors
+	private void CheckSensors()
+	{
+		RaycastHit hit;
+		Vector3 sensorOriginPosition = transform.position;
+		sensorOriginPosition += transform.forward * FrontSensorPosition.z;
+		sensorOriginPosition += transform.up * FrontSensorPosition.y;
+		float avoidMultiplier = 0f;
+		_isAvoiding = false;
 		
-			// front center sensor
-			if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		// front right sensor
+		sensorOriginPosition += transform.right * SideSensorPosition;
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
-				if (hit.collider.GetComponent<TerrainCollider>() == null)
-				{
-					_isAvoiding = true;
-				}
 				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+				_isAvoiding = true;
+				avoidMultiplier -= 1f;
 			}
-		
-			// front right sensor
-			sensorOriginPosition += transform.right * SideSensorPosition;
-			if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
-			{
-				if (hit.collider.GetComponent<TerrainCollider>() == null)
-				{
-					_isAvoiding = true;
-					_avoidMultiplier -= 1f;
-				}
-				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
-			}
-			// front right-angle sensor
-			else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(FrontSensorAngle, transform.up) * transform.forward, out hit, SensorLength))
-			{
-				if (hit.collider.GetComponent<TerrainCollider>() == null)
-				{
-					_isAvoiding = true;
-					_avoidMultiplier -= 0.5f;
-				}
-				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
-			}
-		
-			// front left sensor
-			sensorOriginPosition -= transform.right * SideSensorPosition * 2;
-			if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
-			{
-				if (hit.collider.GetComponent<TerrainCollider>() == null)
-				{
-					_isAvoiding = true;
-					_avoidMultiplier += 1f;
-				}
-				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
-			}
-			// front left-angle sensor
-			else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(-FrontSensorAngle, transform.up) *transform.forward, out hit, SensorLength))
-			{
-				if (hit.collider.GetComponent<TerrainCollider>() == null)
-				{
-					_isAvoiding = true;
-					_avoidMultiplier += 0.5f;
-				}
-				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
-			}
-
-			if (_isAvoiding)
-			{
-				WheelFrontLeft.steerAngle = MaxSteerAngle * _avoidMultiplier;
-				WheelFrontRight.steerAngle = MaxSteerAngle * _avoidMultiplier;
-			}
-		
 		}
+		// front right-angle sensor
+		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(FrontSensorAngle, transform.up) * transform.forward, out hit, SensorLength))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+				_isAvoiding = true;
+				avoidMultiplier -= 0.5f;
+			}
+		}
+		
+		// front left sensor
+		sensorOriginPosition -= transform.right * SideSensorPosition * 2;
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+				_isAvoiding = true;
+				avoidMultiplier += 1f;
+			}
+		}
+		// front left-angle sensor
+		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(-FrontSensorAngle, transform.up) *transform.forward, out hit, SensorLength))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+				_isAvoiding = true;
+				avoidMultiplier += 0.5f;
+			}
+		}
+		
+		// front center sensor
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+				_isAvoiding = true;
+				if (hit.normal.x < 0)
+				{
+					avoidMultiplier = -1;
+				}
+				else
+				{
+					avoidMultiplier = 1;
+				}
+			}
+		}
+		
+//		// left side sensor
+//		if (Physics.Raycast(transform.position, -transform.right, out hit, SensorLength))
+//		{
+//			
+//		}
+//		Debug.DrawLine(sensorOriginPosition, hit.point, Color.blue);
+
+		if (_isAvoiding)
+		{
+			_targetSteerAngle = MaxSteerAngle * avoidMultiplier;
+		}
+	}
+	
+	
+	// functionality to smooth steering
+	private void SmoothSteer()
+	{
+		WheelFrontLeft.steerAngle = Mathf.Lerp(WheelFrontLeft.steerAngle, _targetSteerAngle, Time.deltaTime * TurnSpeed);
+		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * TurnSpeed);
 	}
 }
