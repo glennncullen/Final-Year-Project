@@ -27,7 +27,8 @@ public class CarAI : MonoBehaviour {
 	
 	[Header("Sensors")] 
 	public float SensorLength = 5f;
-	public float frontSensorPosition = 0.5f;
+	public float FrontSensorPosition = 0.7f;
+	public float SideSensorPosition = 0.3f;
 	public float SensorAngle = 30f;
 	private bool _isAvoiding;
 	private float _avoidMultiplier = 0;
@@ -50,7 +51,7 @@ public class CarAI : MonoBehaviour {
 	// Update is called once per frame
 	private void FixedUpdate ()
 	{
-//		CheckSensors();
+		CheckSensors();
 		Steer();
 		Move();
 		CheckCurrentNodeDistance();
@@ -118,11 +119,30 @@ public class CarAI : MonoBehaviour {
 	{
 		RaycastHit hit;
 		Vector3 sensorOriginPosition = transform.position;
-		sensorOriginPosition.z += frontSensorPosition;
+		sensorOriginPosition.y += 0.25f;
+		
+		// front center sensor
+		sensorOriginPosition.z += FrontSensorPosition;
 		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
 		{
 			
 		}
-		Debug.DrawLine(sensorOriginPosition, hit.point);
+		Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+		
+		// front right sensor
+		sensorOriginPosition.x += SideSensorPosition;
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			
+		}
+		Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
+		
+		// front left sensor
+		sensorOriginPosition.x -= SideSensorPosition * 2;
+		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, SensorLength))
+		{
+			
+		}
+		Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
 	}
 }

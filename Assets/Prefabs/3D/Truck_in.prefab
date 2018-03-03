@@ -710,17 +710,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 100
   MaxTorque: 35
+  MaxBrakeTorque: 150
   CenterOfMass: {x: 0, y: -0.2, z: 0}
+  isBraking: 0
   MaxSteerAngle: 45
   WheelFrontLeft: {fileID: 146541649900519294}
   WheelFrontRight: {fileID: 146569338311310516}
   WheelBackLeft: {fileID: 146805476850533166}
   WheelBackRight: {fileID: 146710865841354696}
   Road: {fileID: 0}
-  SensorOriginPosition: {fileID: 0}
-  SensorLength: 3.5
-  RaycastOffset: 0.35
-  SensorAngle: 25
+  SensorLength: 5
+  frontSensorPosition: 0.7
+  SensorAngle: 30
 --- !u!114 &114364866154878130
 MonoBehaviour:
   m_ObjectHideFlags: 1
