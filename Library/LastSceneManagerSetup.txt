@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Sprites/EasyRoadsMeshGen_CS/Example/Road_Example.unity
+- path: Assets/Scenes/City.unity
   isLoaded: 1
   isActive: 1

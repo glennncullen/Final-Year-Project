@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public GameObject focusCameraOn;
-	private Vector3 offset;
+	public GameObject FocusCameraOn;
+	private Vector3 _offset;
 
 	// Use this for initialization
 	void Start () {
-		offset = transform.position - focusCameraOn.transform.position;
+		_offset = transform.position - FocusCameraOn.transform.position;
 	}
 	
 	
 	void LateUpdate () {
 //		transform.position = focusCameraOn.transform.position + offset;
-		transform.LookAt(focusCameraOn.transform.position);
+		transform.LookAt(FocusCameraOn.transform.position);
 	}
 }

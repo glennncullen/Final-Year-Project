@@ -22,6 +22,7 @@ public class CarAI : MonoBehaviour {
 
 	[Header("Route To Follow")]
 	public Transform Road;
+	public float DistanceFromWaypointToChange = 0.5f;
 	
 	[Header("Sensors")] 
 	public float SensorLength = 5f;
@@ -45,13 +46,18 @@ public class CarAI : MonoBehaviour {
 		Transform[] pathTransforms = Road.GetComponentsInChildren<Transform>();
 		_pathNodes = new List<Transform>();
 		foreach(Transform navPoint in pathTransforms){
-			if(navPoint.GetComponent<ERNavPoint>() != null){
-				_pathNodes.Add (navPoint);
+//			if(navPoint.GetComponent<ERNavPoint>() != null){
+//				_pathNodes.Add (navPoint);
+//			}
+			if (Road.transform != navPoint)
+			{
+				_pathNodes.Add(navPoint);
 			}
 		}
 		_isAvoiding = false;
 		_currentPathNode = 0;
 	}
+	
 	
 	// Update is called once per frame
 	private void FixedUpdate ()
@@ -63,6 +69,7 @@ public class CarAI : MonoBehaviour {
 		CheckBraking();
 		SmoothSteer();
 	}
+	
 
 	// functionality to steer car in correct direction
 	private void CheckSteerAngle()
@@ -94,7 +101,7 @@ public class CarAI : MonoBehaviour {
 	// functionality to update nodes
 	private void CheckCurrentNodeDistance()
 	{
-		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > 2.5f)) return;
+		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWaypointToChange)) return;
 		if (_currentPathNode != _pathNodes.Count - 1) {
 			_currentPathNode++;
 		} else {
@@ -141,7 +148,7 @@ public class CarAI : MonoBehaviour {
 			}
 		}
 		// front right-angle sensor
-		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(FrontSensorAngle, transform.up) * transform.forward, out hit, SensorLength))
+		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(FrontSensorAngle, transform.up) * transform.forward, out hit, SensorLength / 2))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
@@ -163,7 +170,7 @@ public class CarAI : MonoBehaviour {
 			}
 		}
 		// front left-angle sensor
-		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(-FrontSensorAngle, transform.up) *transform.forward, out hit, SensorLength))
+		else if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(-FrontSensorAngle, transform.up) *transform.forward, out hit, SensorLength / 2))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
@@ -190,13 +197,6 @@ public class CarAI : MonoBehaviour {
 				}
 			}
 		}
-		
-//		// left side sensor
-//		if (Physics.Raycast(transform.position, -transform.right, out hit, SensorLength))
-//		{
-//			
-//		}
-//		Debug.DrawLine(sensorOriginPosition, hit.point, Color.blue);
 
 		if (_isAvoiding)
 		{
