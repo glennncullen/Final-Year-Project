@@ -56,7 +56,8 @@
     <Compile Include="Assets\Scripts\3D\CarAI.cs" />
     <Compile Include="Assets\Scripts\3D\CarWheel.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Path.cs" />
+    <Compile Include="Assets\Scripts\Waypoint.cs" />
+    <Compile Include="Assets\Scripts\WaypointPath.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERHelper.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERMeshGen.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERNavPoint.cs" />

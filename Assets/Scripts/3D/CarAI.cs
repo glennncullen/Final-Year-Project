@@ -37,6 +37,7 @@ public class CarAI : MonoBehaviour {
 	private int _currentPathNode;
 	private bool _isAvoiding;
 	private float _targetSteerAngle;
+	private bool _isChangingPath;
 	
 
 	// initialization
@@ -65,7 +66,7 @@ public class CarAI : MonoBehaviour {
 		CheckSensors();
 		CheckSteerAngle();
 		Move();
-		CheckCurrentNodeDistance();
+		UpdateWaypoint();
 		CheckBraking();
 		SmoothSteer();
 	}
@@ -99,13 +100,16 @@ public class CarAI : MonoBehaviour {
 	
 	
 	// functionality to update nodes
-	private void CheckCurrentNodeDistance()
+	private void UpdateWaypoint()
 	{
 		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWaypointToChange)) return;
-		if (_currentPathNode != _pathNodes.Count - 1) {
+
+		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) {
 			_currentPathNode++;
 		} else {
-			_currentPathNode = 0;
+//			_currentPathNode = 0;
+			_isChangingPath = true;
+			IsBraking = true;
 		}
 	}
 	
