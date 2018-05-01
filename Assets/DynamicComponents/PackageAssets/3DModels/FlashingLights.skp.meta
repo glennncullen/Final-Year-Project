@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 9186bf1eaedc765479bafa6c393447a5
+timeCreated: 1489915473
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 79b0e1f8724cd2acccbcc4b96c095bec
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: .598323762, y: -.0043554916, z: -2.30900526}
+      lookAt: {x: .598323762, y: -.0043554916, z: -1.16092004e-07}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 239.460419
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _collider_flashingLights
+    100008: _LOD0_flashingLights
+    100010: _LOD1_flashingLights
+    100012: _trigger_flashingLights
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _collider_flashingLights
+    400008: _LOD0_flashingLights
+    400010: _LOD1_flashingLights
+    400012: _trigger_flashingLights
+    2300000: base
+    2300002: top
+    2300004: _collider_flashingLights
+    2300006: _LOD0_flashingLights
+    2300008: _LOD1_flashingLights
+    2300010: _trigger_flashingLights
+    3300000: base
+    3300002: top
+    3300004: _collider_flashingLights
+    3300006: _LOD0_flashingLights
+    3300008: _LOD1_flashingLights
+    3300010: _trigger_flashingLights
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _collider_flashingLights
+    4300006: Mesh _LOD0_flashingLights
+    4300008: Mesh _trigger_flashingLights
+    4300010: Mesh _LOD1_flashingLights
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

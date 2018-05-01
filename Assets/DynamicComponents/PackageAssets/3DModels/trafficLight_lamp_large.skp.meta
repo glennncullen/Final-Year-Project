@@ -1,0 +1,557 @@
+fileFormatVersion: 2
+guid: 73665ae2ab2e465428aed53fd1a40992
+timeCreated: 1489915471
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 6a552025406f6aefe87f8dd9f300a79d
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 4.47606182, y: 4.31856298, z: -14.9761744}
+      lookAt: {x: 4.47606182, y: 4.31856298, z: 3.16766238}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 602.016174
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _Collider_1_lightStand
+    100008: _Collider_1_trafficLightBar_large
+    100010: _Collider_2_lightStand
+    100012: _Collider_2_trafficLightBar_large
+    100014: _Collider_3_lightStand
+    100016: _Collider_3_trafficLightBar_large
+    100018: _Collider_4_lightStand
+    100020: _Collider_5_lightStand
+    100022: _Collider_lampLight
+    100024: _Collider_lightBox
+    100026: _Collider_lightBox 1
+    100028: _Collider_lightBox 2
+    100030: _Collider_lightBox 3
+    100032: _Collider_lightBox 4
+    100034: _Collider_lightBox 5
+    100036: _Collider_lightBox 6
+    100038: _Collider_lightBox 7
+    100040: _Collider_lightBox 8
+    100042: _Collider_lightStand
+    100044: _Collider_trafficLightBar_large
+    100046: _LOD0_lampLight
+    100048: _LOD0_lightBox
+    100050: _LOD0_lightBox 1
+    100052: _LOD0_lightBox 2
+    100054: _LOD0_lightBox 3
+    100056: _LOD0_lightBox 4
+    100058: _LOD0_lightBox 5
+    100060: _LOD0_lightBox 6
+    100062: _LOD0_lightBox 7
+    100064: _LOD0_lightBox 8
+    100066: _LOD0_lightStand
+    100068: _LOD0_trafficLightBar_large
+    100070: _LOD1_lampLight
+    100072: _LOD1_lightBox
+    100074: _LOD1_lightBox 1
+    100076: _LOD1_lightBox 2
+    100078: _LOD1_lightBox 3
+    100080: _LOD1_lightBox 4
+    100082: _LOD1_lightBox 5
+    100084: _LOD1_lightBox 6
+    100086: _LOD1_lightBox 7
+    100088: _LOD1_lightBox 8
+    100090: _LOD1_lightStand
+    100092: _LOD1_trafficLightBar_large
+    100094: _LOD2_lampLight
+    100096: _LOD2_lightBox
+    100098: _LOD2_lightBox 1
+    100100: _LOD2_lightBox 2
+    100102: _LOD2_lightBox 3
+    100104: _LOD2_lightBox 4
+    100106: _LOD2_lightBox 5
+    100108: _LOD2_lightBox 6
+    100110: _LOD2_lightBox 7
+    100112: _LOD2_lightBox 8
+    100114: _LOD2_lightStand
+    100116: _LOD2_trafficLightBar_large
+    100118: _pinHorizontal
+    100120: _pinHorizontal 1
+    100122: _pinHorizontal 2
+    100124: _pinHorizontal 3
+    100126: _pinHorizontal 4
+    100128: _pinHorizontal 5
+    100130: _pinHorizontal 6
+    100132: _pinHorizontal 7
+    100134: _pinHorizontal 8
+    100136: _pinHorizontal 9
+    100138: _pinVertical
+    100140: _pinVertical 1
+    100142: _trigger_lightStand
+    100144: greenLight
+    100146: greenLight 1
+    100148: greenLight 2
+    100150: greenLight 3
+    100152: greenLight 4
+    100154: greenLight 5
+    100156: greenLight 6
+    100158: greenLight 7
+    100160: greenLight 8
+    100162: lampLight
+    100164: lightBox
+    100166: lightBox 1
+    100168: lightBox 2
+    100170: lightBox 3
+    100172: lightBox 4
+    100174: lightBox 5
+    100176: lightBox 6
+    100178: lightBox 7
+    100180: lightBox 8
+    100182: lightsGroup
+    100184: lightsGroup 1
+    100186: lightStand
+    100188: pinGroup
+    100190: pinGroup 1
+    100192: redLight
+    100194: redLight 1
+    100196: redLight 2
+    100198: redLight 3
+    100200: redLight 4
+    100202: redLight 5
+    100204: redLight 6
+    100206: redLight 7
+    100208: redLight 8
+    100210: trafficLightBar_large
+    100212: volumetricLight_white
+    100214: volumetricLight_yellow
+    100216: yellowLight
+    100218: yellowLight 1
+    100220: yellowLight 2
+    100222: yellowLight 3
+    100224: yellowLight 4
+    100226: yellowLight 5
+    100228: yellowLight 6
+    100230: yellowLight 7
+    100232: yellowLight 8
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _Collider_1_lightStand
+    400008: _Collider_1_trafficLightBar_large
+    400010: _Collider_2_lightStand
+    400012: _Collider_2_trafficLightBar_large
+    400014: _Collider_3_lightStand
+    400016: _Collider_3_trafficLightBar_large
+    400018: _Collider_4_lightStand
+    400020: _Collider_5_lightStand
+    400022: _Collider_lampLight
+    400024: _Collider_lightBox
+    400026: _Collider_lightBox 1
+    400028: _Collider_lightBox 2
+    400030: _Collider_lightBox 3
+    400032: _Collider_lightBox 4
+    400034: _Collider_lightBox 5
+    400036: _Collider_lightBox 6
+    400038: _Collider_lightBox 7
+    400040: _Collider_lightBox 8
+    400042: _Collider_lightStand
+    400044: _Collider_trafficLightBar_large
+    400046: _LOD0_lampLight
+    400048: _LOD0_lightBox
+    400050: _LOD0_lightBox 1
+    400052: _LOD0_lightBox 2
+    400054: _LOD0_lightBox 3
+    400056: _LOD0_lightBox 4
+    400058: _LOD0_lightBox 5
+    400060: _LOD0_lightBox 6
+    400062: _LOD0_lightBox 7
+    400064: _LOD0_lightBox 8
+    400066: _LOD0_lightStand
+    400068: _LOD0_trafficLightBar_large
+    400070: _LOD1_lampLight
+    400072: _LOD1_lightBox
+    400074: _LOD1_lightBox 1
+    400076: _LOD1_lightBox 2
+    400078: _LOD1_lightBox 3
+    400080: _LOD1_lightBox 4
+    400082: _LOD1_lightBox 5
+    400084: _LOD1_lightBox 6
+    400086: _LOD1_lightBox 7
+    400088: _LOD1_lightBox 8
+    400090: _LOD1_lightStand
+    400092: _LOD1_trafficLightBar_large
+    400094: _LOD2_lampLight
+    400096: _LOD2_lightBox
+    400098: _LOD2_lightBox 1
+    400100: _LOD2_lightBox 2
+    400102: _LOD2_lightBox 3
+    400104: _LOD2_lightBox 4
+    400106: _LOD2_lightBox 5
+    400108: _LOD2_lightBox 6
+    400110: _LOD2_lightBox 7
+    400112: _LOD2_lightBox 8
+    400114: _LOD2_lightStand
+    400116: _LOD2_trafficLightBar_large
+    400118: _pinHorizontal
+    400120: _pinHorizontal 1
+    400122: _pinHorizontal 2
+    400124: _pinHorizontal 3
+    400126: _pinHorizontal 4
+    400128: _pinHorizontal 5
+    400130: _pinHorizontal 6
+    400132: _pinHorizontal 7
+    400134: _pinHorizontal 8
+    400136: _pinHorizontal 9
+    400138: _pinVertical
+    400140: _pinVertical 1
+    400142: _trigger_lightStand
+    400144: greenLight
+    400146: greenLight 1
+    400148: greenLight 2
+    400150: greenLight 3
+    400152: greenLight 4
+    400154: greenLight 5
+    400156: greenLight 6
+    400158: greenLight 7
+    400160: greenLight 8
+    400162: lampLight
+    400164: lightBox
+    400166: lightBox 1
+    400168: lightBox 2
+    400170: lightBox 3
+    400172: lightBox 4
+    400174: lightBox 5
+    400176: lightBox 6
+    400178: lightBox 7
+    400180: lightBox 8
+    400182: lightsGroup
+    400184: lightsGroup 1
+    400186: lightStand
+    400188: pinGroup
+    400190: pinGroup 1
+    400192: redLight
+    400194: redLight 1
+    400196: redLight 2
+    400198: redLight 3
+    400200: redLight 4
+    400202: redLight 5
+    400204: redLight 6
+    400206: redLight 7
+    400208: redLight 8
+    400210: trafficLightBar_large
+    400212: volumetricLight_white
+    400214: volumetricLight_yellow
+    400216: yellowLight
+    400218: yellowLight 1
+    400220: yellowLight 2
+    400222: yellowLight 3
+    400224: yellowLight 4
+    400226: yellowLight 5
+    400228: yellowLight 6
+    400230: yellowLight 7
+    400232: yellowLight 8
+    2300000: base
+    2300002: top
+    2300004: _Collider_1_lightStand
+    2300006: _Collider_1_trafficLightBar_large
+    2300008: _Collider_2_lightStand
+    2300010: _Collider_2_trafficLightBar_large
+    2300012: _Collider_3_lightStand
+    2300014: _Collider_3_trafficLightBar_large
+    2300016: _Collider_4_lightStand
+    2300018: _Collider_5_lightStand
+    2300020: _Collider_lampLight
+    2300022: _Collider_lightBox
+    2300024: _Collider_lightBox 1
+    2300026: _Collider_lightBox 2
+    2300028: _Collider_lightBox 3
+    2300030: _Collider_lightBox 4
+    2300032: _Collider_lightBox 5
+    2300034: _Collider_lightBox 6
+    2300036: _Collider_lightBox 7
+    2300038: _Collider_lightBox 8
+    2300040: _LOD0_lampLight
+    2300042: _LOD0_lightBox
+    2300044: _LOD0_lightBox 1
+    2300046: _LOD0_lightBox 2
+    2300048: _LOD0_lightBox 3
+    2300050: _LOD0_lightBox 4
+    2300052: _LOD0_lightBox 5
+    2300054: _LOD0_lightBox 6
+    2300056: _LOD0_lightBox 7
+    2300058: _LOD0_lightBox 8
+    2300060: _LOD0_lightStand
+    2300062: _LOD0_trafficLightBar_large
+    2300064: _LOD1_lampLight
+    2300066: _LOD1_lightBox
+    2300068: _LOD1_lightBox 1
+    2300070: _LOD1_lightBox 2
+    2300072: _LOD1_lightBox 3
+    2300074: _LOD1_lightBox 4
+    2300076: _LOD1_lightBox 5
+    2300078: _LOD1_lightBox 6
+    2300080: _LOD1_lightBox 7
+    2300082: _LOD1_lightBox 8
+    2300084: _LOD1_lightStand
+    2300086: _LOD1_trafficLightBar_large
+    2300088: _LOD2_lampLight
+    2300090: _LOD2_lightBox
+    2300092: _LOD2_lightBox 1
+    2300094: _LOD2_lightBox 2
+    2300096: _LOD2_lightBox 3
+    2300098: _LOD2_lightBox 4
+    2300100: _LOD2_lightBox 5
+    2300102: _LOD2_lightBox 6
+    2300104: _LOD2_lightBox 7
+    2300106: _LOD2_lightBox 8
+    2300108: _LOD2_lightStand
+    2300110: _LOD2_trafficLightBar_large
+    2300112: _pinHorizontal
+    2300114: _pinHorizontal 1
+    2300116: _pinHorizontal 2
+    2300118: _pinHorizontal 3
+    2300120: _pinHorizontal 4
+    2300122: _pinHorizontal 5
+    2300124: _pinHorizontal 6
+    2300126: _pinHorizontal 7
+    2300128: _pinHorizontal 8
+    2300130: _pinHorizontal 9
+    2300132: _pinVertical
+    2300134: _pinVertical 1
+    2300136: _trigger_lightStand
+    2300138: greenLight
+    2300140: greenLight 1
+    2300142: greenLight 2
+    2300144: greenLight 3
+    2300146: greenLight 4
+    2300148: greenLight 5
+    2300150: greenLight 6
+    2300152: greenLight 7
+    2300154: greenLight 8
+    2300156: redLight
+    2300158: redLight 1
+    2300160: redLight 2
+    2300162: redLight 3
+    2300164: redLight 4
+    2300166: redLight 5
+    2300168: redLight 6
+    2300170: redLight 7
+    2300172: redLight 8
+    2300174: volumetricLight_white
+    2300176: volumetricLight_yellow
+    2300178: yellowLight
+    2300180: yellowLight 1
+    2300182: yellowLight 2
+    2300184: yellowLight 3
+    2300186: yellowLight 4
+    2300188: yellowLight 5
+    2300190: yellowLight 6
+    2300192: yellowLight 7
+    2300194: yellowLight 8
+    3300000: base
+    3300002: top
+    3300004: _Collider_1_lightStand
+    3300006: _Collider_1_trafficLightBar_large
+    3300008: _Collider_2_lightStand
+    3300010: _Collider_2_trafficLightBar_large
+    3300012: _Collider_3_lightStand
+    3300014: _Collider_3_trafficLightBar_large
+    3300016: _Collider_4_lightStand
+    3300018: _Collider_5_lightStand
+    3300020: _Collider_lampLight
+    3300022: _Collider_lightBox
+    3300024: _Collider_lightBox 1
+    3300026: _Collider_lightBox 2
+    3300028: _Collider_lightBox 3
+    3300030: _Collider_lightBox 4
+    3300032: _Collider_lightBox 5
+    3300034: _Collider_lightBox 6
+    3300036: _Collider_lightBox 7
+    3300038: _Collider_lightBox 8
+    3300040: _LOD0_lampLight
+    3300042: _LOD0_lightBox
+    3300044: _LOD0_lightBox 1
+    3300046: _LOD0_lightBox 2
+    3300048: _LOD0_lightBox 3
+    3300050: _LOD0_lightBox 4
+    3300052: _LOD0_lightBox 5
+    3300054: _LOD0_lightBox 6
+    3300056: _LOD0_lightBox 7
+    3300058: _LOD0_lightBox 8
+    3300060: _LOD0_lightStand
+    3300062: _LOD0_trafficLightBar_large
+    3300064: _LOD1_lampLight
+    3300066: _LOD1_lightBox
+    3300068: _LOD1_lightBox 1
+    3300070: _LOD1_lightBox 2
+    3300072: _LOD1_lightBox 3
+    3300074: _LOD1_lightBox 4
+    3300076: _LOD1_lightBox 5
+    3300078: _LOD1_lightBox 6
+    3300080: _LOD1_lightBox 7
+    3300082: _LOD1_lightBox 8
+    3300084: _LOD1_lightStand
+    3300086: _LOD1_trafficLightBar_large
+    3300088: _LOD2_lampLight
+    3300090: _LOD2_lightBox
+    3300092: _LOD2_lightBox 1
+    3300094: _LOD2_lightBox 2
+    3300096: _LOD2_lightBox 3
+    3300098: _LOD2_lightBox 4
+    3300100: _LOD2_lightBox 5
+    3300102: _LOD2_lightBox 6
+    3300104: _LOD2_lightBox 7
+    3300106: _LOD2_lightBox 8
+    3300108: _LOD2_lightStand
+    3300110: _LOD2_trafficLightBar_large
+    3300112: _pinHorizontal
+    3300114: _pinHorizontal 1
+    3300116: _pinHorizontal 2
+    3300118: _pinHorizontal 3
+    3300120: _pinHorizontal 4
+    3300122: _pinHorizontal 5
+    3300124: _pinHorizontal 6
+    3300126: _pinHorizontal 7
+    3300128: _pinHorizontal 8
+    3300130: _pinHorizontal 9
+    3300132: _pinVertical
+    3300134: _pinVertical 1
+    3300136: _trigger_lightStand
+    3300138: greenLight
+    3300140: greenLight 1
+    3300142: greenLight 2
+    3300144: greenLight 3
+    3300146: greenLight 4
+    3300148: greenLight 5
+    3300150: greenLight 6
+    3300152: greenLight 7
+    3300154: greenLight 8
+    3300156: redLight
+    3300158: redLight 1
+    3300160: redLight 2
+    3300162: redLight 3
+    3300164: redLight 4
+    3300166: redLight 5
+    3300168: redLight 6
+    3300170: redLight 7
+    3300172: redLight 8
+    3300174: volumetricLight_white
+    3300176: volumetricLight_yellow
+    3300178: yellowLight
+    3300180: yellowLight 1
+    3300182: yellowLight 2
+    3300184: yellowLight 3
+    3300186: yellowLight 4
+    3300188: yellowLight 5
+    3300190: yellowLight 6
+    3300192: yellowLight 7
+    3300194: yellowLight 8
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _pinHorizontal
+    4300006: Mesh _pinVertical
+    4300008: Mesh _LOD1_lightBox
+    4300010: Mesh _LOD0_lightBox
+    4300012: Mesh _Collider_lightBox
+    4300014: Mesh _LOD2_lightBox
+    4300016: Mesh redLight
+    4300018: Mesh yellowLight
+    4300020: Mesh greenLight
+    4300022: Mesh _LOD1_trafficLightBar_large
+    4300024: Mesh _Collider_3_trafficLightBar_large
+    4300026: Mesh _Collider_1_trafficLightBar_large
+    4300028: Mesh _Collider_2_trafficLightBar_large
+    4300030: Mesh _LOD0_trafficLightBar_large
+    4300032: Mesh _LOD2_trafficLightBar_large
+    4300034: Mesh _trigger_lightStand
+    4300036: Mesh _Collider_lampLight
+    4300038: Mesh _LOD0_lampLight
+    4300040: Mesh _LOD1_lampLight
+    4300042: Mesh _LOD2_lampLight
+    4300044: Mesh volumetricLight_white
+    4300046: Mesh volumetricLight_yellow
+    4300048: Mesh _LOD0_lightStand
+    4300050: Mesh _LOD2_lightStand
+    4300052: Mesh _LOD1_lightStand
+    4300054: Mesh _Collider_2_lightStand
+    4300056: Mesh _Collider_1_lightStand
+    4300058: Mesh _Collider_5_lightStand
+    4300060: Mesh _Collider_3_lightStand
+    4300062: Mesh _Collider_4_lightStand
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

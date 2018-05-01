@@ -52,6 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadBuilder_UI.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkLayout_UI.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkNode_UI.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Editor\ERHelperEditor.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Editor\ERMeshGenEditor.cs" />
     <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Editor\ERNavPointEditor.cs" />

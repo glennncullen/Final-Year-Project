@@ -1,24 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaypointPath : MonoBehaviour {
 
 	public Color LineColour;
-	public Transform FirstConnectedRoad;
-	public Transform SecondConnectedRoad;
-	public Transform ThirdConnectedRoad;
+	public Transform LeftTurn;
+	public Transform StraightOn;
+	public Transform RightTurn;
+
+	[Header("Line Attributes")]
+	public float StartNodeSize = 1;
+	public float EndNodeSize = 2;
+	public float NodeSize = 0.5f;
+	public Boolean AlwaysShowPath;
 
 	private List<Transform> _nodes = new List<Transform>();
 
+	
+	// if AlwaysShowPath is true, show path at all times
+	private void OnDrawGizmos()
+	{
+		if (AlwaysShowPath)
+		{
+			DrawPath();
+		}
+	}
 
-	private void OnDrawGizmosSelected(){
+	// make path visible when selected
+	private void OnDrawGizmosSelected()
+	{
+		if (!AlwaysShowPath)
+		{
+			DrawPath();
+		}
+	}
+
+	// create lines and spheres of path
+	public void DrawPath()
+	{
 		Gizmos.color = LineColour;
 		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
 		_nodes = new List<Transform>();
 
 		foreach(Transform pathTransform in pathTransforms){
 			if(pathTransform != transform){
-					_nodes.Add (pathTransform);
+				_nodes.Add (pathTransform);
 			}
 		}
 
@@ -29,24 +57,44 @@ public class WaypointPath : MonoBehaviour {
 				previousNode = _nodes [i - 1].position;
 				Gizmos.DrawLine (currentNode, previousNode);
 			} 
-//			else if (i == 0 && _nodes.Count > 1) {
-//				previousNode = _nodes [_nodes.Count - 1].position;
-//				Gizmos.DrawLine (currentNode, previousNode);
-//			}
 			if (i == 0)
 			{
-				Gizmos.DrawSphere(currentNode, 0.2f);
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = true;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = false;
+				Gizmos.DrawSphere(currentNode, StartNodeSize);
+			}
+			else if (i == _nodes.Count - 1)
+			{
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = false;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = true;
+				Gizmos.DrawSphere(currentNode, EndNodeSize);
 			}
 			else
 			{
-				Gizmos.DrawWireSphere (currentNode, 0.1f);
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = false;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = false;
+				Gizmos.DrawWireSphere (currentNode, NodeSize);
 			}
 		}
 	}
 
-	public void DrawLines()
+	// return a random connected road
+	public Transform GetNextRandomWaypointPath()
 	{
-		OnDrawGizmosSelected();
+		List<Transform> paths = new List<Transform>();
+		if (LeftTurn != null)
+		{
+			paths.Add(LeftTurn);
+		}
+		if (RightTurn != null)
+		{
+			paths.Add(RightTurn);
+		}
+		if (StraightOn != null)
+		{
+			paths.Add(StraightOn);
+		}
+		return paths[Random.Range(0, paths.Count)];
 	}
 	
 }

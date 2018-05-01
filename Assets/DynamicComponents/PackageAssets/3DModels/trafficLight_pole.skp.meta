@@ -1,0 +1,301 @@
+fileFormatVersion: 2
+guid: eb0b67d3bdac2bf48a0c78410d3d37a4
+timeCreated: 1489915474
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a000000
+  assetHash:
+    serializedVersion: 2
+    Hash: ee84cf184dee8de089679286e7db44b0
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -.631184697, y: 2.55544949, z: -19.9743824}
+      lookAt: {x: -.631184697, y: 2.55544949, z: -.00139484997}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 407.681396
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _Collider_1_poleStand
+    100008: _Collider_2_poleStand
+    100010: _Collider_lightBox
+    100012: _Collider_lightBox 1
+    100014: _Collider_lightBox 2
+    100016: _Collider_lightBox 3
+    100018: _Collider_poleStand
+    100020: _LOD0_lightBox
+    100022: _LOD0_lightBox 1
+    100024: _LOD0_lightBox 2
+    100026: _LOD0_lightBox 3
+    100028: _LOD0_poleStand
+    100030: _LOD1_lightBox
+    100032: _LOD1_lightBox 1
+    100034: _LOD1_lightBox 2
+    100036: _LOD1_lightBox 3
+    100038: _LOD1_poleStand
+    100040: _LOD2_lightBox
+    100042: _LOD2_lightBox 1
+    100044: _LOD2_lightBox 2
+    100046: _LOD2_lightBox 3
+    100048: _LOD2_poleStand
+    100050: _pinHorizontal
+    100052: _pinHorizontal 1
+    100054: _pinHorizontal 2
+    100056: _pinHorizontal 3
+    100058: _pinHorizontal 4
+    100060: _pinHorizontal 5
+    100062: _pinHorizontal 6
+    100064: _pinHorizontal 7
+    100066: _trigger_poleStand
+    100068: greenLight
+    100070: greenLight 1
+    100072: greenLight 2
+    100074: greenLight 3
+    100076: lightBox
+    100078: lightBox 1
+    100080: lightBox 2
+    100082: lightBox 3
+    100084: poleStand
+    100086: redLight
+    100088: redLight 1
+    100090: redLight 2
+    100092: redLight 3
+    100094: yellowLight
+    100096: yellowLight 1
+    100098: yellowLight 2
+    100100: yellowLight 3
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _Collider_1_poleStand
+    400008: _Collider_2_poleStand
+    400010: _Collider_lightBox
+    400012: _Collider_lightBox 1
+    400014: _Collider_lightBox 2
+    400016: _Collider_lightBox 3
+    400018: _Collider_poleStand
+    400020: _LOD0_lightBox
+    400022: _LOD0_lightBox 1
+    400024: _LOD0_lightBox 2
+    400026: _LOD0_lightBox 3
+    400028: _LOD0_poleStand
+    400030: _LOD1_lightBox
+    400032: _LOD1_lightBox 1
+    400034: _LOD1_lightBox 2
+    400036: _LOD1_lightBox 3
+    400038: _LOD1_poleStand
+    400040: _LOD2_lightBox
+    400042: _LOD2_lightBox 1
+    400044: _LOD2_lightBox 2
+    400046: _LOD2_lightBox 3
+    400048: _LOD2_poleStand
+    400050: _pinHorizontal
+    400052: _pinHorizontal 1
+    400054: _pinHorizontal 2
+    400056: _pinHorizontal 3
+    400058: _pinHorizontal 4
+    400060: _pinHorizontal 5
+    400062: _pinHorizontal 6
+    400064: _pinHorizontal 7
+    400066: _trigger_poleStand
+    400068: greenLight
+    400070: greenLight 1
+    400072: greenLight 2
+    400074: greenLight 3
+    400076: lightBox
+    400078: lightBox 1
+    400080: lightBox 2
+    400082: lightBox 3
+    400084: poleStand
+    400086: redLight
+    400088: redLight 1
+    400090: redLight 2
+    400092: redLight 3
+    400094: yellowLight
+    400096: yellowLight 1
+    400098: yellowLight 2
+    400100: yellowLight 3
+    2300000: base
+    2300002: top
+    2300004: _Collider_1_poleStand
+    2300006: _Collider_2_poleStand
+    2300008: _Collider_lightBox
+    2300010: _Collider_lightBox 1
+    2300012: _Collider_lightBox 2
+    2300014: _Collider_lightBox 3
+    2300016: _LOD0_lightBox
+    2300018: _LOD0_lightBox 1
+    2300020: _LOD0_lightBox 2
+    2300022: _LOD0_lightBox 3
+    2300024: _LOD0_poleStand
+    2300026: _LOD1_lightBox
+    2300028: _LOD1_lightBox 1
+    2300030: _LOD1_lightBox 2
+    2300032: _LOD1_lightBox 3
+    2300034: _LOD1_poleStand
+    2300036: _LOD2_lightBox
+    2300038: _LOD2_lightBox 1
+    2300040: _LOD2_lightBox 2
+    2300042: _LOD2_lightBox 3
+    2300044: _LOD2_poleStand
+    2300046: _pinHorizontal
+    2300048: _pinHorizontal 1
+    2300050: _pinHorizontal 2
+    2300052: _pinHorizontal 3
+    2300054: _pinHorizontal 4
+    2300056: _pinHorizontal 5
+    2300058: _pinHorizontal 6
+    2300060: _pinHorizontal 7
+    2300062: _trigger_poleStand
+    2300064: greenLight
+    2300066: greenLight 1
+    2300068: greenLight 2
+    2300070: greenLight 3
+    2300072: redLight
+    2300074: redLight 1
+    2300076: redLight 2
+    2300078: redLight 3
+    2300080: yellowLight
+    2300082: yellowLight 1
+    2300084: yellowLight 2
+    2300086: yellowLight 3
+    3300000: base
+    3300002: top
+    3300004: _Collider_1_poleStand
+    3300006: _Collider_2_poleStand
+    3300008: _Collider_lightBox
+    3300010: _Collider_lightBox 1
+    3300012: _Collider_lightBox 2
+    3300014: _Collider_lightBox 3
+    3300016: _LOD0_lightBox
+    3300018: _LOD0_lightBox 1
+    3300020: _LOD0_lightBox 2
+    3300022: _LOD0_lightBox 3
+    3300024: _LOD0_poleStand
+    3300026: _LOD1_lightBox
+    3300028: _LOD1_lightBox 1
+    3300030: _LOD1_lightBox 2
+    3300032: _LOD1_lightBox 3
+    3300034: _LOD1_poleStand
+    3300036: _LOD2_lightBox
+    3300038: _LOD2_lightBox 1
+    3300040: _LOD2_lightBox 2
+    3300042: _LOD2_lightBox 3
+    3300044: _LOD2_poleStand
+    3300046: _pinHorizontal
+    3300048: _pinHorizontal 1
+    3300050: _pinHorizontal 2
+    3300052: _pinHorizontal 3
+    3300054: _pinHorizontal 4
+    3300056: _pinHorizontal 5
+    3300058: _pinHorizontal 6
+    3300060: _pinHorizontal 7
+    3300062: _trigger_poleStand
+    3300064: greenLight
+    3300066: greenLight 1
+    3300068: greenLight 2
+    3300070: greenLight 3
+    3300072: redLight
+    3300074: redLight 1
+    3300076: redLight 2
+    3300078: redLight 3
+    3300080: yellowLight
+    3300082: yellowLight 1
+    3300084: yellowLight 2
+    3300086: yellowLight 3
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _LOD1_lightBox
+    4300006: Mesh _LOD0_lightBox
+    4300008: Mesh _Collider_lightBox
+    4300010: Mesh _LOD2_lightBox
+    4300012: Mesh redLight
+    4300014: Mesh yellowLight
+    4300016: Mesh greenLight
+    4300018: Mesh _trigger_poleStand
+    4300020: Mesh _pinHorizontal
+    4300022: Mesh _LOD0_poleStand
+    4300024: Mesh _LOD2_poleStand
+    4300026: Mesh _LOD1_poleStand
+    4300028: Mesh _Collider_2_poleStand
+    4300030: Mesh _Collider_1_poleStand
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

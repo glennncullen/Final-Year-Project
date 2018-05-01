@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 82b6456affd93de44beec008fc404e76
+timeCreated: 1489915472
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000
+  assetHash:
+    serializedVersion: 2
+    Hash: e3dd3eda1f4479c928d9a249f1f4cd9f
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 3.00249839, y: 4.31856298, z: -20.7405968}
+      lookAt: {x: 3.00249839, y: 4.31856298, z: -3.00000011e-07}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 514.920105
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _Collider_1_lightStand
+    100008: _Collider_2_lightStand
+    100010: _Collider_3_lightStand
+    100012: _Collider_4_lightStand
+    100014: _Collider_5_lightStand
+    100016: _Collider_lampLight
+    100018: _Collider_lightStand
+    100020: _LOD0_lampLight
+    100022: _LOD0_lightStand
+    100024: _LOD1_lampLight
+    100026: _LOD1_lightStand
+    100028: _LOD2_lampLight
+    100030: _LOD2_lightStand
+    100032: _trigger_lightStand
+    100034: lampLight
+    100036: lightStand
+    100038: volumetricLight_white
+    100040: volumetricLight_yellow
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _Collider_1_lightStand
+    400008: _Collider_2_lightStand
+    400010: _Collider_3_lightStand
+    400012: _Collider_4_lightStand
+    400014: _Collider_5_lightStand
+    400016: _Collider_lampLight
+    400018: _Collider_lightStand
+    400020: _LOD0_lampLight
+    400022: _LOD0_lightStand
+    400024: _LOD1_lampLight
+    400026: _LOD1_lightStand
+    400028: _LOD2_lampLight
+    400030: _LOD2_lightStand
+    400032: _trigger_lightStand
+    400034: lampLight
+    400036: lightStand
+    400038: volumetricLight_white
+    400040: volumetricLight_yellow
+    2300000: base
+    2300002: top
+    2300004: _Collider_1_lightStand
+    2300006: _Collider_2_lightStand
+    2300008: _Collider_3_lightStand
+    2300010: _Collider_4_lightStand
+    2300012: _Collider_5_lightStand
+    2300014: _Collider_lampLight
+    2300016: _LOD0_lampLight
+    2300018: _LOD0_lightStand
+    2300020: _LOD1_lampLight
+    2300022: _LOD1_lightStand
+    2300024: _LOD2_lampLight
+    2300026: _LOD2_lightStand
+    2300028: _trigger_lightStand
+    2300030: volumetricLight_white
+    2300032: volumetricLight_yellow
+    3300000: base
+    3300002: top
+    3300004: _Collider_1_lightStand
+    3300006: _Collider_2_lightStand
+    3300008: _Collider_3_lightStand
+    3300010: _Collider_4_lightStand
+    3300012: _Collider_5_lightStand
+    3300014: _Collider_lampLight
+    3300016: _LOD0_lampLight
+    3300018: _LOD0_lightStand
+    3300020: _LOD1_lampLight
+    3300022: _LOD1_lightStand
+    3300024: _LOD2_lampLight
+    3300026: _LOD2_lightStand
+    3300028: _trigger_lightStand
+    3300030: volumetricLight_white
+    3300032: volumetricLight_yellow
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _trigger_lightStand
+    4300006: Mesh _Collider_lampLight
+    4300008: Mesh _LOD0_lampLight
+    4300010: Mesh _LOD1_lampLight
+    4300012: Mesh _LOD2_lampLight
+    4300014: Mesh volumetricLight_white
+    4300016: Mesh volumetricLight_yellow
+    4300018: Mesh _LOD0_lightStand
+    4300020: Mesh _LOD2_lightStand
+    4300022: Mesh _LOD1_lightStand
+    4300024: Mesh _Collider_2_lightStand
+    4300026: Mesh _Collider_1_lightStand
+    4300028: Mesh _Collider_5_lightStand
+    4300030: Mesh _Collider_3_lightStand
+    4300032: Mesh _Collider_4_lightStand
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

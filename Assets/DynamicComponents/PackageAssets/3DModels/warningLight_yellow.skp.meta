@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 8ab8fe41b1e3af3449434209d2520abf
+timeCreated: 1489915472
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000140000001500000016000000170000001800000019000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 887b7854018fb164d855a5cddbce8861
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 1.00721395, y: 1.49032187, z: -5.82395315}
+      lookAt: {x: 1.00721395, y: 1.49032187, z: -.0307105128}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 231.634766
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _Collider_1_poleStand
+    100008: _Collider_2_poleStand
+    100010: _Collider_poleStand
+    100012: _Collider_warningLight#1
+    100014: _LOD0_poleStand
+    100016: _LOD0_warningLightYellow
+    100018: _LOD1_poleStand
+    100020: _LOD1_warningLightYellow
+    100022: _LOD2_poleStand
+    100024: _LOD2_warningLightYellow
+    100026: _pinHorizontal
+    100028: _trigger_poleStand
+    100030: poleStand
+    100032: warningLightYellow
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _Collider_1_poleStand
+    400008: _Collider_2_poleStand
+    400010: _Collider_poleStand
+    400012: _Collider_warningLight#1
+    400014: _LOD0_poleStand
+    400016: _LOD0_warningLightYellow
+    400018: _LOD1_poleStand
+    400020: _LOD1_warningLightYellow
+    400022: _LOD2_poleStand
+    400024: _LOD2_warningLightYellow
+    400026: _pinHorizontal
+    400028: _trigger_poleStand
+    400030: poleStand
+    400032: warningLightYellow
+    2300000: base
+    2300002: top
+    2300004: _Collider_1_poleStand
+    2300006: _Collider_2_poleStand
+    2300008: _Collider_warningLight#1
+    2300010: _LOD0_poleStand
+    2300012: _LOD0_warningLightYellow
+    2300014: _LOD1_poleStand
+    2300016: _LOD1_warningLightYellow
+    2300018: _LOD2_poleStand
+    2300020: _LOD2_warningLightYellow
+    2300022: _pinHorizontal
+    2300024: _trigger_poleStand
+    3300000: base
+    3300002: top
+    3300004: _Collider_1_poleStand
+    3300006: _Collider_2_poleStand
+    3300008: _Collider_warningLight#1
+    3300010: _LOD0_poleStand
+    3300012: _LOD0_warningLightYellow
+    3300014: _LOD1_poleStand
+    3300016: _LOD1_warningLightYellow
+    3300018: _LOD2_poleStand
+    3300020: _LOD2_warningLightYellow
+    3300022: _pinHorizontal
+    3300024: _trigger_poleStand
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _pinHorizontal
+    4300006: Mesh _LOD0_poleStand
+    4300008: Mesh _LOD2_poleStand
+    4300010: Mesh _LOD1_poleStand
+    4300012: Mesh _Collider_2_poleStand
+    4300014: Mesh _Collider_1_poleStand
+    4300016: Mesh _trigger_poleStand
+    4300018: Mesh _LOD1_warningLightYellow
+    4300020: Mesh _Collider_warningLight#1
+    4300022: Mesh _LOD2_warningLightYellow
+    4300024: Mesh _LOD0_warningLightYellow
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

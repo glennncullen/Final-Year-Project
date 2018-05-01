@@ -10,10 +10,11 @@ public class CarAI : MonoBehaviour {
 	public float MaxSpeed = 80f;
 	public float MaxTorque = 100f;
 	public float MaxBrakeTorque = 150f;
-	public float TurnSpeed = 5f;
 	public float MaxSteerAngle = 30f;
+	public float MaxTurningSpeed = 20f;
+	public float SmoothTurningSpeed = 5f;
 	public bool IsBraking = false;
-	
+
 	[Header("Wheel Colliders")]
 	public WheelCollider WheelFrontLeft;
 	public WheelCollider WheelFrontRight;
@@ -21,8 +22,8 @@ public class CarAI : MonoBehaviour {
 	public WheelCollider WheelBackRight;
 
 	[Header("Route To Follow")]
-	public Transform Road;
-	public float DistanceFromWaypointToChange = 0.5f;
+	public Transform StartingRoad;
+	public float DistanceFromWpToChange = 0.5f;
 	
 	[Header("Sensors")] 
 	public float SensorLength = 5f;
@@ -38,24 +39,38 @@ public class CarAI : MonoBehaviour {
 	private bool _isAvoiding;
 	private float _targetSteerAngle;
 	private bool _isChangingPath;
-	
+	private Transform _currentRoad;
 
 	// initialization
 	private void Start () {
 		_rigidbodyComponent = GetComponent<Rigidbody> ();
 		_rigidbodyComponent.centerOfMass = CenterOfMass;
-		Transform[] pathTransforms = Road.GetComponentsInChildren<Transform>();
+		_currentRoad = StartingRoad;
+		Transform[] pathTransforms = StartingRoad.GetComponentsInChildren<Transform>();
 		_pathNodes = new List<Transform>();
 		foreach(Transform navPoint in pathTransforms){
-//			if(navPoint.GetComponent<ERNavPoint>() != null){
-//				_pathNodes.Add (navPoint);
-//			}
-			if (Road.transform != navPoint)
+			if (StartingRoad.transform != navPoint)
 			{
 				_pathNodes.Add(navPoint);
 			}
 		}
 		_isAvoiding = false;
+		_currentPathNode = 0;
+	}
+	
+	
+	// build array of Waypoint transforms to follow
+	private void BuildNextPath()
+	{
+		_currentRoad = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
+		Transform[] pathTransforms = _currentRoad.GetComponentsInChildren<Transform>();
+		_pathNodes = new List<Transform>();
+		foreach(Transform waypoint in pathTransforms){
+			if (_currentRoad.transform != waypoint)
+			{
+				_pathNodes.Add(waypoint);
+			}
+		}
 		_currentPathNode = 0;
 	}
 	
@@ -67,8 +82,10 @@ public class CarAI : MonoBehaviour {
 		CheckSteerAngle();
 		Move();
 		UpdateWaypoint();
+		CheckTurning();
 		CheckBraking();
 		SmoothSteer();
+//		print("Is Braking:\t" + IsBraking + "\tSpeed:\t" + _currentSpeed + "\nChange Path\t" + _isChangingPath);
 	}
 	
 
@@ -86,7 +103,17 @@ public class CarAI : MonoBehaviour {
 	private void Move()
 	{
 		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
-		if (_currentSpeed < MaxSpeed && !IsBraking)
+		if (_isChangingPath && _currentSpeed > MaxTurningSpeed)
+		{
+			IsBraking = true;
+		}
+		else if (_isChangingPath && _currentSpeed < MaxTurningSpeed)
+		{
+			IsBraking = false;
+			WheelFrontLeft.motorTorque = MaxTorque;
+			WheelFrontRight.motorTorque = MaxTorque;
+		}
+		else if (_currentSpeed < MaxSpeed && !IsBraking)
 		{
 			WheelFrontLeft.motorTorque = MaxTorque;
 			WheelFrontRight.motorTorque = MaxTorque;
@@ -102,17 +129,30 @@ public class CarAI : MonoBehaviour {
 	// functionality to update nodes
 	private void UpdateWaypoint()
 	{
-		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWaypointToChange)) return;
+		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
 
 		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) {
 			_currentPathNode++;
-		} else {
-//			_currentPathNode = 0;
+		} else { // changing path
+			BuildNextPath();
 			_isChangingPath = true;
-			IsBraking = true;
 		}
 	}
-	
+
+
+	private void CheckTurning()
+	{
+		
+		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsFirstOnRoad)
+		{
+			_isChangingPath = true;
+		}
+		else
+		{
+			IsBraking = false;
+			_isChangingPath = false;
+		}
+	}
 	
 	// functionality for car to brake
 	private void CheckBraking()
@@ -212,7 +252,7 @@ public class CarAI : MonoBehaviour {
 	// functionality to smooth steering
 	private void SmoothSteer()
 	{
-		WheelFrontLeft.steerAngle = Mathf.Lerp(WheelFrontLeft.steerAngle, _targetSteerAngle, Time.deltaTime * TurnSpeed);
-		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * TurnSpeed);
+		WheelFrontLeft.steerAngle = Mathf.Lerp(WheelFrontLeft.steerAngle, _targetSteerAngle, Time.deltaTime * SmoothTurningSpeed);
+		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * SmoothTurningSpeed);
 	}
 }

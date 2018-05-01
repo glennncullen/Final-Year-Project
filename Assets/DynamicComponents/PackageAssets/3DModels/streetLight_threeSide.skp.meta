@@ -1,0 +1,328 @@
+fileFormatVersion: 2
+guid: f0d1c5f91a75e464f9283f1cb7b880a0
+timeCreated: 1489915475
+licenseType: Store
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 7fa85b12925f77a79ea4ac8d581b7d22
+  longitude: -105.24213899999999
+  latitude: 40.018309000000002
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 1.56452954, y: 5.42719603, z: -40.5640297}
+      lookAt: {x: 1.56452954, y: 5.42719603, z: -1.4260124}
+      up: {x: 0, y: 1, z: 0}
+      fov: 45
+      aspectRatio: 0
+      orthoSize: 690.653076
+      isPerspective: 0
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: base
+    100004: top
+    100006: _Collider_1_streetLamp
+    100008: _Collider_1_streetLampSupport
+    100010: _Collider_1_streetLampSupport 1
+    100012: _Collider_1_streetLampSupport 2
+    100014: _Collider_2_streetLamp
+    100016: _Collider_2_streetLampSupport
+    100018: _Collider_2_streetLampSupport 1
+    100020: _Collider_2_streetLampSupport 2
+    100022: _Collider_3_streetLampSupport
+    100024: _Collider_3_streetLampSupport 1
+    100026: _Collider_3_streetLampSupport 2
+    100028: _Collider_4_streetLampSupport
+    100030: _Collider_4_streetLampSupport 1
+    100032: _Collider_4_streetLampSupport 2
+    100034: _Collider_lampLight
+    100036: _Collider_lampLight 1
+    100038: _Collider_lampLight 2
+    100040: _Collider_streetLamp
+    100042: _Collider_streetLampSupport
+    100044: _Collider_streetLampSupport 1
+    100046: _Collider_streetLampSupport 2
+    100048: _LOD0_lampLight
+    100050: _LOD0_lampLight 1
+    100052: _LOD0_lampLight 2
+    100054: _LOD0_streetLampSupport
+    100056: _LOD0_streetLampSupport 1
+    100058: _LOD0_streetLampSupport 2
+    100060: _LOD0_streetLightStand
+    100062: _LOD1_lampLight
+    100064: _LOD1_lampLight 1
+    100066: _LOD1_lampLight 2
+    100068: _LOD1_streetLampSupport
+    100070: _LOD1_streetLampSupport 1
+    100072: _LOD1_streetLampSupport 2
+    100074: _LOD1_streetLightStand
+    100076: _LOD2_lampLight
+    100078: _LOD2_lampLight 1
+    100080: _LOD2_lampLight 2
+    100082: _LOD2_streetLampSupport
+    100084: _LOD2_streetLampSupport 1
+    100086: _LOD2_streetLampSupport 2
+    100088: _LOD2_streetLightStand
+    100090: _trigger_streetLamp
+    100092: lampLight
+    100094: lampLight 1
+    100096: lampLight 2
+    100098: streetLampSupport
+    100100: streetLampSupport 1
+    100102: streetLampSupport 2
+    100104: streetLightStand
+    100106: volumetricLight_white
+    100108: volumetricLight_white 1
+    100110: volumetricLight_white 2
+    100112: volumetricLight_yellow
+    100114: volumetricLight_yellow 1
+    100116: volumetricLight_yellow 2
+    400000: //RootNode
+    400002: base
+    400004: top
+    400006: _Collider_1_streetLamp
+    400008: _Collider_1_streetLampSupport
+    400010: _Collider_1_streetLampSupport 1
+    400012: _Collider_1_streetLampSupport 2
+    400014: _Collider_2_streetLamp
+    400016: _Collider_2_streetLampSupport
+    400018: _Collider_2_streetLampSupport 1
+    400020: _Collider_2_streetLampSupport 2
+    400022: _Collider_3_streetLampSupport
+    400024: _Collider_3_streetLampSupport 1
+    400026: _Collider_3_streetLampSupport 2
+    400028: _Collider_4_streetLampSupport
+    400030: _Collider_4_streetLampSupport 1
+    400032: _Collider_4_streetLampSupport 2
+    400034: _Collider_lampLight
+    400036: _Collider_lampLight 1
+    400038: _Collider_lampLight 2
+    400040: _Collider_streetLamp
+    400042: _Collider_streetLampSupport
+    400044: _Collider_streetLampSupport 1
+    400046: _Collider_streetLampSupport 2
+    400048: _LOD0_lampLight
+    400050: _LOD0_lampLight 1
+    400052: _LOD0_lampLight 2
+    400054: _LOD0_streetLampSupport
+    400056: _LOD0_streetLampSupport 1
+    400058: _LOD0_streetLampSupport 2
+    400060: _LOD0_streetLightStand
+    400062: _LOD1_lampLight
+    400064: _LOD1_lampLight 1
+    400066: _LOD1_lampLight 2
+    400068: _LOD1_streetLampSupport
+    400070: _LOD1_streetLampSupport 1
+    400072: _LOD1_streetLampSupport 2
+    400074: _LOD1_streetLightStand
+    400076: _LOD2_lampLight
+    400078: _LOD2_lampLight 1
+    400080: _LOD2_lampLight 2
+    400082: _LOD2_streetLampSupport
+    400084: _LOD2_streetLampSupport 1
+    400086: _LOD2_streetLampSupport 2
+    400088: _LOD2_streetLightStand
+    400090: _trigger_streetLamp
+    400092: lampLight
+    400094: lampLight 1
+    400096: lampLight 2
+    400098: streetLampSupport
+    400100: streetLampSupport 1
+    400102: streetLampSupport 2
+    400104: streetLightStand
+    400106: volumetricLight_white
+    400108: volumetricLight_white 1
+    400110: volumetricLight_white 2
+    400112: volumetricLight_yellow
+    400114: volumetricLight_yellow 1
+    400116: volumetricLight_yellow 2
+    2300000: base
+    2300002: top
+    2300004: _Collider_1_streetLamp
+    2300006: _Collider_1_streetLampSupport
+    2300008: _Collider_1_streetLampSupport 1
+    2300010: _Collider_1_streetLampSupport 2
+    2300012: _Collider_2_streetLamp
+    2300014: _Collider_2_streetLampSupport
+    2300016: _Collider_2_streetLampSupport 1
+    2300018: _Collider_2_streetLampSupport 2
+    2300020: _Collider_3_streetLampSupport
+    2300022: _Collider_3_streetLampSupport 1
+    2300024: _Collider_3_streetLampSupport 2
+    2300026: _Collider_4_streetLampSupport
+    2300028: _Collider_4_streetLampSupport 1
+    2300030: _Collider_4_streetLampSupport 2
+    2300032: _Collider_lampLight
+    2300034: _Collider_lampLight 1
+    2300036: _Collider_lampLight 2
+    2300038: _LOD0_lampLight
+    2300040: _LOD0_lampLight 1
+    2300042: _LOD0_lampLight 2
+    2300044: _LOD0_streetLampSupport
+    2300046: _LOD0_streetLampSupport 1
+    2300048: _LOD0_streetLampSupport 2
+    2300050: _LOD0_streetLightStand
+    2300052: _LOD1_lampLight
+    2300054: _LOD1_lampLight 1
+    2300056: _LOD1_lampLight 2
+    2300058: _LOD1_streetLampSupport
+    2300060: _LOD1_streetLampSupport 1
+    2300062: _LOD1_streetLampSupport 2
+    2300064: _LOD1_streetLightStand
+    2300066: _LOD2_lampLight
+    2300068: _LOD2_lampLight 1
+    2300070: _LOD2_lampLight 2
+    2300072: _LOD2_streetLampSupport
+    2300074: _LOD2_streetLampSupport 1
+    2300076: _LOD2_streetLampSupport 2
+    2300078: _LOD2_streetLightStand
+    2300080: _trigger_streetLamp
+    2300082: volumetricLight_white
+    2300084: volumetricLight_white 1
+    2300086: volumetricLight_white 2
+    2300088: volumetricLight_yellow
+    2300090: volumetricLight_yellow 1
+    2300092: volumetricLight_yellow 2
+    3300000: base
+    3300002: top
+    3300004: _Collider_1_streetLamp
+    3300006: _Collider_1_streetLampSupport
+    3300008: _Collider_1_streetLampSupport 1
+    3300010: _Collider_1_streetLampSupport 2
+    3300012: _Collider_2_streetLamp
+    3300014: _Collider_2_streetLampSupport
+    3300016: _Collider_2_streetLampSupport 1
+    3300018: _Collider_2_streetLampSupport 2
+    3300020: _Collider_3_streetLampSupport
+    3300022: _Collider_3_streetLampSupport 1
+    3300024: _Collider_3_streetLampSupport 2
+    3300026: _Collider_4_streetLampSupport
+    3300028: _Collider_4_streetLampSupport 1
+    3300030: _Collider_4_streetLampSupport 2
+    3300032: _Collider_lampLight
+    3300034: _Collider_lampLight 1
+    3300036: _Collider_lampLight 2
+    3300038: _LOD0_lampLight
+    3300040: _LOD0_lampLight 1
+    3300042: _LOD0_lampLight 2
+    3300044: _LOD0_streetLampSupport
+    3300046: _LOD0_streetLampSupport 1
+    3300048: _LOD0_streetLampSupport 2
+    3300050: _LOD0_streetLightStand
+    3300052: _LOD1_lampLight
+    3300054: _LOD1_lampLight 1
+    3300056: _LOD1_lampLight 2
+    3300058: _LOD1_streetLampSupport
+    3300060: _LOD1_streetLampSupport 1
+    3300062: _LOD1_streetLampSupport 2
+    3300064: _LOD1_streetLightStand
+    3300066: _LOD2_lampLight
+    3300068: _LOD2_lampLight 1
+    3300070: _LOD2_lampLight 2
+    3300072: _LOD2_streetLampSupport
+    3300074: _LOD2_streetLampSupport 1
+    3300076: _LOD2_streetLampSupport 2
+    3300078: _LOD2_streetLightStand
+    3300080: _trigger_streetLamp
+    3300082: volumetricLight_white
+    3300084: volumetricLight_white 1
+    3300086: volumetricLight_white 2
+    3300088: volumetricLight_yellow
+    3300090: volumetricLight_yellow 1
+    3300092: volumetricLight_yellow 2
+    4300000: Mesh base
+    4300002: Mesh top
+    4300004: Mesh _LOD0_streetLightStand
+    4300006: Mesh _LOD1_streetLightStand
+    4300008: Mesh _LOD2_streetLightStand
+    4300010: Mesh _Collider_4_streetLampSupport
+    4300012: Mesh _Collider_2_streetLampSupport
+    4300014: Mesh _Collider_3_streetLampSupport
+    4300016: Mesh _Collider_1_streetLampSupport
+    4300018: Mesh _LOD1_streetLampSupport
+    4300020: Mesh _LOD2_streetLampSupport
+    4300022: Mesh _LOD0_streetLampSupport
+    4300024: Mesh _Collider_1_streetLamp
+    4300026: Mesh _Collider_2_streetLamp
+    4300028: Mesh _Collider_lampLight
+    4300030: Mesh _LOD0_lampLight
+    4300032: Mesh _LOD1_lampLight
+    4300034: Mesh _LOD2_lampLight
+    4300036: Mesh volumetricLight_white
+    4300038: Mesh volumetricLight_yellow
+    4300040: Mesh _trigger_streetLamp
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
