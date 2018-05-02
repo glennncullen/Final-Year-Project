@@ -6,6 +6,7 @@ TagManager:
   tags:
   - right path
   - left path
+  - Test Truck
   layers:
   - Default
   - TransparentFX

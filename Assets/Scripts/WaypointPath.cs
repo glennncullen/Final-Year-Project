@@ -18,7 +18,35 @@ public class WaypointPath : MonoBehaviour {
 
 	private List<Transform> _nodes = new List<Transform>();
 
-	
+	// set first and last nodes on Waypoint path
+	private void Awake()
+	{
+		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
+		_nodes = new List<Transform>();
+		foreach(Transform pathTransform in pathTransforms){
+			if(pathTransform != transform){
+				_nodes.Add (pathTransform);
+			}
+		}
+		for(int i = 0; i < _nodes.Count; i++){
+			if (i == 0)
+			{
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = true;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = false;
+			}
+			else if (i == _nodes.Count - 1)
+			{
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = false;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = true;
+			}
+			else
+			{
+				_nodes[i].GetComponent<Waypoint>().IsFirstOnRoad = false;
+				_nodes[i].GetComponent<Waypoint>().IsLastOnRoad = false;
+			}
+		}
+	}
+
 	// if AlwaysShowPath is true, show path at all times
 	private void OnDrawGizmos()
 	{
