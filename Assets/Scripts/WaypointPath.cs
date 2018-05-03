@@ -10,12 +10,16 @@ public class WaypointPath : MonoBehaviour {
 	public Transform StraightOn;
 	public Transform RightTurn;
 
+	[Header("Traffic Lights")] 
+	public Transform TrafficLights;
+	
 	[Header("Line Attributes")]
 	public float StartNodeSize = 1;
 	public float EndNodeSize = 2;
 	public float NodeSize = 0.5f;
 	public Boolean AlwaysShowPath;
-
+	
+	// private variables
 	private List<Transform> _nodes = new List<Transform>();
 
 	// set first and last nodes on Waypoint path

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Runtime.CompilerServices;
+using UnityEngine.Analytics;
 
 
 // Light box class
@@ -16,6 +18,7 @@ public class TrafficLightControl : MonoBehaviour
 {
 	public lightBox[] zAxis; // Array of all lightbox facing Z axis and -Z axis
 	public lightBox[] xAxis; // Array of all lightbox facing X axis and -X axis
+	public lightBox RoadFacing; // the waypoint path that ends at the Z axis
 	int i;
 	public float lightTime; // Time for red and green lights to stay
 	public float transitionTime;// Time for yellow light to stay
@@ -35,7 +38,12 @@ public class TrafficLightControl : MonoBehaviour
 			zAxis [i].yellowLight.SetActive (zYellow);
 			zAxis [i].greenLight.SetActive (zGreen);
 		}
-		
+	}
+
+	// get the state of traffic lights facing the path
+	public bool[] GetTrafficLightsFacing()
+	{
+		return new[]{RoadFacing.redLight.activeSelf, RoadFacing.yellowLight.activeSelf, RoadFacing.greenLight.activeSelf};
 	}
 
 	// Green lights facing X direction will be on
