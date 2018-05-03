@@ -330,14 +330,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197801409828218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 258, y: 5.14, z: 340.7}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalRotation: {x: 0, y: 0.0053327074, z: -0, w: -0.9999858}
+  m_LocalPosition: {x: 1.964, y: 0, z: 1.893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4953341152529648}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.18, y: 90.80801, z: -0.09900001}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.611, z: 0}
 --- !u!4 &4837892270629970
 Transform:
   m_ObjectHideFlags: 1
@@ -626,23 +626,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   MaxSpeed: 50
-  MaxTorque: 80
-  MaxBrakeTorque: 150
+  MaxTorque: 1000
   MaxSteerAngle: 55
   MaxTurningSpeed: 40
   SmoothTurningSpeed: 5
-  StopVehicle: 0
+  StopVehicle: 1
   WheelFrontLeft: {fileID: 146541649900519294}
   WheelFrontRight: {fileID: 146569338311310516}
   WheelBackLeft: {fileID: 146805476850533166}
   WheelBackRight: {fileID: 146710865841354696}
   StartingRoad: {fileID: 0}
   DistanceFromWpToChange: 3
-  FrontSensorLength: 20
-  SideSensorLength: 20
+  FrontSensorLength: 5
   FrontSensorPosition: {x: 0, y: 1.5, z: 3.7}
-  SideSensorPosition: 1.5
-  FrontSensorAngle: 45
+  SideSensorPosition: 1
+  SensorsToLookAhead: {x: 15, y: 25, z: 35}
+  SensorToLookRight: {x: 80, y: 30, z: 72, w: 15}
+  SensorToLookLeft: {x: -55, y: 30, z: -30, w: 15}
+  _isChangingPath: 0
+  _leftCross: 0
+  _rightCross: 0
+  _leftJunctionJoin: 0
+  _rightJunctionJoin: 0
+  _leftJunctionLeave: 0
+  _rightJunctionCrossing: 0
+  _isGoingStraight: 0
 --- !u!114 &114364866154878130
 MonoBehaviour:
   m_ObjectHideFlags: 1

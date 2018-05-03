@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -111,22 +112,46 @@ public class WaypointPath : MonoBehaviour {
 	}
 
 	// return a random connected road
-	public Transform GetNextRandomWaypointPath()
+	public Dictionary<String, Transform> GetNextRandomWaypointPath()
 	{
-		List<Transform> paths = new List<Transform>();
-		if (LeftTurn != null)
+		Dictionary<String, Transform> paths = new Dictionary<String, Transform>();
+		if (LeftTurn != null && RightTurn != null && StraightOn != null) // at a cross section
 		{
-			paths.Add(LeftTurn);
+			paths.Add("left-cross", LeftTurn);
+			paths.Add("right-cross", RightTurn);
+			paths.Add("straight", StraightOn);
 		}
-		if (RightTurn != null)
+		else if (LeftTurn != null && RightTurn != null && StraightOn == null) // joining road at T junction
 		{
-			paths.Add(RightTurn);
+			paths.Add("left-junction-join", LeftTurn);
+			paths.Add("right-junction-join", RightTurn);
 		}
-		if (StraightOn != null)
+		else if (LeftTurn != null && RightTurn == null && StraightOn != null) // taking a left or going straight at T junction
 		{
-			paths.Add(StraightOn);
+			paths.Add("left-juction-leave", LeftTurn);
+			paths.Add("straight", StraightOn);
 		}
-		return paths[Random.Range(0, paths.Count)];
+		else if (LeftTurn == null && RightTurn != null && StraightOn != null) // taking a right or going straight at T junction
+		{
+			paths.Add("right-junction-crossing", RightTurn);
+			paths.Add("straight", StraightOn);
+		}else if (LeftTurn != null && RightTurn == null && StraightOn == null)
+		{
+			paths.Add("left-cross", LeftTurn);
+		}
+		else if (LeftTurn == null && RightTurn == null && StraightOn != null)
+		{
+			paths.Add("straight", StraightOn);
+		}
+		else if (LeftTurn == null && RightTurn != null && StraightOn == null)
+		{
+			paths.Add("right-cross", RightTurn);
+		}
+		String[] s = paths.Keys.ToArray();
+		String choice = s[Random.Range(0, paths.Count)];
+		Dictionary<String, Transform> toReturn = new Dictionary<String, Transform>();
+		toReturn.Add(choice, paths[choice]);
+		return toReturn;
 	}
 	
 }
