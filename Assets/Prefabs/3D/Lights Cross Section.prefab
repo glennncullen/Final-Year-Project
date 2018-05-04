@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 114867058495424428}
   - component: {fileID: 114097207436085640}
   m_Layer: 0
-  m_Name: _LHT_trafficLight_pole (1)
+  m_Name: _EN_trafficLight_pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 114640995676111758}
   - component: {fileID: 114476076165179232}
   m_Layer: 0
-  m_Name: _RHT_trafficLight_pole (1)
+  m_Name: _WN_trafficLight_pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1665,7 +1665,7 @@ GameObject:
   - component: {fileID: 114086381180990868}
   - component: {fileID: 114295302379978838}
   m_Layer: 0
-  m_Name: _LHT_trafficLight_pole
+  m_Name: _WS_trafficLight_pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2395,7 +2395,7 @@ GameObject:
   - component: {fileID: 114727400987793520}
   - component: {fileID: 114902740362381518}
   m_Layer: 0
-  m_Name: _RHT_trafficLight_pole
+  m_Name: _ES_trafficLight_pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3042,7 +3042,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487456808563990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 257.73, y: 2.87, z: 346}
+  m_LocalPosition: {x: 155.09, y: 2.92, z: 246.44}
   m_LocalScale: {x: 1.2348788, y: 1.6840549, z: 1.2239166}
   m_Children:
   - {fileID: 4381928129142956}
@@ -8389,7 +8389,7 @@ MeshCollider:
   m_GameObject: {fileID: 1631765008022616}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14

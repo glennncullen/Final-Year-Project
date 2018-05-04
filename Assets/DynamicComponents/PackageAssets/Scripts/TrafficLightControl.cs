@@ -16,6 +16,15 @@ public class lightBox {
 
 public class TrafficLightControl : MonoBehaviour
 {
+	public TrafficLightControl()
+	{
+		PreviousLightGreen = false;
+		PreviousLightRed = false;
+	}
+
+	public bool PreviousLightRed { get; set; }
+	public bool PreviousLightGreen { get; set; }
+
 	public lightBox[] zAxis; // Array of all lightbox facing Z axis and -Z axis
 	public lightBox[] xAxis; // Array of all lightbox facing X axis and -X axis
 	public lightBox RoadFacing; // the waypoint path that ends at the Z axis
@@ -71,10 +80,14 @@ public class TrafficLightControl : MonoBehaviour
 	IEnumerator startLights() {
 		while(true) {
 			allowXdirection ();
+			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
+			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (lightTime);
 			allowWaiting ();
 			yield return new WaitForSeconds (transitionTime);
 			allowZdirection ();
+			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
+			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (lightTime);
 			allowWaiting ();
 			yield return new WaitForSeconds (transitionTime);

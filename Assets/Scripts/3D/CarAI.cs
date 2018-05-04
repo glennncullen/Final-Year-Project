@@ -27,7 +27,7 @@ public class CarAI : MonoBehaviour {
 	public float DistanceFromWpToChange = 3f;
 
 	[Header("Sensors")] 
-	public float FrontSensorLength = 5f;
+	public float FrontSensorLength = 6.5f;
 	public Vector3 FrontSensorPosition = new Vector3(0f, 1.5f, 3.7f);
 	public float SideSensorPosition = 1f;
 	public Vector3 SensorsToLookAhead = new Vector3(15f, 25f, 35f); // angle, angle, length
@@ -41,15 +41,12 @@ public class CarAI : MonoBehaviour {
 	private int _currentPathNode;
 	private bool _isBraking;
 	
-	private bool _isAvoiding;
-//	private bool _isTooCloseToVehicleInFront;
-//	private bool _isUnsafeToTurn;
-	
 	private float _targetSteerAngle;
 	
-	private float MaxBrakeTorque = 1000f;
-	public bool _isChangingPath;
+	public float MaxBrakeTorque = 2000f;
 	
+	public bool _isChangingPath;
+	public bool _isSafeToChangePath;
 	public bool _leftCross;
 	public bool _rightCross;
 	public bool _leftJunctionJoin;
@@ -57,9 +54,11 @@ public class CarAI : MonoBehaviour {
 	public bool _leftJunctionLeave;
 	public bool _rightJunctionCrossing;
 	public bool _isGoingStraight;
+	private bool BreakRedLight;
 	private float _speedConstant;
 	private float _brakeTorqueConstant;
 	private Transform _currentRoad;
+	private Transform _nextRoad;
 	private bool[] _lightsRedYellowGreen = new []{false, false, false};
 
 	// initialization
@@ -76,9 +75,6 @@ public class CarAI : MonoBehaviour {
 			}
 		}
 		
-		_isAvoiding = false;
-//		_isTooCloseToVehicleInFront = false;
-//		_isUnsafeToTurn = false;
 		_speedConstant = MaxSpeed;
 		_currentPathNode = 0;
 		for(int i =  0; i < _lightsRedYellowGreen.Length; i++)
@@ -88,39 +84,147 @@ public class CarAI : MonoBehaviour {
 	}
 	
 	
-	
 	private void FixedUpdate ()
 	{
-//		if (_isChangingPath)
-//		{
-//			CheckSensors();
-//		}
-//		CheckSensors();
 		CheckTrafficLightState();
-		CheckSensors();
 		CheckTurning();
+		CheckYield();
+		CheckSensors();
 		CheckSteerAngle();
-		UpdateWaypoint();
 		CheckBraking();
 		Move();
+		UpdateWaypoint();
 		SmoothSteer();
 //		if (gameObject.CompareTag("Test Truck"))
 //		{
 //			print("brake:\t" + _isBraking);
 //		}
 		_isBraking = false;
-//		_hardBrake = false;
 		_speedConstant = MaxSpeed;
 		_brakeTorqueConstant = 0;
+		_isChangingPath = false;
+		BreakRedLight = false;
+		for(int i =  0; i < _lightsRedYellowGreen.Length; i++)
+		{
+			_lightsRedYellowGreen[i] = false;
+		}
+	}
+
+
+	// get the current state of the traffic lights facing the vehicle
+	private void CheckTrafficLightState()
+	{
+		Transform trafficLights = _currentRoad.GetComponent<WaypointPath>().TrafficLights; 
+		if (trafficLights == null) return;
+		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
+		_lightsRedYellowGreen = trafficLights.GetComponent<TrafficLightControl>().GetTrafficLightsFacing();
+		// if the lights are yellow, previously green, and the vehicle is too close to the traffic lights, continue on to next path
+		if (_lightsRedYellowGreen[1] && trafficLights.GetComponent<TrafficLightControl>().PreviousLightGreen &&
+		    Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 3 && _nextRoad != null)
+		{
+			BreakRedLight = true;
+			return;
+		} 
+		if ((_lightsRedYellowGreen[0] || _lightsRedYellowGreen[1]) && Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 7)
+		{
+			_isBraking = true;
+			_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) - 0.2f);
+		}
 	}
 	
 	
+	// check if the vehicle is turning
+	private void CheckTurning()
+	{
+		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsFirstOnRoad)
+		{
+			_isChangingPath = true;
+			if (_isGoingStraight) return;
+			_speedConstant = MaxTurningSpeed;
+		}
+	}
+
+	
+	// check whether the vehicle needs to yield at turn
+	private void CheckYield()
+	{
+		if (_nextRoad == null) return;
+		if (_leftJunctionJoin || _rightJunctionJoin || _rightJunctionCrossing)
+		{
+			_isBraking = true;
+			_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) + 0.1f);
+		}
+	}
+
+	// functionality for moving the car
+	private void Move()
+	{
+		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
+		if (_currentSpeed < _speedConstant && !_isBraking)
+		{
+			WheelFrontLeft.motorTorque = MaxTorque;
+			WheelFrontRight.motorTorque = MaxTorque;
+		}
+		else
+		{
+			WheelFrontLeft.motorTorque = 0f;
+			WheelFrontRight.motorTorque = 0f;
+		}
+	}
+
+
+	// update to next node on path
+	private void UpdateWaypoint()
+	{
+		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad
+			&& Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 6
+			&& _nextRoad == null)
+		{
+			GetNextRoad();
+		}
+		
+		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
+
+		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) {
+			_currentPathNode++;
+			_leftCross = false;
+			_rightCross = false;
+			_leftJunctionJoin = false;
+			_rightJunctionJoin = false;
+			_leftJunctionLeave = false;
+			_rightJunctionCrossing = false;
+			_isGoingStraight = false;
+		} 
+		else if ((!_lightsRedYellowGreen[0] && !_lightsRedYellowGreen[1]) || BreakRedLight)
+		{
+			BuildNextPath();
+		}
+	}
+
+
 	// build array of Waypoint transforms to follow
 	private void BuildNextPath()
 	{
+		_isSafeToChangePath = false;
+		_currentRoad = _nextRoad;
+		_nextRoad = null;
+		Transform[] pathTransforms = _currentRoad.GetComponentsInChildren<Transform>();
+		_pathNodes = new List<Transform>();
+		foreach(Transform waypoint in pathTransforms){
+			if (_currentRoad.transform != waypoint)
+			{
+				_pathNodes.Add(waypoint);
+			}
+		}
+		_currentPathNode = 0;
+	}
+	
+	// get the next road coming up
+	private void GetNextRoad()
+	{
 		Dictionary<String, Transform> dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
-		String[] nextRoad = dict.Keys.ToArray();
-		_currentRoad = dict[nextRoad[0]];
+		String[] roadChoice = dict.Keys.ToArray();
+		_nextRoad = dict[roadChoice[0]];
 		_leftCross = false;
 		_rightCross = false;
 		_leftJunctionJoin = false;
@@ -128,7 +232,7 @@ public class CarAI : MonoBehaviour {
 		_leftJunctionLeave = false;
 		_rightJunctionCrossing = false;
 		_isGoingStraight = false;
-		switch (nextRoad[0])
+		switch (roadChoice[0])
 		{
 			case "straight":
 				_isGoingStraight = true;
@@ -152,98 +256,8 @@ public class CarAI : MonoBehaviour {
 				_rightJunctionCrossing = true;
 				break;
 		}
-		Transform[] pathTransforms = _currentRoad.GetComponentsInChildren<Transform>();
-		_pathNodes = new List<Transform>();
-		foreach(Transform waypoint in pathTransforms){
-			if (_currentRoad.transform != waypoint)
-			{
-				_pathNodes.Add(waypoint);
-			}
-		}
-		_currentPathNode = 0;
-	}
-	
-	
-	// get the current state of the traffic lights facing the vehicle
-	private void CheckTrafficLightState()
-	{
-		Transform trafficLights = _currentRoad.GetComponent<WaypointPath>().TrafficLights; 
-		if (trafficLights == null) return;
-		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
-		_lightsRedYellowGreen = trafficLights.GetComponent<TrafficLightControl>().GetTrafficLightsFacing();
-		if ((_lightsRedYellowGreen[0] || _lightsRedYellowGreen[1]) && (Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 7))
-		{
-			_isBraking = true;
-			_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) - 0.2f);
-		}
-	}
-	
-
-	// functionality to steer car in correct direction
-	private void CheckSteerAngle()
-	{
-		if (_isAvoiding) return;
-		Vector3 relativeVector = transform.InverseTransformPoint(_pathNodes[_currentPathNode].position);
-		relativeVector /= relativeVector.magnitude;
-		float turnAngle = (relativeVector.x / relativeVector.magnitude) * MaxSteerAngle;
-		_targetSteerAngle = turnAngle;
-	}
-	
-	
-	// functionality for moving the car
-	private void Move()
-	{
-		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
-		if (_currentSpeed < _speedConstant && !_isBraking)
-		{
-			WheelFrontLeft.motorTorque = MaxTorque;
-			WheelFrontRight.motorTorque = MaxTorque;
-		}
-		else
-		{
-			WheelFrontLeft.motorTorque = 0f;
-			WheelFrontRight.motorTorque = 0f;
-		}
-	}
-	
-	
-	// update to next node on path
-	private void UpdateWaypoint()
-	{
-		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
-
-		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) {
-			_currentPathNode++;
-			_leftCross = false;
-			_rightCross = false;
-			_leftJunctionJoin = false;
-			_rightJunctionJoin = false;
-			_leftJunctionLeave = false;
-			_rightJunctionCrossing = false;
-			_isGoingStraight = false;
-		} 
-		else if (!_lightsRedYellowGreen[0] && _brakeTorqueConstant < MaxBrakeTorque)
-		{ // changing path
-			BuildNextPath();
-			_isChangingPath = true;
-		}
 	}
 
-
-	// check if the vehicle is turning
-	private void CheckTurning()
-	{
-		
-		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsFirstOnRoad)
-		{
-			_isChangingPath = true;
-			_speedConstant = MaxTurningSpeed;
-		}
-		else
-		{
-			_isChangingPath = false;
-		}
-	}
 	
 	// functionality for car to brake
 	private void CheckBraking()
@@ -264,12 +278,18 @@ public class CarAI : MonoBehaviour {
 	{
 		if (!_isChangingPath)
 		{
+			if (gameObject.CompareTag("Test Truck"))
+			{
+				print(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position));
+			}
+			if (Vector3.Distance(transform.position, _pathNodes[0].position) < 10f) return;
 			CheckFrontSensors();
 		}
-		else
+		else if (_isChangingPath && !_isSafeToChangePath)
 		{
 			if (_leftCross || _leftJunctionLeave)
 			{
+				_isSafeToChangePath = true;
 				return;
 			}
 
@@ -282,7 +302,9 @@ public class CarAI : MonoBehaviour {
 			{
 				LookAheadSensor();
 				LookRightSensor();
+				FrontSensorLength = FrontSensorLength * 2;
 				CheckFrontSensors();
+				FrontSensorLength = FrontSensorLength / 2;
 			}
 
 			if (_rightJunctionJoin)
@@ -290,7 +312,9 @@ public class CarAI : MonoBehaviour {
 				LookAheadSensor();
 				LookRightSensor();
 				LookLeftSensor();
+				FrontSensorLength = FrontSensorLength * 2;
 				CheckFrontSensors();
+				FrontSensorLength = FrontSensorLength / 2;
 			}
 
 			if (_rightJunctionCrossing)
@@ -302,44 +326,50 @@ public class CarAI : MonoBehaviour {
 			{
 				CheckFrontSensors();
 			}
+
+			_isSafeToChangePath = !_isBraking;
+		}
+		else if(_isChangingPath && _isGoingStraight)
+		{
+			CheckFrontSensors();
 		}
 	}
 	
 	
+	// check sensors at front
 	private void CheckFrontSensors()
 	{
 		RaycastHit hit;
 		Vector3 sensorOriginPosition = transform.position;
 		sensorOriginPosition += transform.forward * FrontSensorPosition.z;
 		sensorOriginPosition += transform.up * FrontSensorPosition.y;
-//		_isTooCloseToVehicleInFront = false;
-		// front right sensor
 		sensorOriginPosition += transform.right * SideSensorPosition;
 		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, FrontSensorLength))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
-//				_isTooCloseToVehicleInFront = true;
 				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
 				{
 					Debug.DrawLine(sensorOriginPosition, hit.point, Color.blue);
 					_isBraking = true;
-					_brakeTorqueConstant = CalculateBrakeTorque(hit.distance - 1);
+					_brakeTorqueConstant = MaxBrakeTorque;
+//					if (gameObject.CompareTag("Test Truck"))
+//					{
+//						print("H dist:\t" + hit.distance + "\nV dist:\t" + Vector3.Distance(transform.position, hit.transform.position));
+//					}
 				}
 			}
 		}
-		// front left sensor
 		sensorOriginPosition -= transform.right * SideSensorPosition * 2;
 		if (Physics.Raycast(sensorOriginPosition, transform.forward, out hit, FrontSensorLength))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
-//				_isTooCloseToVehicleInFront = true;
 				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
 				{
 					Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
 					_isBraking = true;
-					_brakeTorqueConstant = CalculateBrakeTorque(hit.distance - 1);
+					_brakeTorqueConstant = MaxBrakeTorque;
 				}
 			}
 		}
@@ -354,7 +384,6 @@ public class CarAI : MonoBehaviour {
 		sensorOriginPosition += transform.forward * FrontSensorPosition.z;
 		sensorOriginPosition += transform.up * FrontSensorPosition.y;
 		sensorOriginPosition += transform.right * SideSensorPosition;
-//		_isUnsafeToTurn = false;
 		if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(SensorsToLookAhead.x, transform.up) * transform.forward, out hit, SensorsToLookAhead.z))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
@@ -362,9 +391,13 @@ public class CarAI : MonoBehaviour {
 				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
 				{
 					Debug.DrawLine(sensorOriginPosition, hit.point, Color.green);
-//					_isUnsafeToTurn = true;
 					_brakeTorqueConstant = MaxBrakeTorque;
 					_isBraking = true;
+					if (hit.transform.gameObject.GetComponent<CarAI>()._rightCross && _rightCross)
+					{
+						_isBraking = false;
+						return;
+					}
 				}
 			}
 		}
@@ -381,7 +414,6 @@ public class CarAI : MonoBehaviour {
 				}
 			}
 		}
-//		_isBraking = _isUnsafeToTurn;
 	}
 
 	// check right side sensor
@@ -406,6 +438,19 @@ public class CarAI : MonoBehaviour {
 		}
 
 		if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(SensorToLookRight.z, transform.up) * transform.forward, out hit, SensorToLookRight.w))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
+				{
+					Debug.DrawLine(sensorOriginPosition, hit.point, Color.yellow);
+					_brakeTorqueConstant = MaxBrakeTorque;
+					_isBraking = true;
+				}
+			}
+		}
+		
+		if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(SensorToLookRight.z-10, transform.up) * transform.forward, out hit, SensorToLookRight.w-10))
 		{
 			if (hit.collider.GetComponent<TerrainCollider>() == null)
 			{
@@ -452,6 +497,16 @@ public class CarAI : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	
+	// functionality to steer car in correct direction
+	private void CheckSteerAngle()
+	{
+		Vector3 relativeVector = transform.InverseTransformPoint(_pathNodes[_currentPathNode].position);
+		relativeVector /= relativeVector.magnitude;
+		float turnAngle = (relativeVector.x / relativeVector.magnitude) * MaxSteerAngle;
+		_targetSteerAngle = turnAngle;
 	}
 	
 	

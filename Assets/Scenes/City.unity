@@ -442,7 +442,7 @@ Transform:
   - {fileID: 2054773590}
   - {fileID: 971780150}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &121874989
 GameObject:
@@ -673,7 +673,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4828025524628632, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.964
+      value: 1.984
       objectReference: {fileID: 0}
     - target: {fileID: 4828025524628632, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_LocalPosition.y
@@ -681,7 +681,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4828025524628632, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.893
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 4828025524628632, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_LocalRotation.x
@@ -711,16 +711,16 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 784450746}
+      objectReference: {fileID: 1124942733}
     - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
         type: 2}
       propertyPath: _isChangingPath
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
         type: 2}
       propertyPath: _rightJunctionJoin
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
         type: 2}
@@ -736,6 +736,25 @@ Prefab:
         type: 2}
       propertyPath: _leftJunctionJoin
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: StopVehicle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: FrontSensorLength
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -1071,6 +1090,11 @@ Transform:
   m_Father: {fileID: 319113750}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &208482115 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4759836349739018, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457897437}
 --- !u!1 &219878754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1744,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011222355758, guid: 74311bf8278e8454bbb1c870ae4ced1c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 33000011060144910, guid: 74311bf8278e8454bbb1c870ae4ced1c,
         type: 2}
@@ -1944,6 +1968,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &357468569 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4381928129142956, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457897437}
 --- !u!1001 &357560283
 Prefab:
   m_ObjectHideFlags: 0
@@ -2538,6 +2567,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &462695544 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1443741649982560, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
+--- !u!4 &467741863 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4759836349739018, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!4 &476864958 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 494cb406a8cfd49d380315621fbdccc0,
@@ -2586,6 +2625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &479462565 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1416348549057324, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!1 &484980656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2744,11 @@ Prefab:
       propertyPath: RightTurn
       value: 
       objectReference: {fileID: 1851023740}
+    - target: {fileID: 114800399725410108, guid: 5c2ac6929d47f425da29037c7861cb0b,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 357468569}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c2ac6929d47f425da29037c7861cb0b, type: 2}
   m_IsPrefabParent: 0
@@ -2974,6 +3023,11 @@ Prefab:
       propertyPath: StraightOn
       value: 
       objectReference: {fileID: 1228964845}
+    - target: {fileID: 114800399725410108, guid: 12528a6044179447ebfb989ea6c0caa3,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 467741863}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12528a6044179447ebfb989ea6c0caa3, type: 2}
   m_IsPrefabParent: 0
@@ -3022,6 +3076,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &544062814 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4381928129142956, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!1 &558854550
 GameObject:
   m_ObjectHideFlags: 0
@@ -3226,7 +3285,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 784450746}
+      objectReference: {fileID: 183065511}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (4)
@@ -3284,6 +3343,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -3393,6 +3467,26 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: StopVehicle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -3723,6 +3817,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 5c2ac6929d47f425da29037c7861cb0b,
     type: 2}
   m_PrefabInternal: {fileID: 661233549}
+--- !u!4 &667683463 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4063059086983504, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457897437}
 --- !u!1001 &678582649
 Prefab:
   m_ObjectHideFlags: 0
@@ -4101,6 +4200,11 @@ Prefab:
       propertyPath: RightTurn
       value: 
       objectReference: {fileID: 12848561}
+    - target: {fileID: 114800399725410108, guid: 494cb406a8cfd49d380315621fbdccc0,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 667683463}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 494cb406a8cfd49d380315621fbdccc0, type: 2}
   m_IsPrefabParent: 0
@@ -4118,6 +4222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744878207}
   - component: {fileID: 744878206}
+  - component: {fileID: 744878208}
   m_Layer: 0
   m_Name: R_0036
   m_TagString: Untagged
@@ -4159,6 +4264,21 @@ Transform:
   m_Father: {fileID: 319113750}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744878208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744878205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bc25d640f850c4780027e4d57cc4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumetricLight: {fileID: 0}
+  lightSource: {fileID: 0}
+  lensFlare: {fileID: 0}
+  lightStatus: 1
 --- !u!1001 &770499309
 Prefab:
   m_ObjectHideFlags: 0
@@ -4202,7 +4322,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 784450746}
+      objectReference: {fileID: 183065511}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (6)
@@ -4260,6 +4380,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -4424,7 +4559,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 743059427}
+      objectReference: {fileID: 476864958}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (3)
@@ -4482,6 +4617,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -4739,6 +4889,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &898237341 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1202215268182954, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!1001 &911248862
 Prefab:
   m_ObjectHideFlags: 0
@@ -5022,6 +5177,30 @@ Prefab:
       propertyPath: MaxTorque
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: StopVehicle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
+      propertyPath: m_TagString
+      value: Test Truck
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
   m_IsPrefabParent: 0
@@ -5073,6 +5252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &964514912 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4063059086983504, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!4 &971780150 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4828025524628632, guid: 8c8efa4df351f4b7bac5bf897579f906,
@@ -5175,6 +5359,88 @@ Transform:
   m_PrefabParentObject: {fileID: 4381928129142956, guid: ebaf58a377047466f9f0ed8fd6d0e143,
     type: 2}
   m_PrefabInternal: {fileID: 2103368002}
+--- !u!1001 &989363482
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1218122143}
+    m_Modifications:
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 86.44229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 33.225586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487456808563990, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: Man Welly and Cullen
+      objectReference: {fileID: 0}
+    - target: {fileID: 114476076165179232, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+        type: 2}
+      propertyPath: RoadFacing.redLight
+      value: 
+      objectReference: {fileID: 479462565}
+    - target: {fileID: 114476076165179232, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+        type: 2}
+      propertyPath: RoadFacing.yellowLight
+      value: 
+      objectReference: {fileID: 462695544}
+    - target: {fileID: 114476076165179232, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+        type: 2}
+      propertyPath: RoadFacing.greenLight
+      value: 
+      objectReference: {fileID: 898237341}
+    - target: {fileID: 1443188137015514, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _WN_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631765008022616, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _WS_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203965046827392, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _EN_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951202292356136, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _ES_trafficLight_pole
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1001948974 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457897437}
 --- !u!1001 &1002689105
 Prefab:
   m_ObjectHideFlags: 0
@@ -5633,7 +5899,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 784450746}
+      objectReference: {fileID: 183065511}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (5)
@@ -5691,6 +5957,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -5836,6 +6117,11 @@ Prefab:
       propertyPath: LeftTurn
       value: 
       objectReference: {fileID: 12848561}
+    - target: {fileID: 114800399725410108, guid: 08c6f23270d084e5cbb7d34aab058534,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 1103626030}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08c6f23270d084e5cbb7d34aab058534, type: 2}
   m_IsPrefabParent: 0
@@ -5844,6 +6130,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 08c6f23270d084e5cbb7d34aab058534,
     type: 2}
   m_PrefabInternal: {fileID: 1082825787}
+--- !u!4 &1103626030 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4407116328817600, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457897437}
 --- !u!1 &1113231175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6494,6 +6785,11 @@ Prefab:
       propertyPath: StraightOn
       value: 
       objectReference: {fileID: 1139171893}
+    - target: {fileID: 114800399725410108, guid: 5c2ac6929d47f425da29037c7861cb0b,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 544062814}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c2ac6929d47f425da29037c7861cb0b, type: 2}
   m_IsPrefabParent: 0
@@ -6579,6 +6875,118 @@ Transform:
   - {fileID: 614993634}
   - {fileID: 357560284}
   m_Father: {fileID: 1480054814}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1207315487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1207315491}
+  - component: {fileID: 1207315490}
+  - component: {fileID: 1207315489}
+  - component: {fileID: 1207315488}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1207315488
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207315487}
+  m_Enabled: 1
+--- !u!124 &1207315489
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207315487}
+  m_Enabled: 1
+--- !u!20 &1207315490
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207315487}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 2.6
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 145.6
+  orthographic: 0
+  orthographic size: 95
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1207315491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207315487}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 254, y: 76, z: 246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1218122142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1218122143}
+  m_Layer: 0
+  m_Name: Cross Sections
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218122143
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1218122142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 270.02997, y: 0.83081055, z: 311.6547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1526953405}
+  - {fileID: 1870174189}
+  - {fileID: 1001948974}
+  m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1228964844
@@ -7831,6 +8239,52 @@ Transform:
   m_Father: {fileID: 319113750}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1457897437
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1218122143}
+    m_Modifications:
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -114.93997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.0891895
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -65.21469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487456808563990, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: Meaney and Resit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1458277407
 Prefab:
   m_ObjectHideFlags: 0
@@ -8213,7 +8667,7 @@ Transform:
   - {fileID: 525429775}
   - {fileID: 452693778}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1506437070
 Prefab:
@@ -8503,6 +8957,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 08c6f23270d084e5cbb7d34aab058534,
     type: 2}
   m_PrefabInternal: {fileID: 1520787740}
+--- !u!4 &1526953405 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 2103368002}
 --- !u!1 &1530029757
 GameObject:
   m_ObjectHideFlags: 0
@@ -9505,6 +9964,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56318dc0c77d840bd979861736c02690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1694132125 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4407116328817600, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!1 &1701003941
 GameObject:
   m_ObjectHideFlags: 0
@@ -10135,7 +10599,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 743059427}
+      objectReference: {fileID: 476864958}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (1)
@@ -10193,6 +10657,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -10370,6 +10849,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 494cb406a8cfd49d380315621fbdccc0,
     type: 2}
   m_PrefabInternal: {fileID: 1851023739}
+--- !u!4 &1870174189 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 989363482}
 --- !u!4 &1873473697 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 08c6f23270d084e5cbb7d34aab058534,
@@ -10854,6 +11338,11 @@ Prefab:
       propertyPath: AlwaysShowPath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114800399725410108, guid: 08c6f23270d084e5cbb7d34aab058534,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 1694132125}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08c6f23270d084e5cbb7d34aab058534, type: 2}
   m_IsPrefabParent: 0
@@ -11255,6 +11744,11 @@ Prefab:
       propertyPath: LeftTurn
       value: 
       objectReference: {fileID: 1851023740}
+    - target: {fileID: 114800399725410108, guid: 12528a6044179447ebfb989ea6c0caa3,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 208482115}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12528a6044179447ebfb989ea6c0caa3, type: 2}
   m_IsPrefabParent: 0
@@ -11545,7 +12039,7 @@ Prefab:
         type: 2}
       propertyPath: StartingRoad
       value: 
-      objectReference: {fileID: 743059427}
+      objectReference: {fileID: 476864958}
     - target: {fileID: 1197801409828218, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
       propertyPath: m_Name
       value: TEST TRUCK (2)
@@ -11603,6 +12097,21 @@ Prefab:
         type: 2}
       propertyPath: MaxTorque
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.z
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: SensorToLookRight.w
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255361978490010, guid: 8c8efa4df351f4b7bac5bf897579f906,
+        type: 2}
+      propertyPath: MaxBrakeTorque
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c8efa4df351f4b7bac5bf897579f906, type: 2}
@@ -11769,6 +12278,11 @@ Prefab:
       propertyPath: StraightOn
       value: 
       objectReference: {fileID: 1637745272}
+    - target: {fileID: 114800399725410108, guid: 494cb406a8cfd49d380315621fbdccc0,
+        type: 2}
+      propertyPath: TrafficLights
+      value: 
+      objectReference: {fileID: 964514912}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 494cb406a8cfd49d380315621fbdccc0, type: 2}
   m_IsPrefabParent: 0
@@ -11851,31 +12365,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1218122143}
     m_Modifications:
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 257.73
+      value: -12.299957
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.87
+      value: 2.0391893
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 346
+      value: 34.345306
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_LocalRotation.w
@@ -11883,7 +12397,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4352383212115458, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487456808563990, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: Reid And Cullen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443188137015514, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _WN_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631765008022616, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _WS_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203965046827392, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _EN_trafficLight_pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951202292356136, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
+      propertyPath: m_Name
+      value: _ES_trafficLight_pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebaf58a377047466f9f0ed8fd6d0e143, type: 2}
