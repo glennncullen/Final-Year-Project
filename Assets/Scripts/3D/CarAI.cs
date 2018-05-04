@@ -30,7 +30,7 @@ public class CarAI : MonoBehaviour {
 	public float FrontSensorLength = 6.5f;
 	public Vector3 FrontSensorPosition = new Vector3(0f, 1.5f, 3.7f);
 	public float SideSensorPosition = 1f;
-	public Vector3 SensorsToLookAhead = new Vector3(15f, 25f, 35f); // angle, angle, length
+	public Vector3 SensorsToLookAhead = new Vector3(15f, 25f, 30f); // angle, angle, length
 	public Vector4 SensorToLookRight = new Vector4(80f, 30f, 70f, 20f); // angle, length, angle, length
 	public Vector4 SensorToLookLeft = new Vector4(-55f, 30f, -30f, 15f); // angle, length, angle, length
 	
@@ -282,7 +282,7 @@ public class CarAI : MonoBehaviour {
 			{
 				print(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position));
 			}
-			if (Vector3.Distance(transform.position, _pathNodes[0].position) < 10f) return;
+			if (Vector3.Distance(transform.position, _pathNodes[0].position) < 5f) return;
 			CheckFrontSensors();
 		}
 		else if (_isChangingPath && !_isSafeToChangePath)
@@ -409,6 +409,19 @@ public class CarAI : MonoBehaviour {
 				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
 				{
 					Debug.DrawLine(sensorOriginPosition, hit.point, Color.yellow);
+					_brakeTorqueConstant = MaxBrakeTorque;
+					_isBraking = true;
+				}
+			}
+		}
+		
+		if (Physics.Raycast(sensorOriginPosition, Quaternion.AngleAxis(SensorsToLookAhead.x-10, transform.up) * transform.forward, out hit, SensorsToLookAhead.z))
+		{
+			if (hit.collider.GetComponent<TerrainCollider>() == null)
+			{
+				if (hit.transform.gameObject.GetComponent<CarAI>() != null)
+				{
+					Debug.DrawLine(sensorOriginPosition, hit.point, Color.red);
 					_brakeTorqueConstant = MaxBrakeTorque;
 					_isBraking = true;
 				}

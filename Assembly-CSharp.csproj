@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\2D\Car.cs" />
     <Compile Include="Assets\Scripts\3D\CarAI.cs" />
     <Compile Include="Assets\Scripts\3D\CarWheel.cs" />
+    <Compile Include="Assets\Scripts\3D\TrafficDensity.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Waypoint.cs" />
     <Compile Include="Assets\Scripts\WaypointPath.cs" />
