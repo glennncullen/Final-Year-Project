@@ -144,7 +144,7 @@ public class WaypointPath : MonoBehaviour {
 		}
 		else if (LeftTurn != null && RightTurn == null && StraightOn != null) // taking a left or going straight at T junction
 		{
-			paths.Add("left-juction-leave", LeftTurn);
+			paths.Add("left-junction-leave", LeftTurn);
 			paths.Add("straight", StraightOn);
 		}
 		else if (LeftTurn == null && RightTurn != null && StraightOn != null) // taking a right or going straight at T junction

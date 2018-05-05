@@ -6704,7 +6704,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 943640352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -93.91, y: 1, z: 1.12}
+  m_LocalPosition: {x: -93.91, y: 1, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1123270657}
@@ -15635,6 +15635,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4077401326235684, guid: 5c2ac6929d47f425da29037c7861cb0b,
     type: 2}
   m_PrefabInternal: {fileID: 452582863}
+--- !u!4 &1966228390 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4407116328817600, guid: ebaf58a377047466f9f0ed8fd6d0e143,
+    type: 2}
+  m_PrefabInternal: {fileID: 545509454}
 --- !u!1 &1970376284
 GameObject:
   m_ObjectHideFlags: 0
@@ -16797,7 +16802,7 @@ Prefab:
         type: 2}
       propertyPath: TrafficLights
       value: 
-      objectReference: {fileID: 545509456}
+      objectReference: {fileID: 1966228390}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08c6f23270d084e5cbb7d34aab058534, type: 2}
   m_IsPrefabParent: 0

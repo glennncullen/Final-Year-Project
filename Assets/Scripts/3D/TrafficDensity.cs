@@ -30,6 +30,7 @@ public class TrafficDensity : MonoBehaviour
 					Transform road = ShuffledRoads[Random.Range(0, ShuffledRoads.Count - 1)];
 					Transform vehicle = VehiclesToSpawn[Random.Range(0, VehiclesToSpawn.Count)];
 					vehicle.GetComponent<CarAI>().StartingRoad = road;
+					vehicle.GetComponent<CarAI>().ShowRaycast = true;
 					Transform[] waypoints = road.GetComponent<WaypointPath>().GetWaypoints();
 					Vector3 rotation = waypoints[waypoints.Length - 1].transform.position - waypoints[0].transform.position;
 					Instantiate(vehicle, waypoints[0].transform.position, Quaternion.LookRotation(rotation), transform);

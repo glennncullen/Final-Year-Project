@@ -60,20 +60,30 @@ public class TrafficLightControl : MonoBehaviour
 	// Red lights facing Z direction will be on
 	void allowXdirection() {
 		setLights (false, false, true, true, false, false);
-		
+	}
+
+	// amber on x, red on z
+	void StopXDirection()
+	{
+		setLights (false, true, false, true, false, false);
 	}
 
 	// Green lights facing Z direction will be on
 	// Red lights facing X direction will be on
 	void allowZdirection() {
 		setLights (true, false, false, false, false, true);
-		
 	}
+	
+	// red on x, amber on z
+	void stopZDirection()
+	{
+		setLights (true, false, false, false, true, false);
+	}
+	
 
 	// All direction yellow lights will be on
-	void allowWaiting() {
-		setLights (false, true, false, false, true, false);
-		
+	void allRed() {
+		setLights (true, false, false, true, false, false);
 	}
 
 	// Light control logic
@@ -84,15 +94,18 @@ public class TrafficLightControl : MonoBehaviour
 			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (XGreenTime);
-			allowWaiting ();
+			StopXDirection();
 			yield return new WaitForSeconds (transitionTime);
+			allRed();
+			yield return new WaitForSeconds (3.5f);
 			allowZdirection ();
 			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (ZGreenTime);
-			allowWaiting ();
+			stopZDirection();
 			yield return new WaitForSeconds (transitionTime);
-
+			allRed();
+			yield return new WaitForSeconds (3.5f);
 		}
 	}
 
