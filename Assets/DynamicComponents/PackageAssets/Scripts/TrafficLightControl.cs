@@ -29,7 +29,8 @@ public class TrafficLightControl : MonoBehaviour
 	public lightBox[] xAxis; // Array of all lightbox facing X axis and -X axis
 	public lightBox RoadFacing; // the waypoint path that ends at the Z axis
 	int i;
-	public float lightTime; // Time for red and green lights to stay
+	public float XGreenTime; // time for green light on xaxis
+	public float ZGreenTime; // time for green on zaxis
 	public float transitionTime;// Time for yellow light to stay
 
 	// Function to set lights on or off
@@ -82,13 +83,13 @@ public class TrafficLightControl : MonoBehaviour
 			allowXdirection ();
 			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
-			yield return new WaitForSeconds (lightTime);
+			yield return new WaitForSeconds (XGreenTime);
 			allowWaiting ();
 			yield return new WaitForSeconds (transitionTime);
 			allowZdirection ();
 			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
-			yield return new WaitForSeconds (lightTime);
+			yield return new WaitForSeconds (ZGreenTime);
 			allowWaiting ();
 			yield return new WaitForSeconds (transitionTime);
 

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114255361978490010}
   m_Layer: 0
   m_Name: Truck_in
-  m_TagString: Untagged
+  m_TagString: Test Truck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,8 +331,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197801409828218}
   m_LocalRotation: {x: 0, y: 0.0053327074, z: -0, w: -0.9999858}
-  m_LocalPosition: {x: 1.964, y: 0, z: 1.893}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 160.27, y: 5, z: 213.99}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4953341152529648}
   m_Father: {fileID: 0}
@@ -630,20 +630,23 @@ MonoBehaviour:
   MaxSteerAngle: 55
   MaxTurningSpeed: 40
   SmoothTurningSpeed: 5
-  StopVehicle: 1
+  StopVehicle: 0
   WheelFrontLeft: {fileID: 146541649900519294}
   WheelFrontRight: {fileID: 146569338311310516}
   WheelBackLeft: {fileID: 146805476850533166}
   WheelBackRight: {fileID: 146710865841354696}
   StartingRoad: {fileID: 0}
   DistanceFromWpToChange: 3
-  FrontSensorLength: 5
+  FrontSensorLength: 6.5
   FrontSensorPosition: {x: 0, y: 1.5, z: 3.7}
   SideSensorPosition: 1
   SensorsToLookAhead: {x: 15, y: 25, z: 35}
-  SensorToLookRight: {x: 80, y: 30, z: 72, w: 15}
-  SensorToLookLeft: {x: -55, y: 30, z: -30, w: 15}
+  SensorToLookRight: {x: 80, y: 30, z: 70, w: 20}
+  SensorToLookLeft: {x: -55, y: 30, z: -40, w: 15}
+  MaxBrakeTorque: 2000
+  ShowRaycast: 0
   _isChangingPath: 0
+  _isSafeToChangePath: 0
   _leftCross: 0
   _rightCross: 0
   _leftJunctionJoin: 0
@@ -651,6 +654,8 @@ MonoBehaviour:
   _leftJunctionLeave: 0
   _rightJunctionCrossing: 0
   _isGoingStraight: 0
+  BreakRedLight: 0
+  WaitForCarBreakingRedLight: 0
 --- !u!114 &114364866154878130
 MonoBehaviour:
   m_ObjectHideFlags: 1

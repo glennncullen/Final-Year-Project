@@ -10050,7 +10050,8 @@ MonoBehaviour:
     redLight: {fileID: 1946089165426696}
     yellowLight: {fileID: 1425868038503656}
     greenLight: {fileID: 1270590499376444}
-  lightTime: 15
+  XGreenTime: 15
+  ZGreenTime: 15
   transitionTime: 1
 --- !u!114 &114125019534017930
 MonoBehaviour:
@@ -10135,7 +10136,8 @@ MonoBehaviour:
     redLight: {fileID: 1284221934181482}
     yellowLight: {fileID: 1835368096260086}
     greenLight: {fileID: 1114638359788568}
-  lightTime: 15
+  XGreenTime: 15
+  ZGreenTime: 15
   transitionTime: 1
 --- !u!114 &114476076165179232
 MonoBehaviour:
@@ -10160,7 +10162,8 @@ MonoBehaviour:
     redLight: {fileID: 1416348549057324}
     yellowLight: {fileID: 1443741649982560}
     greenLight: {fileID: 1202215268182954}
-  lightTime: 15
+  XGreenTime: 15
+  ZGreenTime: 15
   transitionTime: 1
 --- !u!114 &114494308786910696
 MonoBehaviour:
@@ -10341,7 +10344,8 @@ MonoBehaviour:
     redLight: {fileID: 1879893182636276}
     yellowLight: {fileID: 1531072272637648}
     greenLight: {fileID: 1964826809945086}
-  lightTime: 15
+  XGreenTime: 15
+  ZGreenTime: 15
   transitionTime: 1
 --- !u!122 &122042266871290354
 Halo:

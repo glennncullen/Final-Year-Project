@@ -111,6 +111,22 @@ public class WaypointPath : MonoBehaviour {
 		}
 	}
 
+
+	// return the first waypoint in the waypoint path
+	public Transform[] GetWaypoints()
+	{
+		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
+		_nodes = new List<Transform>();
+		foreach(Transform pathTransform in pathTransforms){
+			if(pathTransform != transform)
+			{
+				_nodes.Add(pathTransform);
+			}
+		}
+		return _nodes.ToArray();
+	}
+	
+	
 	// return a random connected road
 	public Dictionary<String, Transform> GetNextRandomWaypointPath()
 	{
@@ -135,17 +151,10 @@ public class WaypointPath : MonoBehaviour {
 		{
 			paths.Add("right-junction-crossing", RightTurn);
 			paths.Add("straight", StraightOn);
-		}else if (LeftTurn != null && RightTurn == null && StraightOn == null)
-		{
-			paths.Add("left-cross", LeftTurn);
 		}
-		else if (LeftTurn == null && RightTurn == null && StraightOn != null)
+		else
 		{
-			paths.Add("straight", StraightOn);
-		}
-		else if (LeftTurn == null && RightTurn != null && StraightOn == null)
-		{
-			paths.Add("right-cross", RightTurn);
+			paths.Add("despawn", null);
 		}
 		String[] s = paths.Keys.ToArray();
 		String choice = s[Random.Range(0, paths.Count)];
