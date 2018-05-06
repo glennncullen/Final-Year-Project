@@ -10023,9 +10023,9 @@ MonoBehaviour:
     playEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
     playSound: {fileID: 82687615996202340}
   defaultAudioToPlay:
-  - {fileID: 82718396708439988}
-  - {fileID: 82216685230386994}
-  - {fileID: 82051232303365848}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   destroyObjects: []
 --- !u!114 &114097207436085640
 MonoBehaviour:
@@ -10233,9 +10233,9 @@ MonoBehaviour:
     playEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
     playSound: {fileID: 82358681816406592}
   defaultAudioToPlay:
-  - {fileID: 82403846263333364}
-  - {fileID: 82385947749437678}
-  - {fileID: 82252053495041876}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   destroyObjects: []
 --- !u!114 &114727400987793520
 MonoBehaviour:
@@ -10260,9 +10260,9 @@ MonoBehaviour:
     playEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
     playSound: {fileID: 82772685171050998}
   defaultAudioToPlay:
-  - {fileID: 82773660607662982}
-  - {fileID: 82683088916204088}
-  - {fileID: 82063053485572360}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   destroyObjects: []
 --- !u!114 &114852774481682214
 MonoBehaviour:
@@ -10317,9 +10317,9 @@ MonoBehaviour:
     playEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
     playSound: {fileID: 82629355382617950}
   defaultAudioToPlay:
-  - {fileID: 82197893940573940}
-  - {fileID: 82194598481402784}
-  - {fileID: 82630449692093160}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   destroyObjects: []
 --- !u!114 &114902740362381518
 MonoBehaviour:

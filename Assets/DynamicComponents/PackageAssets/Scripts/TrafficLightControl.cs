@@ -32,6 +32,7 @@ public class TrafficLightControl : MonoBehaviour
 	public float XGreenTime; // time for green light on xaxis
 	public float ZGreenTime; // time for green on zaxis
 	public float transitionTime;// Time for yellow light to stay
+	private bool _allRed;
 
 	// Function to set lights on or off
 	// You must carefully set the lights. 
@@ -54,6 +55,13 @@ public class TrafficLightControl : MonoBehaviour
 	public bool[] GetTrafficLightsFacing()
 	{
 		return new[]{RoadFacing.redLight.activeSelf, RoadFacing.yellowLight.activeSelf, RoadFacing.greenLight.activeSelf};
+	}
+	
+	
+	// find out if all lights are red
+	public bool GetAllRed()
+	{
+		return _allRed;
 	}
 
 	// Green lights facing X direction will be on
@@ -95,17 +103,23 @@ public class TrafficLightControl : MonoBehaviour
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (XGreenTime);
 			StopXDirection();
-			yield return new WaitForSeconds (transitionTime);
+			yield return new WaitForSeconds (2f);
 			allRed();
-			yield return new WaitForSeconds (3.5f);
+			_allRed = true;
+			yield return new WaitForSeconds (0.5f);
+			_allRed = false;
+			yield return new WaitForSeconds (4f);
 			allowZdirection ();
 			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
 			PreviousLightRed = RoadFacing.redLight.activeSelf;
 			yield return new WaitForSeconds (ZGreenTime);
 			stopZDirection();
-			yield return new WaitForSeconds (transitionTime);
+			yield return new WaitForSeconds (2f);
 			allRed();
-			yield return new WaitForSeconds (3.5f);
+			_allRed = true;
+			yield return new WaitForSeconds (0.5f);
+			_allRed = false;
+			yield return new WaitForSeconds (4f);
 		}
 	}
 

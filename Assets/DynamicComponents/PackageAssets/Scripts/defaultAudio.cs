@@ -23,6 +23,6 @@ public class defaultAudio : MonoBehaviour {
 
 	// Called on collider enter
 	void OnCollisionEnter() {
-		playAudio ();
+//		playAudio ();
 	}
 }

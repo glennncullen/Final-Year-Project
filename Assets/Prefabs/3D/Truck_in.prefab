@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 54840905624210430}
   - component: {fileID: 114255361978490010}
   m_Layer: 0
-  m_Name: Truck_in
+  m_Name: 'ID: 32'
   m_TagString: Test Truck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -629,7 +629,6 @@ MonoBehaviour:
   MaxTorque: 1000
   MaxSteerAngle: 55
   MaxTurningSpeed: 40
-  SmoothTurningSpeed: 5
   StopVehicle: 0
   WheelFrontLeft: {fileID: 146541649900519294}
   WheelFrontRight: {fileID: 146569338311310516}
@@ -642,9 +641,9 @@ MonoBehaviour:
   SideSensorPosition: 1
   SensorsToLookAhead: {x: 15, y: 25, z: 35}
   SensorToLookRight: {x: 80, y: 30, z: 70, w: 20}
-  SensorToLookLeft: {x: -55, y: 30, z: -40, w: 15}
+  SensorToLookLeft: {x: -40, y: 30, z: -20, w: 15}
   MaxBrakeTorque: 2000
-  ShowRaycast: 0
+  ShowRaycast: 1
   _isChangingPath: 0
   _isSafeToChangePath: 0
   _leftCross: 0
@@ -653,8 +652,10 @@ MonoBehaviour:
   _rightJunctionJoin: 0
   _leftJunctionLeave: 0
   _rightJunctionCrossing: 0
-  _isGoingStraight: 0
+  _isGoingStraightAtJunction: 0
+  _isGoingStraightAtCross: 0
   BreakRedLight: 0
+  _filterLight: 0
   WaitForCarBreakingRedLight: 0
 --- !u!114 &114364866154878130
 MonoBehaviour:

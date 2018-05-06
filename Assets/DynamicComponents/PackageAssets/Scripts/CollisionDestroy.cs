@@ -68,7 +68,8 @@ public class CollisionDestroy : MonoBehaviour {
 	}
 
 	// Grab all rigidbodies
-	void Start () {
+	void Start ()
+	{
 		streetComponent = GetComponentsInChildren (typeof(Rigidbody));
 		setStatic ();
 	}
@@ -78,7 +79,7 @@ public class CollisionDestroy : MonoBehaviour {
 	// Trigger must be on absolute parent object
 	void OnTriggerEnter(Collider other) {
 		if(playNow)	
-		playAudio ();
+//		playAudio ();
 		// Destruction will occur at a minimum velocity
 		// It can be 0 if you want no minimum velocity
 		if (other.attachedRigidbody.velocity.magnitude > minVelocityToDestroy) {
