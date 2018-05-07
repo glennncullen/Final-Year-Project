@@ -101,33 +101,18 @@ public class CarAI : MonoBehaviour {
 		CheckTrafficLightState();
 		CheckTurning();
 		CheckYield();
-//		CheckSensors();
+		CheckSensors();
 		CheckSteerAngle();
 		CheckBraking();
+		SmoothSteer();
 		Move();
 		UpdateWaypoint();
-		SmoothSteer();
 //		_isBraking = false;
 //		_brakeTorqueConstant = 0;
 		_torqueConstant = MaxTorque;
 		WaitForCarBreakingRedLight = false;
 	}
 
-
-	public void SlowDown()
-	{
-		print(gameObject.name + " trying to slow down");
-		_isBraking = true;
-		_brakeTorqueConstant = MaxBrakeTorque;
-	}
-
-	public void SpeedUp()
-	{
-		print(gameObject.name + " trying to speed up");
-		_isBraking = false;
-		_brakeTorqueConstant = 0;
-	}
-	
 
 	// get the current state of the traffic lights facing the vehicle
 	private void CheckTrafficLightState()

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 54840905624210430}
   - component: {fileID: 114255361978490010}
   m_Layer: 0
-  m_Name: 'ID: 32'
+  m_Name: Truck_in
   m_TagString: Test Truck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,23 +5,24 @@ using UnityEngine;
 public class CarFrontCollider : MonoBehaviour
 {
 
-	private CarAI _parent;
+	private VehicleBehaviour _parent;
 	
 	private void Awake()
 	{
-		_parent = GetComponentInParent<CarAI>();
+		_parent = GetComponentInParent<VehicleBehaviour>();
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		CarAI car = other.gameObject.GetComponentInParent<CarAI>();
-		if(car == null) return;
-		print("This:\t" + gameObject.name + "\tColliding with:\t" + GetComponentInParent<CarAI>().gameObject.name);
-		_parent.SlowDown();
+		if (other.gameObject.GetComponent<CarBackCollider>() == null) return;
+		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
+		if(vehicle == null) return;
+		_parent.Stop();
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		_parent.SpeedUp();
+		if (other.gameObject.GetComponent<CarBackCollider>() == null) return;
+		_parent.Continue();
 	}
 }

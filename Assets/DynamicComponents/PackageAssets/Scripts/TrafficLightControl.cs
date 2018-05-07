@@ -38,12 +38,19 @@ public class TrafficLightControl : MonoBehaviour
 	// You must carefully set the lights. 
 	// Lights facing Z direction must be in Z direction, and those facing X, must be in X direction
 	// Put them accordingly an xAxis and zAxis array
-	void setLights(bool xRed,bool xYellow, bool xGreen, bool zRed, bool zYellow, bool zGreen) {
-		for(i=0;i<xAxis.Length;i++) {
-			xAxis [i].redLight.SetActive (xRed);
-			xAxis [i].yellowLight.SetActive (xYellow);
-			xAxis [i].greenLight.SetActive (xGreen);
+	void setLights(bool xRed,bool xYellow, bool xGreen, bool zRed, bool zYellow, bool zGreen)
+	{
+		if (xAxis != null)
+		{
+			for (i = 0; i < xAxis.Length; i++)
+			{
+				xAxis[i].redLight.SetActive(xRed);
+				xAxis[i].yellowLight.SetActive(xYellow);
+				xAxis[i].greenLight.SetActive(xGreen);
+			}
 		}
+
+		if(zAxis == null) return;
 		for(i=0;i<zAxis.Length;i++) {
 			zAxis [i].redLight.SetActive (zRed);
 			zAxis [i].yellowLight.SetActive (zYellow);
@@ -51,6 +58,31 @@ public class TrafficLightControl : MonoBehaviour
 		}
 	}
 
+	
+	// get the state of the traffic lights at X - red, yellow, green
+	public bool[] GetLightsX()
+	{
+		return new[]
+		{
+			xAxis[0].redLight.activeSelf,
+			xAxis[0].yellowLight.activeSelf,
+			xAxis[0].greenLight.activeSelf
+		};
+	}
+	
+	
+	// get the state of the traffic lights at Z - red, yellow, green
+	public bool[] GetLightsZ()
+	{
+		return new[]
+		{
+			zAxis[0].redLight.activeSelf,
+			zAxis[0].yellowLight.activeSelf,
+			zAxis[0].greenLight.activeSelf
+		};
+	}
+	
+	
 	// get the state of traffic lights facing the path
 	public bool[] GetTrafficLightsFacing()
 	{
