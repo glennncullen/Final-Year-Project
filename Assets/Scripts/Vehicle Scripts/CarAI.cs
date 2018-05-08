@@ -181,12 +181,12 @@ public class CarAI : MonoBehaviour {
 		}
 		if (_trafficLights == null) return;
 		// if the lights are yellow, previously green, and the vehicle is too close to the traffic lights, slam on the brakes
-		if (_lightsRedYellowGreen[1] && _trafficLights.GetComponent<TrafficLightControl>().PreviousLightGreen &&
-		    Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 3 && _isChangingPath)
-		{
-			_isBraking = true;
-			_brakeTorqueConstant = MaxBrakeTorque;
-		}
+//		if (_lightsRedYellowGreen[1] && _trafficLights.GetComponent<TrafficLightControl>().PreviousLightGreen &&
+//		    Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 3 && _isChangingPath)
+//		{
+//			_isBraking = true;
+//			_brakeTorqueConstant = MaxBrakeTorque;
+//		}
 	}
 
 	// functionality for moving the car
@@ -358,12 +358,12 @@ public class CarAI : MonoBehaviour {
 		if (_isSafeToChangePath) return;
 		if (_isChangingPath && _rightCross && _trafficLights != null && !WaitForCarBreakingRedLight)
 		{
-			if (_trafficLights.GetComponent<TrafficLightControl>().PreviousLightGreen && _trafficLights.GetComponent<TrafficLightControl>().GetAllRed())
-			{
-				BreakRedLight = true;
-				_filterLight = true;
-				return;
-			}
+//			if (_trafficLights.GetComponent<TrafficLightControl>().PreviousLightGreen && _trafficLights.GetComponent<TrafficLightControl>().GetAllRed())
+//			{
+//				BreakRedLight = true;
+//				_filterLight = true;
+//				return;
+//			}
 		}
 		if (!_isChangingPath)
 		{

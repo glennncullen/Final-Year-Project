@@ -38,38 +38,38 @@ public class JunctionController : MonoBehaviour
 	// move vehicles if able
 	private void MoveVehicles()
 	{
-		foreach(VehicleBehaviour vehicle in _vehiclesTurning)
+		for(int i = _vehiclesTurning.Count-1; i >= 0; i--)
 		{
-			if(vehicle._leftJunctionLeave || vehicle._isGoingStraightAtJunction) continue;
-			if (vehicle._rightJunctionCrossing)
+			VehicleBehaviour vehicle = _vehiclesTurning[i];
+			if (vehicle._leftJunctionLeave || vehicle._isGoingStraightAtJunction)
+			{
+				_vehiclesTurning.Remove(vehicle);
+			}
+			else if (vehicle._rightJunctionCrossing)
 			{
 				if (_rightLane.TrafficInLane)
 				{
 					vehicle.Stop();
-					continue;
 				}
 				else
 				{
 					vehicle.Continue();
-					continue;
+					_vehiclesTurning.Remove(vehicle);
 				}
 			}
-
-			if (vehicle._rightJunctionJoin)
+			else if (vehicle._rightJunctionJoin)
 			{
 				if (_rightLane.TrafficInLane || _leftLane.TrafficInLane)
 				{
 					vehicle.Stop();
-					continue;
 				}
 				else
 				{
 					vehicle.Continue();
-					continue;
+					_vehiclesTurning.Remove(vehicle);
 				}
 			}
-
-			if (vehicle._leftJunctionJoin)
+			else if (vehicle._leftJunctionJoin)
 			{
 				if (_rightLane.TrafficInLane)
 				{
@@ -78,6 +78,7 @@ public class JunctionController : MonoBehaviour
 				else
 				{
 					vehicle.Continue();
+					_vehiclesTurning.Remove(vehicle);
 				}
 			}
 		}
@@ -85,14 +86,8 @@ public class JunctionController : MonoBehaviour
 	
 	
 	// get messages from stops
-	public void Notify(VehicleBehaviour vehicle, bool remove)
+	public void Notify(VehicleBehaviour vehicle)
 	{
-		if (remove)
-		{
-			_vehiclesTurning.Remove(vehicle);
-			return;
-		}
-
 		if (_vehiclesTurning.Contains(vehicle)) return;
 		_vehiclesTurning.Add(vehicle);
 	}

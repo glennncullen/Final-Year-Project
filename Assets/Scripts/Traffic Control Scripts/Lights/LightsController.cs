@@ -58,7 +58,7 @@ public class LightsController : MonoBehaviour
 	
 	
 	
-	// move traffic on X
+	// move traffic on X if the coast is clear
 	private void MoveTrafficOnX()
 	{
 		int vehiclesTurningRight = 0;
@@ -80,11 +80,9 @@ public class LightsController : MonoBehaviour
 						_vehiclesOnX.Remove(vehicle);
 						break;
 					}
-					else
-					{
-						vehicle.Stop();
-						vehiclesTurningRight++;
-					}
+					if (!ReferenceEquals(light.VehicleAtLight, vehicle) || !light.CrossLane.TrafficInLane) continue;
+					vehicle.Stop();
+					vehiclesTurningRight++;
 				}
 			}
 		}
@@ -99,9 +97,22 @@ public class LightsController : MonoBehaviour
 	}
 	
 	
-	// stop traffic on Z
+	// stop traffic on Z but allow right crossing cars to pass
+	// if they have been waiting
 	private void StopTrafficOnZ()
 	{
+		if (GetComponentInChildren<TrafficLightControl>().GetAllRed() && GetComponentInChildren<TrafficLightControl>().PreviousLightGreenZ)
+		{
+			for (int i = _vehiclesOnZ.Count - 1; i >= 0; i--)
+			{
+				VehicleBehaviour vehicle = _vehiclesOnZ[i];
+				if (vehicle._rightCross || vehicle._rightJunctionCrossing)
+				{
+					vehicle.Continue();
+					_vehiclesOnZ.Remove(vehicle);
+				}
+			}
+		}
 		foreach (VehicleBehaviour vehicle in _vehiclesOnZ)
 		{
 			vehicle.Stop();
@@ -109,14 +120,15 @@ public class LightsController : MonoBehaviour
 	}
 	
 	
-	// move traffic on Z
+	// move traffic on Z if the coast is clear
 	private void MoveTrafficOnZ()
 	{
 		int vehiclesTurningRight = 0;
 		for(int i = _vehiclesOnZ.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesOnZ[i];
-			if (!vehicle._rightCross)
+			if (vehicle._isGoingStraightAtCross || vehicle._leftCross
+			    || vehicle._isGoingStraightAtJunction || vehicle._leftJunctionLeave)
 			{
 				vehicle.Continue();
 				_vehiclesOnZ.Remove(vehicle);
@@ -131,11 +143,10 @@ public class LightsController : MonoBehaviour
 						_vehiclesOnZ.Remove(vehicle);
 						break;
 					}
-					else
-					{
-						vehicle.Stop();
-						vehiclesTurningRight++;
-					}
+
+					if (!ReferenceEquals(light.VehicleAtLight, vehicle) || !light.CrossLane.TrafficInLane) continue;
+					vehicle.Stop();
+					vehiclesTurningRight++;
 				}
 			}
 		}
@@ -149,9 +160,23 @@ public class LightsController : MonoBehaviour
 		}
 	}
 	
-	// stop traffic on X
+	
+	// stop traffic on X but allow right crossing cars to pass
+	// if they have been waiting
 	private void StopTrafficOnX()
 	{
+		if (GetComponentInChildren<TrafficLightControl>().GetAllRed() && GetComponentInChildren<TrafficLightControl>().PreviousLightGreenX)
+		{
+			for (int i = _vehiclesOnX.Count - 1; i >= 0; i--)
+			{
+				VehicleBehaviour vehicle = _vehiclesOnX[i];
+				if (vehicle._rightCross)
+				{
+					vehicle.Continue();
+					_vehiclesOnX.Remove(vehicle);
+				}
+			}
+		}
 		foreach (VehicleBehaviour vehicle in _vehiclesOnX)
 		{
 			vehicle.Stop();

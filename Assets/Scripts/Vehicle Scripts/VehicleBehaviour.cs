@@ -55,10 +55,6 @@ public class VehicleBehaviour : MonoBehaviour {
 	private Rigidbody _rigidbodyComponent;
 	
 //	[HideInInspector]
-//	public bool _isChangingPath;
-//	[HideInInspector]
-//	public bool _isSafeToChangePath;
-//	[HideInInspector]
 	public bool _leftCross;
 //	[HideInInspector]
 	public bool _rightCross;
@@ -74,18 +70,6 @@ public class VehicleBehaviour : MonoBehaviour {
 	public bool _isGoingStraightAtJunction;
 //	[HideInInspector]
 	public bool _isGoingStraightAtCross;
-	
-	
-	//	[Header("Sensors")] 
-//	public float FrontSensorLength = 7.5f;
-//	public Vector3 FrontSensorPosition = new Vector3(0f, 1.5f, 3.7f);
-//	public float SideSensorPosition = 1f;
-//	public Vector3 SensorsToLookAhead = new Vector3(15f, 25f, 35f); // angle, angle, length
-//	public Vector4 SensorToLookRight = new Vector4(80f, 30f, 70f, 20f); // angle, length, angle, length
-//	public Vector4 SensorToLookLeft = new Vector4(-40f, 30f, -20f, 15f); // angle, length, angle, length
-	
-	
-	
 	
 
 	// initialization
@@ -108,8 +92,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	
 	private void FixedUpdate ()
 	{
-		CheckTurning();
-		CheckYield();
+		CheckTurningSpeed();
 		CheckSteerAngle();
 		CheckBraking();
 		SmoothSteer();
@@ -136,14 +119,6 @@ public class VehicleBehaviour : MonoBehaviour {
 	}
 	
 	
-	// check whether the vehicle needs to yield at turn
-	private void CheckYield()
-	{
-		// stop at red or amber light
-		
-		// if joining a junction then yield
-		
-	}
 
 	// functionality for moving the car
 	private void Move()
@@ -162,30 +137,21 @@ public class VehicleBehaviour : MonoBehaviour {
 	}
 
 
-	// update to next node on path
+	// update to next node on path reset turinig bools
 	private void UpdateWaypoint()
 	{
 		if(transform.position.y < - 30) GetComponentInParent<TrafficDensity>().Despawn(gameObject);
-		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad
-		    && Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 6)
-		{
-//			_isChangingPath = true;
-		}
 		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
-
-		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) {
-			_currentPathNode++;
-//			_isSafeToChangePath = false;
-//			_isChangingPath = false;
-			_leftCross = false;
-			_rightCross = false;
-			_leftJunctionJoin = false;
-			_rightJunctionJoin = false;
-			_leftJunctionLeave = false;
-			_rightJunctionCrossing = false;
-			_isGoingStraightAtCross = false;
-			_isGoingStraightAtJunction = false;
-		} 
+		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
+		_currentPathNode++;
+		_leftCross = false;
+		_rightCross = false;
+		_leftJunctionJoin = false;
+		_rightJunctionJoin = false;
+		_leftJunctionLeave = false;
+		_rightJunctionCrossing = false;
+		_isGoingStraightAtCross = false;
+		_isGoingStraightAtJunction = false;
 	}
 
 
@@ -197,7 +163,7 @@ public class VehicleBehaviour : MonoBehaviour {
 		_nextRoad = null;
 		if (_currentRoad == null)
 		{
-			print(gameObject.name);
+			print("BuildNextPath _currentRoad is null:\t" + gameObject.name);
 			Debug.Break();
 		}
 		Transform[] pathTransforms = _currentRoad.GetComponentsInChildren<Transform>();
@@ -256,7 +222,8 @@ public class VehicleBehaviour : MonoBehaviour {
 				GetComponentInParent<TrafficDensity>().Despawn(gameObject);
 				break;
 			default: 
-				GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+				print("SetNextRoad switch statement:\t" + gameObject.name);
+				Debug.Break();
 				break;
 		}
 	}
@@ -273,35 +240,11 @@ public class VehicleBehaviour : MonoBehaviour {
 
 	
 	// check if the vehicle is turning
-	private void CheckTurning()
+	private void CheckTurningSpeed()
 	{
 		_speedConstant = MaxSpeed;
 		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsFirstOnRoad) return;
-		if (_leftCross)
-		{
-			_speedConstant = 30f;
-		}
-		else if (_rightCross)
-		{
-			_speedConstant = MaxSpeed;
-		}
-		else if (_leftJunctionJoin)
-		{
-			_speedConstant = MaxTurningSpeed;
-		}
-		else if (_rightJunctionJoin)
-		{
-			_speedConstant = MaxTurningSpeed;
-		}
-		else if (_leftJunctionLeave)
-		{
-			_speedConstant = MaxTurningSpeed;
-		}
-		else if (_rightJunctionCrossing)
-		{
-			_speedConstant = MaxSpeed;
-		}
-		else if (_isGoingStraightAtCross || _isGoingStraightAtJunction)
+		if (_isGoingStraightAtCross || _isGoingStraightAtJunction || _rightJunctionCrossing || _rightCross)
 		{
 			_speedConstant = MaxSpeed;
 		}
@@ -330,21 +273,5 @@ public class VehicleBehaviour : MonoBehaviour {
 		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * _smoothTurningSpeed);
 	}
 	
-	
-	// function to calculate relative brake torque
-	// equation: BrakeTorque = 0.5 * Mass * Velocity^2 / distanceToStop
-	private float CalculateBrakeTorque(float distance)
-	{
-		return
-			0.5f * 
-			_rigidbodyComponent.mass * 
-				(
-					(float) Math.Pow(_rigidbodyComponent.velocity.x, 2) +
-					(float) Math.Pow(_rigidbodyComponent.velocity.y, 2) + 
-					(float) Math.Pow(_rigidbodyComponent.velocity.z, 2)
-				) / 
-			distance;
-	}
-
 
 }

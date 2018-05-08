@@ -18,12 +18,16 @@ public class TrafficLightControl : MonoBehaviour
 {
 	public TrafficLightControl()
 	{
-		PreviousLightGreen = false;
-		PreviousLightRed = false;
+		PreviousLightGreenX = false;
+		PreviousLightGreenZ = false;
+		PreviousLightRedX = false;
+		PreviousLightRedZ = false;
 	}
 
-	public bool PreviousLightRed { get; set; }
-	public bool PreviousLightGreen { get; set; }
+	public bool PreviousLightRedX { get; set; }
+	public bool PreviousLightRedZ { get; set; }
+	public bool PreviousLightGreenX { get; set; }
+	public bool PreviousLightGreenZ { get; set; }
 
 	public lightBox[] zAxis; // Array of all lightbox facing Z axis and -Z axis
 	public lightBox[] xAxis; // Array of all lightbox facing X axis and -X axis
@@ -131,8 +135,10 @@ public class TrafficLightControl : MonoBehaviour
 	IEnumerator startLights() {
 		while(true) {
 			allowXdirection ();
-			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
-			PreviousLightRed = RoadFacing.redLight.activeSelf;
+			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
+			PreviousLightGreenZ = zAxis[0].greenLight.activeSelf;
+			PreviousLightRedX = xAxis[0].redLight.activeSelf;
+			PreviousLightRedZ = zAxis[0].redLight.activeSelf;
 			yield return new WaitForSeconds (XGreenTime);
 			StopXDirection();
 			yield return new WaitForSeconds (2f);
@@ -142,8 +148,10 @@ public class TrafficLightControl : MonoBehaviour
 			_allRed = false;
 			yield return new WaitForSeconds (4f);
 			allowZdirection ();
-			PreviousLightGreen = RoadFacing.greenLight.activeSelf;
-			PreviousLightRed = RoadFacing.redLight.activeSelf;
+			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
+			PreviousLightGreenZ = zAxis[0].greenLight.activeSelf;
+			PreviousLightRedX = xAxis[0].redLight.activeSelf;
+			PreviousLightRedZ = zAxis[0].redLight.activeSelf;
 			yield return new WaitForSeconds (ZGreenTime);
 			stopZDirection();
 			yield return new WaitForSeconds (2f);
@@ -160,7 +168,6 @@ public class TrafficLightControl : MonoBehaviour
 	{
 		StartCoroutine (startLights());	
 	}
-		
 
 
 }

@@ -2247,6 +2247,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1850118938018864
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4903578702781244}
+  - component: {fileID: 114450495766031458}
+  - component: {fileID: 65671592106064448}
+  m_Layer: 0
+  m_Name: Lane to Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1855913214873908
 GameObject:
   m_ObjectHideFlags: 1
@@ -3421,7 +3438,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.1, y: 1.72, z: 2.41}
   m_LocalScale: {x: 2.5, y: 1, z: 2.5}
-  m_Children: []
+  m_Children:
+  - {fileID: 4903578702781244}
   m_Father: {fileID: 4437463487944876}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4404,6 +4422,19 @@ Transform:
   m_Father: {fileID: 4961249704905402}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4903578702781244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850118938018864}
+  m_LocalRotation: {x: -0, y: 0.005678474, z: -0, w: 0.99998397}
+  m_LocalPosition: {x: 11.442002, y: -0.105146766, z: -2.9100041}
+  m_LocalScale: {x: 16.223932, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4392874388329372}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0.651, z: 0}
 --- !u!4 &4922095047494820
 Transform:
   m_ObjectHideFlags: 1
@@ -4436,9 +4467,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838197600536876}
-  m_LocalRotation: {x: -0, y: -0.009160688, z: -0, w: 0.99995804}
-  m_LocalPosition: {x: 256.3, y: 2.85, z: 147.45}
-  m_LocalScale: {x: 1.2348788, y: 1.6840549, z: 1.2239166}
+  m_LocalRotation: {x: -0, y: -0.009160638, z: -0, w: 0.99995804}
+  m_LocalPosition: {x: -113.08995, y: 2.0791893, z: -265.05472}
+  m_LocalScale: {x: 1.2348789, y: 1.6840549, z: 1.2239168}
   m_Children:
   - {fileID: 4627562445757928}
   - {fileID: 4961249704905402}
@@ -8822,6 +8853,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65671592106064448
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850118938018864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65693268145306840
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -10137,8 +10180,8 @@ MonoBehaviour:
     redLight: {fileID: 1936937320444560}
     yellowLight: {fileID: 1429526020700622}
     greenLight: {fileID: 1081922130361440}
-  XGreenTime: 1000
-  ZGreenTime: 1
+  XGreenTime: 16
+  ZGreenTime: 13
   transitionTime: 1
 --- !u!114 &114031789901365698
 MonoBehaviour:
@@ -10232,8 +10275,8 @@ MonoBehaviour:
     redLight: {fileID: 1770352305830354}
     yellowLight: {fileID: 1415858208111836}
     greenLight: {fileID: 1509554345854136}
-  XGreenTime: 1000
-  ZGreenTime: 1
+  XGreenTime: 16
+  ZGreenTime: 13
   transitionTime: 1
 --- !u!114 &114326775691205014
 MonoBehaviour:
@@ -10276,6 +10319,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6bb4e7f4a55483496481ca67af9573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CrossLane: {fileID: 0}
+  VehicleAtLight: {fileID: 0}
+--- !u!114 &114450495766031458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850118938018864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d910cf41cd04ff9b3dde17ce16c755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrafficInLane: 0
 --- !u!114 &114468644786440322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10332,6 +10389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a8d5a262eb648bd80984e696a03b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CrossLane: {fileID: 0}
+  VehicleAtLight: {fileID: 0}
 --- !u!114 &114572919056575038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10441,8 +10500,8 @@ MonoBehaviour:
     redLight: {fileID: 1315348550555166}
     yellowLight: {fileID: 1497821837116948}
     greenLight: {fileID: 1187593110598894}
-  XGreenTime: 1000
-  ZGreenTime: 1
+  XGreenTime: 16
+  ZGreenTime: 13
   transitionTime: 1
 --- !u!114 &114907887433183464
 MonoBehaviour:
@@ -10509,8 +10568,8 @@ MonoBehaviour:
     redLight: {fileID: 1096278288641830}
     yellowLight: {fileID: 1784522161311800}
     greenLight: {fileID: 1191084120203286}
-  XGreenTime: 1000
-  ZGreenTime: 1
+  XGreenTime: 16
+  ZGreenTime: 13
   transitionTime: 1
 --- !u!114 &114971167678446284
 MonoBehaviour:
@@ -10523,6 +10582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6bb4e7f4a55483496481ca67af9573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CrossLane: {fileID: 0}
+  VehicleAtLight: {fileID: 0}
 --- !u!114 &114998189125624742
 MonoBehaviour:
   m_ObjectHideFlags: 1

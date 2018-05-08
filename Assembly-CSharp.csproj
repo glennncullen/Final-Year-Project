@@ -135,13 +135,6 @@
     <Compile Include="Assets\Scripts\Vehicle Scripts\VehicleBehaviour.cs" />
     <Compile Include="Assets\Scripts\zzzUnused\CameraController.cs" />
     <Compile Include="Assets\Scripts\zzzUnused\Car.cs" />
-    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERHelper.cs" />
-    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERMeshGen.cs" />
-    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERNavPoint.cs" />
-    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\ERPointSnap.cs" />
-    <Compile Include="Assets\Sprites\EasyRoadsMeshGen_CS\Scripts\RiverFlow.cs" />
-    <None Include="Assets\Sprites\EasyRoadsMeshGen_CS\ReadMe.txt" />
-    <None Include="Assets\Sprites\EasyRoadsMeshGen_CS\Change Log.txt" />
     <None Include="Assets\DynamicComponents\Readme.txt" />
     <None Include="Assets\eWolfRoadBuilder\Textures\RoadMain\Legacy Textures - Try not to use.txt" />
     <Reference Include="UnityEngine.UI">

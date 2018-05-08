@@ -5,12 +5,19 @@ using UnityEngine;
 public class JunctionLane : MonoBehaviour
 {
 
-	[HideInInspector]
+//	[HideInInspector]
 	public bool TrafficInLane;
+	
+	private void Awake()
+	{
+		TrafficInLane = false;
+	}
 
 	
 	private void OnTriggerStay(Collider other)
 	{
+		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
+		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
 		TrafficInLane = true;
