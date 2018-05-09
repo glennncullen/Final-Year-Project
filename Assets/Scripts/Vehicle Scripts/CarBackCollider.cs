@@ -5,8 +5,4 @@ using UnityEngine;
 public class CarBackCollider : MonoBehaviour {
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
 }

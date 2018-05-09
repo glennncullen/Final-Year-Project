@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 54634651343184986}
   - component: {fileID: 114112821171606270}
   m_Layer: 0
-  m_Name: 'ID: 13'
+  m_Name: firetruck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

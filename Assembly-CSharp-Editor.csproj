@@ -56,6 +56,26 @@
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadBuilder_UI.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkLayout_UI.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkNode_UI.cs" />
+    <Compile Include="Assets\PubNub\Editor\AutoBuilder.cs" />
+    <Compile Include="Assets\PubNub\Editor\ChannelGroupBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\DeleteMessagesBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\EditorCommon.cs" />
+    <Compile Include="Assets\PubNub\Editor\EncryptionTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\FetchMessagesBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\HelpersTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\HereNowBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\HistoryBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\LeaveBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\PNConfigurationTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\PresenceHeartbeatBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\PublishBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\PushBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\StateBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\SubscribeBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\SubscriptionTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\TimeBuildRequestsTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\UtilityTests.cs" />
+    <Compile Include="Assets\PubNub\Editor\WhereNowBuildRequestsTests.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -142,6 +162,15 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx.Json">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkerMetro.Unity.WinLegacy">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

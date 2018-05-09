@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using UnityEngine;
 
@@ -25,19 +24,19 @@ public class TrafficDensity : MonoBehaviour
 	}
 
 	// spawn cars at interval
-	IEnumerator SpawnCars()
+	private IEnumerator SpawnCars()
 	{
 		while (true)
 		{
 			if (_currentDensity < Density)
 			{
-				List<SpawnPoint> ShuffledRoads = SpawnPoints.ToList();
-				while (_currentDensity < Density && ShuffledRoads.Count > 0)
+				List<SpawnPoint> shuffledRoads = SpawnPoints.ToList();
+				while (_currentDensity < Density && shuffledRoads.Count > 0)
 				{
-					SpawnPoint spawn = ShuffledRoads[Random.Range(0, ShuffledRoads.Count - 1)];
+					SpawnPoint spawn = shuffledRoads[Random.Range(0, shuffledRoads.Count - 1)];
 					if (spawn.IsOccupied)
 					{
-						ShuffledRoads.Remove(spawn);
+						shuffledRoads.Remove(spawn);
 						continue;
 					}
 					Transform vehicle = VehiclesToSpawn[Random.Range(0, VehiclesToSpawn.Count)];
@@ -48,7 +47,7 @@ public class TrafficDensity : MonoBehaviour
 					Vector3 rotation = waypoints[waypoints.Length - 1].transform.position - waypoints[0].transform.position;
 					Instantiate(vehicle, spawn.transform.position, Quaternion.LookRotation(rotation), transform);
 					_currentDensity++;
-					ShuffledRoads.Remove(spawn);
+					shuffledRoads.Remove(spawn);
 				}
 			}
 			yield return new WaitForSeconds(SpawnRate);
