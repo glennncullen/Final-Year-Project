@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadBuilder_UI.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkLayout_UI.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Editor\RoadNetworkNode_UI.cs" />
@@ -144,6 +145,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{AC4A36B8-5F87-8608-27D3-B898CE8E80F5}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{0569ABA8-06F1-DC78-3D42-4E7740AFB54F}</Project>
       <Name>Assembly-CSharp</Name>

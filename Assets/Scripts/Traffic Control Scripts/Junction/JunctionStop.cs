@@ -16,7 +16,6 @@ public class JunctionStop : MonoBehaviour
 		if (other.gameObject.GetComponent<CarFrontCollider>() == null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
-		vehicle.SetNextRoad();
 		_controller.Notify(vehicle);
 	}
 
@@ -27,5 +26,6 @@ public class JunctionStop : MonoBehaviour
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
 		vehicle.BuildNextPath();
+		_controller.CheckRemove(vehicle);
 	}
 }

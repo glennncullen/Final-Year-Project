@@ -52,13 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\CameraFacingBillboard.cs" />
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\CollisionDestroy.cs" />
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\defaultAudio.cs" />
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\lightBlink.cs" />
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\lightsControl.cs" />
-    <Compile Include="Assets\DynamicComponents\PackageAssets\Scripts\TrafficLightControl.cs" />
-    <Compile Include="Assets\DynamicComponents\SampleScene\script\FlyCamera.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CornerDrawHolder.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CrossSection.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\IntersectionManager.cs" />
@@ -116,6 +109,13 @@
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainHeightDetails.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifier.cs" />
     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifierDetails.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\CameraFacingBillboard.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\CollisionDestroy.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\defaultAudio.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\lightBlink.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\lightsControl.cs" />
+    <Compile Include="Assets\Fire\PackageAssets\Scripts\TrafficLightControl.cs" />
+    <Compile Include="Assets\Fire\SampleScene\script\FlyCamera.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionController.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionLane.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionStop.cs" />
@@ -135,8 +135,9 @@
     <Compile Include="Assets\Scripts\Vehicle Scripts\VehicleBehaviour.cs" />
     <Compile Include="Assets\Scripts\zzzUnused\CameraController.cs" />
     <Compile Include="Assets\Scripts\zzzUnused\Car.cs" />
-    <None Include="Assets\DynamicComponents\Readme.txt" />
+    <None Include="Assets\Fire\Readme.txt" />
     <None Include="Assets\eWolfRoadBuilder\Textures\RoadMain\Legacy Textures - Try not to use.txt" />
+    <None Include="Assets\3D Vehicle Pack\ReadMe.txt" />
     <Reference Include="UnityEngine.UI">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -224,6 +225,12 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{AC4A36B8-5F87-8608-27D3-B898CE8E80F5}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

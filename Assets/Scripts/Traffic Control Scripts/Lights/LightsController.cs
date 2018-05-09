@@ -13,7 +13,6 @@ public class LightsController : MonoBehaviour
 	// waiting vehicles
 	private List<VehicleBehaviour> _vehiclesOnX;
 	private List<VehicleBehaviour> _vehiclesOnZ;
-
 	
 	// initialise
 	private void Awake()
@@ -57,6 +56,26 @@ public class LightsController : MonoBehaviour
 	}
 	
 	
+	// stop traffic on X but allow right crossing cars to pass
+	// if they have been waiting
+	private void StopTrafficOnX()
+	{
+		if (GetComponentInChildren<TrafficLightControl>().GetAllRed() && GetComponentInChildren<TrafficLightControl>().PreviousLightGreenX)
+		{
+			for (int i = _vehiclesOnX.Count - 1; i >= 0; i--)
+			{
+				VehicleBehaviour vehicle = _vehiclesOnX[i];
+				if (!vehicle._rightCross) continue;
+				vehicle.Continue();
+				_vehiclesOnX.Remove(vehicle);
+			}
+		}
+		foreach (VehicleBehaviour vehicle in _vehiclesOnX)
+		{
+			vehicle.Stop();
+		}
+	}
+	
 	
 	// move traffic on X if the coast is clear
 	private void MoveTrafficOnX()
@@ -65,24 +84,63 @@ public class LightsController : MonoBehaviour
 		for(int i = _vehiclesOnX.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesOnX[i];
+			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			{
+				vehicle.SetNextRoad();
+			}
+			if (vehicle.NextRoad != null)
+			{
+				if (vehicle.NextRoad.GetComponent<WaypointPath>().GetCongestion() >
+				    vehicle.NextRoad.GetComponent<WaypointPath>().CongestionThreshold)
+				{
+					vehicle.SetNextRoad();
+				}
+			}
+			if (vehicle._isUnableToMove)
+			{
+				vehicle.Stop();
+			}
 			if (!vehicle._rightCross)
 			{
-				vehicle.Continue();
-				_vehiclesOnX.Remove(vehicle);
+				foreach (LightStopX lightStop in GetComponentsInChildren<LightStopX>())
+				{
+					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
+					if ((vehicle._isGoingStraightAtCross && !lightStop.StraightOn.TrafficInLane)
+					    || (vehicle._leftCross && !lightStop.LeftTurn.TrafficInLane)
+					    || (vehicle._leftJunctionJoin && !lightStop.LeftTurn.TrafficInLane)
+					    || (vehicle._rightJunctionJoin && !lightStop.RightTurn.TrafficInLane)
+					)
+					{
+						vehicle.Continue();
+						_vehiclesOnX.Remove(vehicle);
+					}
+					else
+					{
+						vehicle.Stop();
+					}
+				}
 			}
 			else
 			{
-				foreach (LightStopX light in GetComponentsInChildren<LightStopX>())
+				foreach (LightStopX lightStop in GetComponentsInChildren<LightStopX>())
 				{
-					if (ReferenceEquals(light.VehicleAtLight, vehicle) && !light.CrossLane.TrafficInLane)
+					if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) && !lightStop.CrossLane.TrafficInLane
+					    && !lightStop.RightTurn.TrafficInLane)
 					{
 						vehicle.Continue();
 						_vehiclesOnX.Remove(vehicle);
 						break;
 					}
-					if (!ReferenceEquals(light.VehicleAtLight, vehicle) || !light.CrossLane.TrafficInLane) continue;
-					vehicle.Stop();
-					vehiclesTurningRight++;
+					if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) && lightStop.CrossLane.TrafficInLane 
+					   												   && !lightStop.RightTurn.TrafficInLane)
+					{
+						vehiclesTurningRight++;
+						vehicle.Stop();
+					}
+					else
+					{
+						vehicle.Stop();
+					}
 				}
 			}
 		}
@@ -106,11 +164,9 @@ public class LightsController : MonoBehaviour
 			for (int i = _vehiclesOnZ.Count - 1; i >= 0; i--)
 			{
 				VehicleBehaviour vehicle = _vehiclesOnZ[i];
-				if (vehicle._rightCross || vehicle._rightJunctionCrossing)
-				{
-					vehicle.Continue();
-					_vehiclesOnZ.Remove(vehicle);
-				}
+				if (!vehicle._rightCross && !vehicle._rightJunctionCrossing) continue;
+				vehicle.Continue();
+				_vehiclesOnZ.Remove(vehicle);
 			}
 		}
 		foreach (VehicleBehaviour vehicle in _vehiclesOnZ)
@@ -127,26 +183,65 @@ public class LightsController : MonoBehaviour
 		for(int i = _vehiclesOnZ.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesOnZ[i];
-			if (vehicle._isGoingStraightAtCross || vehicle._leftCross
+			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			{
+				vehicle.SetNextRoad();
+			}
+			if (vehicle.NextRoad != null)
+			{
+				if (vehicle.NextRoad.GetComponent<WaypointPath>().GetCongestion() >
+				    vehicle.NextRoad.GetComponent<WaypointPath>().CongestionThreshold)
+				{
+					print(vehicle.gameObject.name + " setting another road on " + gameObject.name);
+					vehicle.SetNextRoad();
+				}
+			}
+			if (vehicle._isUnableToMove)
+			{
+				vehicle.Stop();
+			}
+			else if (vehicle._isGoingStraightAtCross || vehicle._leftCross
 			    || vehicle._isGoingStraightAtJunction || vehicle._leftJunctionLeave)
 			{
-				vehicle.Continue();
-				_vehiclesOnZ.Remove(vehicle);
+				foreach (LightStopZ lightStop in GetComponentsInChildren<LightStopZ>())
+				{
+					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
+					if (((vehicle._isGoingStraightAtCross || vehicle._isGoingStraightAtJunction) && !lightStop.StraightOn.TrafficInLane)
+					    || ((vehicle._leftCross || vehicle._leftJunctionLeave) && !lightStop.LeftTurn.TrafficInLane)
+					)
+					{
+						vehicle.Continue();
+						_vehiclesOnZ.Remove(vehicle);
+					}
+					else
+					{
+						vehicle.Stop();
+					}
+				}
 			}
 			else
 			{
-				foreach (LightStopZ light in GetComponentsInChildren<LightStopZ>())
+				foreach (LightStopZ lightStop in GetComponentsInChildren<LightStopZ>())
 				{
-					if (ReferenceEquals(light.VehicleAtLight, vehicle) && !light.CrossLane.TrafficInLane)
+					if (lightStop.CrossLane == null) continue;
+					if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) && !lightStop.CrossLane.TrafficInLane
+					    											   && !lightStop.RightTurn.TrafficInLane)
 					{
 						vehicle.Continue();
 						_vehiclesOnZ.Remove(vehicle);
 						break;
 					}
 
-					if (!ReferenceEquals(light.VehicleAtLight, vehicle) || !light.CrossLane.TrafficInLane) continue;
-					vehicle.Stop();
-					vehiclesTurningRight++;
+					if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) && lightStop.CrossLane.TrafficInLane 
+					                                                   && !lightStop.RightTurn.TrafficInLane)
+					{
+						vehiclesTurningRight++;
+						vehicle.Stop();
+					}
+					else
+					{
+						vehicle.Stop();
+					}
 				}
 			}
 		}
@@ -157,29 +252,6 @@ public class LightsController : MonoBehaviour
 			VehicleBehaviour vehicle = _vehiclesOnZ[i];
 			vehicle.Continue();
 			_vehiclesOnZ.Remove(vehicle);
-		}
-	}
-	
-	
-	// stop traffic on X but allow right crossing cars to pass
-	// if they have been waiting
-	private void StopTrafficOnX()
-	{
-		if (GetComponentInChildren<TrafficLightControl>().GetAllRed() && GetComponentInChildren<TrafficLightControl>().PreviousLightGreenX)
-		{
-			for (int i = _vehiclesOnX.Count - 1; i >= 0; i--)
-			{
-				VehicleBehaviour vehicle = _vehiclesOnX[i];
-				if (vehicle._rightCross)
-				{
-					vehicle.Continue();
-					_vehiclesOnX.Remove(vehicle);
-				}
-			}
-		}
-		foreach (VehicleBehaviour vehicle in _vehiclesOnX)
-		{
-			vehicle.Stop();
 		}
 	}
 	
@@ -212,6 +284,24 @@ public class LightsController : MonoBehaviour
 		{
 			_vehiclesOnZ.Insert(_vehiclesOnZ.Count, vehicle);
 		}
+	}
+	
+	
+	// make sure that vehicle has been removed from list
+	public void CheckRemoveX(VehicleBehaviour vehicle)
+	{
+		if (!_vehiclesOnX.Contains(vehicle)) return;
+		print(vehicle.gameObject.name + " not removed from X list in " + gameObject.name);
+		_vehiclesOnX.Remove(vehicle);
+	}
+	
+	
+	// make sure that vehicle has been removed from list
+	public void CheckRemoveZ(VehicleBehaviour vehicle)
+	{
+		if (!_vehiclesOnZ.Contains(vehicle)) return;
+		print(vehicle.gameObject.name + " not removed from Z list in " + gameObject.name);
+		_vehiclesOnX.Remove(vehicle);
 	}
 		
 }

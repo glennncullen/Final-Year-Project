@@ -41,7 +41,25 @@ public class JunctionController : MonoBehaviour
 		for(int i = _vehiclesTurning.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesTurning[i];
-			if (vehicle._leftJunctionLeave || vehicle._isGoingStraightAtJunction)
+			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			{
+				vehicle.SetNextRoad();
+			}
+
+			if (vehicle.NextRoad != null)
+			{
+				if (vehicle.NextRoad.GetComponent<WaypointPath>().GetCongestion() >
+				    vehicle.NextRoad.GetComponent<WaypointPath>().CongestionThreshold)
+				{
+					vehicle.SetNextRoad();
+				}
+			}
+
+			if (vehicle._isUnableToMove)
+			{
+				vehicle.Stop();
+			}
+			else if (vehicle._leftJunctionLeave || vehicle._isGoingStraightAtJunction)
 			{
 				_vehiclesTurning.Remove(vehicle);
 			}
@@ -91,4 +109,14 @@ public class JunctionController : MonoBehaviour
 		if (_vehiclesTurning.Contains(vehicle)) return;
 		_vehiclesTurning.Add(vehicle);
 	}
+	
+	
+	// make sure that vehicle has been removed from list
+	public void CheckRemove(VehicleBehaviour vehicle)
+	{
+		if (!_vehiclesTurning.Contains(vehicle)) return;
+		print(vehicle.gameObject.name + " not removed from JUNCTION list on " + gameObject.name);
+		_vehiclesTurning.Remove(vehicle);
+	}
+	
 }

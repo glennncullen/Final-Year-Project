@@ -17,8 +17,17 @@ public class CarFrontCollider : MonoBehaviour
 		if (other.gameObject.GetComponent<CarBackCollider>() == null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
+		if (ReferenceEquals(vehicle, _parent)) return;
 		_parent.Stop();
 	}
+
+//	private void OnTriggerStay(Collider other)
+//	{
+//		if (other.gameObject.GetComponent<CarBackCollider>() == null) return;
+//		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
+//		if(vehicle == null) return;
+//		_parent.Stop();
+//	}
 
 	private void OnTriggerExit(Collider other)
 	{

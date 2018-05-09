@@ -9,6 +9,9 @@ public class LightStopZ : MonoBehaviour {
 	public CrossLane CrossLane;
 //	[HideInInspector] 
 	public VehicleBehaviour VehicleAtLight;
+	public CrossLane LeftTurn;
+	public CrossLane RightTurn;
+	public CrossLane StraightOn;
 
 	private void Awake()
 	{
@@ -21,7 +24,6 @@ public class LightStopZ : MonoBehaviour {
 		if (other.gameObject.GetComponent<CarFrontCollider>() == null) return;
 		VehicleAtLight = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(VehicleAtLight == null) return;
-		VehicleAtLight.SetNextRoad();
 		_controller.NotifyZ(VehicleAtLight);
 	}
 	
@@ -30,8 +32,12 @@ public class LightStopZ : MonoBehaviour {
 		if (other.gameObject.GetComponent<CarFrontCollider>() == null) return;
 		VehicleAtLight = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(VehicleAtLight == null) return;
+		if (VehicleAtLight.NextRoad == null && !VehicleAtLight._isUnableToMove)
+		{
+			VehicleAtLight.SetNextRoad();
+		}
 		VehicleAtLight.BuildNextPath();
+		_controller.CheckRemoveZ(VehicleAtLight);
 		VehicleAtLight = null;
-	}
-	
+	}	
 }

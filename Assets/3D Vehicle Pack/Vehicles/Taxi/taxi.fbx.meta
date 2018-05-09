@@ -1,0 +1,178 @@
+fileFormatVersion: 2
+guid: 9106d67889629463e88c0c5a9d01eb6b
+timeCreated: 1460822149
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BL_light
+    100002: BL_wheel
+    100004: BR_light
+    100006: BR_wheel
+    100008: FL_light
+    100010: FL_mirror
+    100012: FL_wheel
+    100014: FR_light
+    100016: FR_mirror
+    100018: FR_wheel
+    100020: //RootNode
+    100022: Taxi_body
+    100024: Taxi_BL_light
+    100026: Taxi_BL_wheel
+    100028: Taxi_BR_light
+    100030: Taxi_BR_wheel
+    100032: Taxi_FL_light
+    100034: Taxi_FL_mirror
+    100036: Taxi_FL_wheel
+    100038: Taxi_FR_light
+    100040: Taxi_FR_mirror
+    100042: Taxi_FR_wheel
+    400000: BL_light
+    400002: BL_wheel
+    400004: BR_light
+    400006: BR_wheel
+    400008: FL_light
+    400010: FL_mirror
+    400012: FL_wheel
+    400014: FR_light
+    400016: FR_mirror
+    400018: FR_wheel
+    400020: //RootNode
+    400022: Taxi_body
+    400024: Taxi_BL_light
+    400026: Taxi_BL_wheel
+    400028: Taxi_BR_light
+    400030: Taxi_BR_wheel
+    400032: Taxi_FL_light
+    400034: Taxi_FL_mirror
+    400036: Taxi_FL_wheel
+    400038: Taxi_FR_light
+    400040: Taxi_FR_mirror
+    400042: Taxi_FR_wheel
+    2300000: BL_light
+    2300002: BL_wheel
+    2300004: BR_light
+    2300006: BR_wheel
+    2300008: FL_light
+    2300010: FL_mirror
+    2300012: FL_wheel
+    2300014: FR_light
+    2300016: FR_mirror
+    2300018: FR_wheel
+    2300020: Taxi_body
+    2300022: Taxi_BL_light
+    2300024: Taxi_BL_wheel
+    2300026: Taxi_BR_light
+    2300028: Taxi_BR_wheel
+    2300030: Taxi_FL_light
+    2300032: Taxi_FL_mirror
+    2300034: Taxi_FL_wheel
+    2300036: Taxi_FR_light
+    2300038: Taxi_FR_mirror
+    2300040: Taxi_FR_wheel
+    3300000: BL_light
+    3300002: BL_wheel
+    3300004: BR_light
+    3300006: BR_wheel
+    3300008: FL_light
+    3300010: FL_mirror
+    3300012: FL_wheel
+    3300014: FR_light
+    3300016: FR_mirror
+    3300018: FR_wheel
+    3300020: Taxi_body
+    3300022: Taxi_BL_light
+    3300024: Taxi_BL_wheel
+    3300026: Taxi_BR_light
+    3300028: Taxi_BR_wheel
+    3300030: Taxi_FL_light
+    3300032: Taxi_FL_mirror
+    3300034: Taxi_FL_wheel
+    3300036: Taxi_FR_light
+    3300038: Taxi_FR_mirror
+    3300040: Taxi_FR_wheel
+    4300000: FL_mirror
+    4300002: FR_mirror
+    4300004: BR_light
+    4300006: BL_light
+    4300008: BR_wheel
+    4300010: BL_wheel
+    4300012: FR_wheel
+    4300014: FL_wheel
+    4300016: FR_light
+    4300018: FL_light
+    4300020: Taxi_body
+    4300022: Taxi_FL_mirror
+    4300024: Taxi_FR_mirror
+    4300026: Taxi_BR_light
+    4300028: Taxi_BL_light
+    4300030: Taxi_BR_wheel
+    4300032: Taxi_BL_wheel
+    4300034: Taxi_FR_wheel
+    4300036: Taxi_FL_wheel
+    4300038: Taxi_FR_light
+    4300040: Taxi_FL_light
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

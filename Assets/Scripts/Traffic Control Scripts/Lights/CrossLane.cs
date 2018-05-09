@@ -15,6 +15,8 @@ public class CrossLane : MonoBehaviour {
 
 	private void OnTriggerStay(Collider other)
 	{
+		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
+		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
 		TrafficInLane = true;

@@ -13,6 +13,7 @@ public class WaypointPath : MonoBehaviour {
 
 	[Header("Traffic Lights")] 
 	public Transform TrafficLights;
+	public int CongestionThreshold = 7;
 	
 	[Header("Line Attributes")]
 	public float StartNodeSize = 1;
@@ -22,6 +23,7 @@ public class WaypointPath : MonoBehaviour {
 	
 	// private variables
 	private List<Transform> _nodes = new List<Transform>();
+	private int _congestion = 0;
 
 	// set first and last nodes on Waypoint path
 	private void Awake()
@@ -52,6 +54,119 @@ public class WaypointPath : MonoBehaviour {
 		}
 	}
 
+	
+	// increase the congestion counter
+	public void IncreaseCongestion()
+	{
+		_congestion++;
+	}
+	
+	
+	// decrease the congestion counter
+	public void DecreaseCongestion()
+	{
+		_congestion--;
+	}
+	
+	
+	// get the congestion on the road
+	public int GetCongestion()
+	{
+		return _congestion;
+	}
+	
+
+	// return the first waypoint in the waypoint path
+	public Transform[] GetWaypoints()
+	{
+		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
+		_nodes = new List<Transform>();
+		foreach(Transform pathTransform in pathTransforms){
+			if(pathTransform != transform)
+			{
+				_nodes.Add(pathTransform);
+			}
+		}
+		return _nodes.ToArray();
+	}
+	
+	
+	// return a random connected road
+	public Dictionary<String, Transform> GetNextRandomWaypointPath()
+	{
+		
+		Dictionary<String, Transform> paths = new Dictionary<String, Transform>();
+		if (LeftTurn != null && RightTurn != null && StraightOn != null) // at a cross section
+		{
+			if (LeftTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("left-cross", LeftTurn);
+			}
+
+			if (RightTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("right-cross", RightTurn);
+			}
+
+			if (StraightOn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("straight-cross", StraightOn);
+			}
+		}
+		else if (LeftTurn != null && RightTurn != null && StraightOn == null) // joining road at T junction
+		{
+			if (LeftTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("left-junction-join", LeftTurn);
+			}
+
+			if (RightTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("right-junction-join", RightTurn);
+			}
+		}
+		else if (LeftTurn != null && RightTurn == null && StraightOn != null) // taking a left or going straight at T junction
+		{
+			if (LeftTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("left-junction-leave", LeftTurn);
+			}
+			if (StraightOn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("straight-junction", StraightOn);
+			}
+		}
+		else if (LeftTurn == null && RightTurn != null && StraightOn != null) // taking a right or going straight at T junction
+		{
+			if (RightTurn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("right-junction-crossing", RightTurn);
+			}
+
+			if (StraightOn.GetComponent<WaypointPath>().GetCongestion() < CongestionThreshold)
+			{
+				paths.Add("straight-junction", StraightOn);
+			}
+		}
+		else if (LeftTurn == null && RightTurn == null && StraightOn == null)
+		{
+			paths.Add("despawn", null);
+		}
+
+		if (paths.Count == 0)
+		{
+			Dictionary<String, Transform> cantMove = new Dictionary<string, Transform>();
+			cantMove.Add("cant-move", null);
+			return cantMove;
+		}
+		String[] s = paths.Keys.ToArray();
+		String choice = s[Random.Range(0, paths.Count)];
+		Dictionary<String, Transform> toReturn = new Dictionary<String, Transform>();
+		toReturn.Add(choice, paths[choice]);
+		return toReturn;
+	}
+	
+	
 	// if AlwaysShowPath is true, show path at all times
 	private void OnDrawGizmos()
 	{
@@ -111,56 +226,4 @@ public class WaypointPath : MonoBehaviour {
 		}
 	}
 
-
-	// return the first waypoint in the waypoint path
-	public Transform[] GetWaypoints()
-	{
-		Transform[] pathTransforms = GetComponentsInChildren<Transform> ();
-		_nodes = new List<Transform>();
-		foreach(Transform pathTransform in pathTransforms){
-			if(pathTransform != transform)
-			{
-				_nodes.Add(pathTransform);
-			}
-		}
-		return _nodes.ToArray();
-	}
-	
-	
-	// return a random connected road
-	public Dictionary<String, Transform> GetNextRandomWaypointPath()
-	{
-		Dictionary<String, Transform> paths = new Dictionary<String, Transform>();
-		if (LeftTurn != null && RightTurn != null && StraightOn != null) // at a cross section
-		{
-			paths.Add("left-cross", LeftTurn);
-			paths.Add("right-cross", RightTurn);
-			paths.Add("straight-cross", StraightOn);
-		}
-		else if (LeftTurn != null && RightTurn != null && StraightOn == null) // joining road at T junction
-		{
-			paths.Add("left-junction-join", LeftTurn);
-			paths.Add("right-junction-join", RightTurn);
-		}
-		else if (LeftTurn != null && RightTurn == null && StraightOn != null) // taking a left or going straight at T junction
-		{
-			paths.Add("left-junction-leave", LeftTurn);
-			paths.Add("straight-junction", StraightOn);
-		}
-		else if (LeftTurn == null && RightTurn != null && StraightOn != null) // taking a right or going straight at T junction
-		{
-			paths.Add("right-junction-crossing", RightTurn);
-			paths.Add("straight-junction", StraightOn);
-		}
-		else
-		{
-			paths.Add("despawn", null);
-		}
-		String[] s = paths.Keys.ToArray();
-		String choice = s[Random.Range(0, paths.Count)];
-		Dictionary<String, Transform> toReturn = new Dictionary<String, Transform>();
-		toReturn.Add(choice, paths[choice]);
-		return toReturn;
-	}
-	
 }

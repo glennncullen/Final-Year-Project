@@ -13,11 +13,11 @@ public class VehicleBehaviour : MonoBehaviour {
 	
 	[Header("Vehicle Properties")]
 	public Vector3 CenterOfMass = new Vector3(0f, -0.2f, 0f);
-	public float MaxSpeed = 50f;
-	public float MaxTorque = 1000f;
 	public float MaxSteerAngle = 55f;
-	public float MaxTurningSpeed = 40f;
-	public float MaxBrakeTorque = 2000f;
+	private float MaxSpeed = 50f;
+	private float MaxTorque = 1000f;
+	private float MaxTurningSpeed = 40f;
+	private float MaxBrakeTorque = 2000f;
 	
 
 	[Header("Wheel Colliders")]
@@ -42,7 +42,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	private List<Transform> _pathNodes;
 	private int _currentPathNode;
 	private Transform _currentRoad;
-	private Transform _nextRoad;
+	public Transform NextRoad;
 	private Transform _previousRoad;
 	
 	// vehicle attributes
@@ -70,6 +70,8 @@ public class VehicleBehaviour : MonoBehaviour {
 	public bool _isGoingStraightAtJunction;
 //	[HideInInspector]
 	public bool _isGoingStraightAtCross;
+	//	[HideInInspector]
+	public bool _isUnableToMove;
 	
 
 	// initialization
@@ -87,6 +89,14 @@ public class VehicleBehaviour : MonoBehaviour {
 		}
 		_speedConstant = MaxSpeed;
 		_currentPathNode = 0;
+		float wheelRadiusOffset = 1.7f / WheelFrontLeft.radius;
+		MaxSpeed = MaxSpeed / wheelRadiusOffset;
+		MaxTorque = MaxTorque / wheelRadiusOffset;
+		MaxTurningSpeed = MaxTurningSpeed / wheelRadiusOffset;
+		WheelFrontLeft.mass = WheelFrontLeft.mass * wheelRadiusOffset;
+		WheelBackLeft.mass = WheelBackLeft.mass * wheelRadiusOffset;
+		WheelBackRight.mass = WheelBackRight.mass * wheelRadiusOffset;
+		WheelFrontRight.mass = WheelFrontRight.mass * wheelRadiusOffset;
 	}
 	
 	
@@ -140,7 +150,11 @@ public class VehicleBehaviour : MonoBehaviour {
 	// update to next node on path reset turinig bools
 	private void UpdateWaypoint()
 	{
-		if(transform.position.y < - 30) GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+		if (transform.position.y < -30)
+		{
+			_currentRoad.GetComponent<WaypointPath>().DecreaseCongestion();
+			GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+		}
 		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
 		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
 		_currentPathNode++;
@@ -152,6 +166,7 @@ public class VehicleBehaviour : MonoBehaviour {
 		_rightJunctionCrossing = false;
 		_isGoingStraightAtCross = false;
 		_isGoingStraightAtJunction = false;
+		_isUnableToMove = false;
 	}
 
 
@@ -159,8 +174,10 @@ public class VehicleBehaviour : MonoBehaviour {
 	public void BuildNextPath()
 	{
 		_previousRoad = _currentRoad;
-		_currentRoad = _nextRoad;
-		_nextRoad = null;
+		_previousRoad.GetComponent<WaypointPath>().DecreaseCongestion();
+		_currentRoad = NextRoad;
+		_currentRoad.GetComponent<WaypointPath>().IncreaseCongestion();
+		NextRoad = null;
 		if (_currentRoad == null)
 		{
 			print("BuildNextPath _currentRoad is null:\t" + gameObject.name);
@@ -183,7 +200,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	{
 		Dictionary<String, Transform> dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
 		String[] roadChoice = dict.Keys.ToArray();
-		_nextRoad = dict[roadChoice[0]];
+		NextRoad = dict[roadChoice[0]];
 		_leftCross = false;
 		_rightCross = false;
 		_leftJunctionJoin = false;
@@ -192,6 +209,7 @@ public class VehicleBehaviour : MonoBehaviour {
 		_rightJunctionCrossing = false;
 		_isGoingStraightAtCross = false;
 		_isGoingStraightAtJunction = false;
+		_isUnableToMove = false;
 		switch (roadChoice[0])
 		{
 			case "straight-cross":
@@ -220,6 +238,9 @@ public class VehicleBehaviour : MonoBehaviour {
 				break;
 			case "despawn":
 				GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+				break;
+			case "cant-move":
+				_isUnableToMove = true;
 				break;
 			default: 
 				print("SetNextRoad switch statement:\t" + gameObject.name);
@@ -272,6 +293,15 @@ public class VehicleBehaviour : MonoBehaviour {
 		WheelFrontLeft.steerAngle = Mathf.Lerp(WheelFrontLeft.steerAngle, _targetSteerAngle, Time.deltaTime * _smoothTurningSpeed);
 		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * _smoothTurningSpeed);
 	}
-	
 
+
+	private void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
+		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
+		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
+		if(vehicle == null) return;
+		_currentRoad.GetComponent<WaypointPath>().DecreaseCongestion();
+		GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+	}
 }
