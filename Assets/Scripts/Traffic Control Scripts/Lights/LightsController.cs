@@ -105,8 +105,8 @@ public class LightsController : MonoBehaviour
 				foreach (LightStopX lightStop in GetComponentsInChildren<LightStopX>())
 				{
 					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
-					if ((vehicle._isGoingStraightAtCross && !lightStop.StraightOn.TrafficInLane)
-					    || (vehicle._leftCross && !lightStop.LeftTurn.TrafficInLane)
+					if ((vehicle._isGoingStraightAtCross && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					    || (vehicle._leftCross && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
 					    || (vehicle._leftJunctionJoin && !lightStop.LeftTurn.TrafficInLane)
 					    || (vehicle._rightJunctionJoin && !lightStop.RightTurn.TrafficInLane)
 					)
@@ -183,7 +183,7 @@ public class LightsController : MonoBehaviour
 		for(int i = _vehiclesOnZ.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesOnZ[i];
-			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			if (vehicle.NextRoad == null)
 			{
 				vehicle.SetNextRoad();
 			}
@@ -206,8 +206,8 @@ public class LightsController : MonoBehaviour
 				foreach (LightStopZ lightStop in GetComponentsInChildren<LightStopZ>())
 				{
 					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
-					if (((vehicle._isGoingStraightAtCross || vehicle._isGoingStraightAtJunction) && !lightStop.StraightOn.TrafficInLane)
-					    || ((vehicle._leftCross || vehicle._leftJunctionLeave) && !lightStop.LeftTurn.TrafficInLane)
+					if (((vehicle._isGoingStraightAtCross || vehicle._isGoingStraightAtJunction) && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					    || ((vehicle._leftCross || vehicle._leftJunctionLeave) && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
 					)
 					{
 						vehicle.Continue();

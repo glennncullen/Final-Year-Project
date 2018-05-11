@@ -118,7 +118,7 @@ public class CarAI : MonoBehaviour {
 	private void CheckTrafficLightState()
 	{
 		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
-		_trafficLights = _currentRoad.GetComponent<WaypointPath>().TrafficLights;
+//		_trafficLights = _currentRoad.GetComponent<WaypointPath>().TrafficLights;
 		if (_trafficLights == null) return;
 		_lightsRedYellowGreen = _trafficLights.GetComponent<TrafficLightControl>().GetTrafficLightsFacing();
 	}

@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Experimental.U2D;
 using UnityEngine.Scripting.APIUpdating;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 public class VehicleBehaviour : MonoBehaviour {
 	
@@ -53,6 +54,12 @@ public class VehicleBehaviour : MonoBehaviour {
 	
 	// private variables
 	private Rigidbody _rigidbodyComponent;
+	
+	public List<LightStopX> LightStopXs = new List<LightStopX>();
+	public List<LightStopZ> LightStopZs = new List<LightStopZ>();
+	public List<CrossLane> CrossLanes = new List<CrossLane>();
+	public List<JunctionLane> JunctionLanes = new List<JunctionLane>();
+	public List<Front> Fronts = new List<Front>();
 	
 //	[HideInInspector]
 	public bool _leftCross;
@@ -302,6 +309,34 @@ public class VehicleBehaviour : MonoBehaviour {
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
 		_currentRoad.GetComponent<WaypointPath>().DecreaseCongestion();
+		foreach (LightStopX lightStop in LightStopXs)
+		{
+			lightStop.RemoveVehicle(this);
+		}
+
+		foreach (LightStopZ lightStop in LightStopZs)
+		{
+			lightStop.RemoveVehicle(this);
+		}
+
+		foreach (CrossLane cross in CrossLanes)
+		{
+			cross.RemoveVehicle(this);
+		}
+
+		foreach (JunctionLane junction in JunctionLanes)
+		{
+			junction.RemoveVehicle(this);
+		}
+
+		foreach (Front front in Fronts)
+		{
+			front.RemoveVehicle(this);
+		}
+
+		print(gameObject.name + " collided on " + _currentRoad.gameObject.name);
 		GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+		Debug.Break();
 	}
+	
 }

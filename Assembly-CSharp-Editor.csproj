@@ -142,6 +142,15 @@
     <Reference Include="ConsoleE">
       <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx.Json">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkerMetro.Unity.WinLegacy">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -162,15 +171,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="JsonFx.Json">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
-    </Reference>
-    <Reference Include="MarkerMetro.Unity.WinLegacy">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -41,7 +41,7 @@ public class JunctionController : MonoBehaviour
 		for(int i = _vehiclesTurning.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesTurning[i];
-			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			if (vehicle.NextRoad == null)
 			{
 				vehicle.SetNextRoad();
 			}

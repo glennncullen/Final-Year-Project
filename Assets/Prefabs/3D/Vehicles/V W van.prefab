@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 54290035175025854}
   - component: {fileID: 114675411726455946}
   m_Layer: 0
-  m_Name: V W van
+  m_Name: 'ID: 31'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,8 +354,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225148676333852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.4700003, z: 0.43200684}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0.1, y: -5.4700003, z: 5.8320084}
+  m_LocalScale: {x: 100, y: 100, z: 134.35547}
   m_Children: []
   m_Father: {fileID: 4668181549494178}
   m_RootOrder: 1
@@ -423,7 +423,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1988243403425262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 424.92432, y: 4.999878, z: 346.95178}
+  m_LocalPosition: {x: 166.89496, y: 4.999878, z: 445.29376}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4077256579493354}
@@ -889,6 +889,10 @@ MonoBehaviour:
   StopVehicle: 0
   NextRoad: {fileID: 0}
   _smoothTurningSpeed: 5
+  LightStopXs: []
+  LightStopZs: []
+  CrossLanes: []
+  JunctionLanes: []
   _leftCross: 0
   _rightCross: 0
   _leftJunctionJoin: 0

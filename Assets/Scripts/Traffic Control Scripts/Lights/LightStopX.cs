@@ -7,6 +7,7 @@ public class LightStopX : MonoBehaviour
 	private LightsController _controller;
 //	[HideInInspector] 
 	public CrossLane CrossLane;
+	public Front Front;
 //	[HideInInspector] 
 	public VehicleBehaviour VehicleAtLight;
 	public CrossLane LeftTurn;
@@ -17,6 +18,7 @@ public class LightStopX : MonoBehaviour
 	{
 		_controller = GetComponentInParent<LightsController>();
 		CrossLane = GetComponentInChildren<CrossLane>();
+		Front = GetComponentInChildren<Front>();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -25,6 +27,7 @@ public class LightStopX : MonoBehaviour
 		VehicleAtLight = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(VehicleAtLight == null) return;
 		_controller.NotifyX(VehicleAtLight);
+		VehicleAtLight.LightStopXs.Add(this);
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -33,6 +36,14 @@ public class LightStopX : MonoBehaviour
 		VehicleAtLight = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(VehicleAtLight == null) return;
 		VehicleAtLight.BuildNextPath();
+		_controller.CheckRemoveX(VehicleAtLight);
+		VehicleAtLight.LightStopXs.Remove(this);
+		VehicleAtLight = null;
+	}
+
+	public void RemoveVehicle(VehicleBehaviour vehicle)
+	{
+		if (!ReferenceEquals(vehicle, VehicleAtLight)) return;
 		_controller.CheckRemoveX(VehicleAtLight);
 		VehicleAtLight = null;
 	}

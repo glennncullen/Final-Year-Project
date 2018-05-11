@@ -41,6 +41,7 @@ public class TrafficDensity : MonoBehaviour
 					}
 					Transform vehicle = VehiclesToSpawn[Random.Range(0, VehiclesToSpawn.Count)];
 					vehicle.GetComponent<VehicleBehaviour>().StartingRoad = spawn.Road;
+					spawn.Road.GetComponent<WaypointPath>().IncreaseCongestion();
 					vehicle.name = "ID: " + _name;
 					_name++;
 					Transform[] waypoints = spawn.Road.GetComponent<WaypointPath>().GetWaypoints();

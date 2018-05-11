@@ -6,7 +6,7 @@ public class CrossLane : MonoBehaviour {
 
 //	[HideInInspector]
 	public bool TrafficInLane;
-	private List<VehicleBehaviour> _vehiclesInLane;
+	private List<VehicleBehaviour> _vehiclesInLane = new List<VehicleBehaviour>();
 
 	private void Awake()
 	{
@@ -22,38 +22,24 @@ public class CrossLane : MonoBehaviour {
 		if(vehicle == null) return;
 		TrafficInLane = true;
 		_vehiclesInLane.Add(vehicle);
+		vehicle.CrossLanes.Add(this);
 	}
 
-//	private void OnTriggerStay(Collider other)
-//	{
-//		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
-//		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
-//		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
-//		if(vehicle == null) return;
-//		TrafficInLane = true;
-//	}
-
+	
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
 		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
-		if (!_vehiclesInLane.Contains(vehicle))
-		{
-			print(vehicle.gameObject.name);
-			Debug.Break();
-		}
-
 		_vehiclesInLane.Remove(vehicle);
-		if (_vehiclesInLane.Count <= 0)
-		{
-			TrafficInLane = false;
-		}
-		else
-		{
-			TrafficInLane = true;
-		}
+		TrafficInLane = _vehiclesInLane.Count > 0;
+		vehicle.CrossLanes.Remove(this);
 	}
-	
+
+	public void RemoveVehicle(VehicleBehaviour vehicle)
+	{
+		if (!_vehiclesInLane.Contains(vehicle)) return;
+		_vehiclesInLane.Remove(vehicle);
+	}
 }

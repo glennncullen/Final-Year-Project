@@ -229,14 +229,17 @@
     <Compile Include="Assets\PubNub\Workers\PresenceHeartbeatWorker.cs" />
     <Compile Include="Assets\PubNub\Workers\SubscriptionWorker.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\PubNubBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\Route.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionController.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionLane.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionStop.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\CrossLane.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\Front.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightsController.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopX.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopZ.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\DespawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\RoadComms.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\TrafficDensity.cs" />
     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\Waypoint.cs" />
@@ -324,6 +327,15 @@
     <Reference Include="ConsoleE">
       <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx.Json">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkerMetro.Unity.WinLegacy">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -344,15 +356,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="JsonFx.Json">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
-    </Reference>
-    <Reference Include="MarkerMetro.Unity.WinLegacy">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
