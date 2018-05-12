@@ -20,7 +20,7 @@ public class Front : MonoBehaviour {
 		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
-		if (!vehicle._rightCross && !vehicle._rightJunctionCrossing) return;
+		if (!vehicle.RightCross && !vehicle.RightJunctionCrossing) return;
 		TrafficInLane = true;
 		_vehiclesInLane.Add(vehicle);
 		vehicle.Fronts.Add(this);
@@ -42,5 +42,6 @@ public class Front : MonoBehaviour {
 	{
 		if (!_vehiclesInLane.Contains(vehicle)) return;
 		_vehiclesInLane.Remove(vehicle);
+		TrafficInLane = _vehiclesInLane.Count > 0;
 	}
 }

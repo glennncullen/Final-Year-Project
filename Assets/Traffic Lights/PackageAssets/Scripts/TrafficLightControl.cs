@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Runtime.CompilerServices;
+using Traffic_Control_Scripts.Communication;
 using UnityEngine.Analytics;
 
 
@@ -37,6 +38,9 @@ public class TrafficLightControl : MonoBehaviour
 	public float ZGreenTime; // time for green on zaxis
 	public float transitionTime;// Time for yellow light to stay
 	private bool _allRed;
+	
+	// variable to determine if traffic light is in the emergency vehicle's path
+	public bool isOnPath = false;
 
 	// Function to set lights on or off
 	// You must carefully set the lights. 
@@ -99,6 +103,7 @@ public class TrafficLightControl : MonoBehaviour
 	{
 		return _allRed;
 	}
+	
 
 	// Green lights facing X direction will be on
 	// Red lights facing Z direction will be on
@@ -126,7 +131,7 @@ public class TrafficLightControl : MonoBehaviour
 	
 
 	// All direction yellow lights will be on
-	void allRed() {
+	public void allRed() {
 		setLights (true, false, false, true, false, false);
 	}
 
@@ -134,35 +139,75 @@ public class TrafficLightControl : MonoBehaviour
 	// Allow X and Z direction for specified period of time and vice versa
 	IEnumerator startLights() {
 		while(true) {
-			allowXdirection ();
+			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath())
+			{
+				if (isOnPath)
+				{
+					if (RoadFacing.redLight.name[RoadFacing.redLight.name.Length - 1] == 'z')
+					{
+						allowZdirection();
+						yield return new WaitForSeconds(4f);
+						continue;
+					}
+					else if (RoadFacing.redLight.name[RoadFacing.redLight.name.Length - 1] == 'x')
+					{
+						allowXdirection();
+						yield return new WaitForSeconds(4f);
+						continue;
+					}
+				}
+
+				else
+				{
+					allRed();
+					yield return new WaitForSeconds(4f);
+				}
+			}
+			
+			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
+			
+			yield return new WaitForSeconds(4f);
+			
+			allowXdirection();
 			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
 			PreviousLightGreenZ = zAxis[0].greenLight.activeSelf;
 			PreviousLightRedX = xAxis[0].redLight.activeSelf;
 			PreviousLightRedZ = zAxis[0].redLight.activeSelf;
-			yield return new WaitForSeconds (XGreenTime);
+			yield return new WaitForSeconds(XGreenTime);
 			StopXDirection();
-			yield return new WaitForSeconds (2f);
+			
+			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
+			
+			yield return new WaitForSeconds(2f);
 			allRed();
 			_allRed = true;
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds(0.5f);
 			_allRed = false;
-			yield return new WaitForSeconds (4f);
-			allowZdirection ();
+			
+			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
+			
+			yield return new WaitForSeconds(4f);
+			allowZdirection();
 			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
 			PreviousLightGreenZ = zAxis[0].greenLight.activeSelf;
 			PreviousLightRedX = xAxis[0].redLight.activeSelf;
 			PreviousLightRedZ = zAxis[0].redLight.activeSelf;
-			yield return new WaitForSeconds (ZGreenTime);
+			yield return new WaitForSeconds(ZGreenTime);
 			stopZDirection();
-			yield return new WaitForSeconds (2f);
+			yield return new WaitForSeconds(2f);
 			allRed();
+
+			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
+
 			_allRed = true;
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds(0.5f);
 			_allRed = false;
-			yield return new WaitForSeconds (4f);
 		}
 	}
 
+	
+	
+	
 	// Start traffic lights
 	void Start ()
 	{

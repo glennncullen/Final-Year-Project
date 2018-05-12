@@ -41,5 +41,6 @@ public class CrossLane : MonoBehaviour {
 	{
 		if (!_vehiclesInLane.Contains(vehicle)) return;
 		_vehiclesInLane.Remove(vehicle);
+		TrafficInLane = _vehiclesInLane.Count > 0;
 	}
 }

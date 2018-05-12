@@ -7,6 +7,8 @@ TagManager:
   - right path
   - left path
   - Test Truck
+  - Test Lights
+  - firebrigade
   layers:
   - Default
   - TransparentFX

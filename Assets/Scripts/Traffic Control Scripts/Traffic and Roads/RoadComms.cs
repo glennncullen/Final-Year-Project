@@ -12,7 +12,7 @@ public class RoadComms : MonoBehaviour
 	
 	private void Awake()
 	{
-		var pubNubBehaviour = PubNubBehaviour.Instance;
+//		var pubNubBehaviour = 
 		_roadSegments = GetComponentsInChildren<WaypointPath>();
 		foreach (WaypointPath road in _roadSegments)
 		{
@@ -28,6 +28,6 @@ public class RoadComms : MonoBehaviour
 			});
 			_counter++;
 		}
-		pubNubBehaviour.PublishMessage("all-roads", _message);
+		Handler.Instance.PublishMessage("all-roads", _message);
 	}
 }

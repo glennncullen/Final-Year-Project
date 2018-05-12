@@ -14,7 +14,8 @@ public class WaypointPath : MonoBehaviour
 	public Transform StraightOn;
 	public Transform RightTurn;
 
-	[Header("Traffic Lights")] public TrafficLightControl TrafficLights;
+	[Header("Traffic Lights")] 
+	public TrafficLightControl TrafficLights;
 	public int CongestionThreshold = 7;
 
 	[Header("Line Attributes")] public float StartNodeSize = 1;
@@ -61,11 +62,10 @@ public class WaypointPath : MonoBehaviour
 
 
 	// increase the congestion counter
-
 	public void IncreaseCongestion()
 	{
 		_congestion++;
-		NotifyCongestionChange();
+//		NotifyCongestionChange();
 	}
 
 	
@@ -73,7 +73,7 @@ public class WaypointPath : MonoBehaviour
 	public void DecreaseCongestion()
 	{
 		_congestion--;
-		NotifyCongestionChange();
+//		NotifyCongestionChange();
 	}
 
 	// send new congestion to AI
@@ -82,7 +82,7 @@ public class WaypointPath : MonoBehaviour
 		Dictionary<string, object> message = new Dictionary<string, object>();
 		message.Add("road", gameObject.name);
 		message.Add("congestion", _congestion);
-		PubNubBehaviour.Instance.PublishMessage("update-congestion", message);
+		Handler.Instance.PublishMessage("update-congestion", message);
 	}
 
 
@@ -180,11 +180,40 @@ public class WaypointPath : MonoBehaviour
 			cantMove.Add("cant-move", null);
 			return cantMove;
 		}
-
+		
 		String[] s = paths.Keys.ToArray();
 		String choice = s[Random.Range(0, paths.Count)];
-		Dictionary<String, Transform> toReturn = new Dictionary<String, Transform>();
-		toReturn.Add(choice, paths[choice]);
+		Dictionary<String, Transform> toReturn = new Dictionary<String, Transform> {{choice, paths[choice]}};
+		return toReturn;
+	}
+	
+	
+	// get a random road for the firebrigade
+	public Dictionary<String, Transform> GetNextRandomWaypointPathForFirebrigade()
+	{
+		Dictionary<String, Transform> toReturn;
+		if (!Handler.IsSomethingOnFire)
+		{
+			while (true)
+			{
+				toReturn = GetNextRandomWaypointPath();
+				String[] s = toReturn.Keys.ToArray();
+				if (toReturn[s[0]].GetComponent<WaypointPath>().IsDeadEnd())
+				{
+					continue;
+				}
+
+				break;
+			}
+		}
+		else
+		{
+			toReturn = new Dictionary<string, Transform>(){
+			{
+				"straight-cross",
+				Handler.GetNextPath()
+			}};
+		}
 		return toReturn;
 	}
 
@@ -259,6 +288,12 @@ public class WaypointPath : MonoBehaviour
 		return TrafficLights != null;
 	}
 	
+	
+	// check if road is a dead end
+	public bool IsDeadEnd()
+	{
+		return LeftTurn == null && RightTurn == null && StraightOn == null;
+	}
 	
 	// get the name of the turns
 	public string GetLeftTurn()

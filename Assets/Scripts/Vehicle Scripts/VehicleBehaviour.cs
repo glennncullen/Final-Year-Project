@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
+using Traffic_Control_Scripts.Communication;
 using UnityEngine;
 using UnityEngine.Experimental.U2D;
 using UnityEngine.Scripting.APIUpdating;
@@ -15,8 +16,8 @@ public class VehicleBehaviour : MonoBehaviour {
 	[Header("Vehicle Properties")]
 	public Vector3 CenterOfMass = new Vector3(0f, -0.2f, 0f);
 	public float MaxSteerAngle = 55f;
-	private float MaxSpeed = 50f;
-	private float MaxTorque = 1000f;
+	public float MaxSpeed = 50f;
+	public float MaxTorque = 1000f;
 	private float MaxTurningSpeed = 40f;
 	private float MaxBrakeTorque = 2000f;
 	
@@ -42,7 +43,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	// route control
 	private List<Transform> _pathNodes;
 	private int _currentPathNode;
-	private Transform _currentRoad;
+	public Transform _currentRoad;
 	public Transform NextRoad;
 	private Transform _previousRoad;
 	
@@ -61,24 +62,24 @@ public class VehicleBehaviour : MonoBehaviour {
 	public List<JunctionLane> JunctionLanes = new List<JunctionLane>();
 	public List<Front> Fronts = new List<Front>();
 	
-//	[HideInInspector]
-	public bool _leftCross;
-//	[HideInInspector]
-	public bool _rightCross;
-//	[HideInInspector]
-	public bool _leftJunctionJoin;
-//	[HideInInspector]
-	public bool _rightJunctionJoin;
-//	[HideInInspector]
-	public bool _leftJunctionLeave;
-//	[HideInInspector]
-	public bool _rightJunctionCrossing;
-//	[HideInInspector]
-	public bool _isGoingStraightAtJunction;
-//	[HideInInspector]
-	public bool _isGoingStraightAtCross;
-	//	[HideInInspector]
-	public bool _isUnableToMove;
+//	[HideInInspector] 
+	public bool LeftCross;
+//	[HideInInspector] 
+	public bool RightCross;
+//	[HideInInspector] 
+	public bool LeftJunctionJoin;
+//	[HideInInspector] 
+	public bool RightJunctionJoin;
+//	[HideInInspector] 
+	public bool LeftJunctionLeave;
+//	[HideInInspector] 
+	public bool RightJunctionCrossing;
+//	[HideInInspector] 
+	public bool IsGoingStraightAtJunction;
+//	[HideInInspector] 
+	public bool IsGoingStraightAtCross;
+//	[HideInInspector] 
+	public bool IsUnableToMove;
 	
 
 	// initialization
@@ -111,12 +112,11 @@ public class VehicleBehaviour : MonoBehaviour {
 	{
 		CheckTurningSpeed();
 		CheckSteerAngle();
+		if (Handler.IsSomethingOnFire && CompareTag("firebrigade")) EmergencyDriving();
+		else _speedConstant = MaxSpeed;
 		CheckBraking();
 		SmoothSteer();
-		if (!StopVehicle)
-		{
-			Move();
-		}
+		if (!StopVehicle) Move();
 		UpdateWaypoint();
 	}
 
@@ -165,15 +165,48 @@ public class VehicleBehaviour : MonoBehaviour {
 		if ((Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > DistanceFromWpToChange)) return;
 		if (_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad) return;
 		_currentPathNode++;
-		_leftCross = false;
-		_rightCross = false;
-		_leftJunctionJoin = false;
-		_rightJunctionJoin = false;
-		_leftJunctionLeave = false;
-		_rightJunctionCrossing = false;
-		_isGoingStraightAtCross = false;
-		_isGoingStraightAtJunction = false;
-		_isUnableToMove = false;
+		LeftCross = false;
+		RightCross = false;
+		LeftJunctionJoin = false;
+		RightJunctionJoin = false;
+		LeftJunctionLeave = false;
+		RightJunctionCrossing = false;
+		IsGoingStraightAtCross = false;
+		IsGoingStraightAtJunction = false;
+		IsUnableToMove = false;
+	}
+	
+	
+	
+	// drive like someone driving to a fire
+	private void EmergencyDriving()
+	{
+		_speedConstant = MaxSpeed * 2;
+		if (Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 15 &&
+		    _currentSpeed > 50 && _pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad)
+		{
+//			if(Handler.Instance.LookAhead().Substring(0, 5) != _currentRoad.gameObject.name.Substring(0, 5))
+				_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position));
+		}
+		else
+		{
+			_brakeTorqueConstant = _isBraking ? MaxBrakeTorque : 0f;
+		}
+	}
+	
+	
+	// calculate the brake torque required depending on the distance to the stop
+	private float CalculateBrakeTorque(float distance)
+	{
+		return
+			0.5f * 
+			_rigidbodyComponent.mass * 
+			(
+				(float) Math.Pow(_rigidbodyComponent.velocity.x, 2) +
+				(float) Math.Pow(_rigidbodyComponent.velocity.y, 2) + 
+				(float) Math.Pow(_rigidbodyComponent.velocity.z, 2)
+			) / 
+			distance;
 	}
 
 
@@ -205,49 +238,57 @@ public class VehicleBehaviour : MonoBehaviour {
 	// get the next road coming up
 	public void SetNextRoad()
 	{
-		Dictionary<String, Transform> dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
+		Dictionary<String, Transform> dict;
+		if (CompareTag("firebrigade"))
+		{
+			dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPathForFirebrigade();
+		}
+		else
+		{
+			dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
+		}
 		String[] roadChoice = dict.Keys.ToArray();
 		NextRoad = dict[roadChoice[0]];
-		_leftCross = false;
-		_rightCross = false;
-		_leftJunctionJoin = false;
-		_rightJunctionJoin = false;
-		_leftJunctionLeave = false;
-		_rightJunctionCrossing = false;
-		_isGoingStraightAtCross = false;
-		_isGoingStraightAtJunction = false;
-		_isUnableToMove = false;
+		LeftCross = false;
+		RightCross = false;
+		LeftJunctionJoin = false;
+		RightJunctionJoin = false;
+		LeftJunctionLeave = false;
+		RightJunctionCrossing = false;
+		IsGoingStraightAtCross = false;
+		IsGoingStraightAtJunction = false;
+		IsUnableToMove = false;
 		switch (roadChoice[0])
 		{
 			case "straight-cross":
-				_isGoingStraightAtCross = true;
+				IsGoingStraightAtCross = true;
 				break;
 			case "left-cross":
-				_leftCross = true;
+				LeftCross = true;
 				break;
 			case "right-cross":
-				_rightCross = true;
+				RightCross = true;
 				break;
 			case "straight-junction":
-				_isGoingStraightAtJunction = true;
+				IsGoingStraightAtJunction = true;
 				break;
 			case "left-junction-join":
-				_leftJunctionJoin = true;
+				LeftJunctionJoin = true;
 				break;
 			case "right-junction-join":
-				_rightJunctionJoin = true;
+				RightJunctionJoin = true;
 				break;
 			case "left-junction-leave":
-				_leftJunctionLeave = true;
+				LeftJunctionLeave = true;
 				break;
 			case "right-junction-crossing":
-				_rightJunctionCrossing = true;
+				RightJunctionCrossing = true;
 				break;
 			case "despawn":
 				GetComponentInParent<TrafficDensity>().Despawn(gameObject);
 				break;
 			case "cant-move":
-				_isUnableToMove = true;
+				IsUnableToMove = true;
 				break;
 			default: 
 				print("SetNextRoad switch statement:\t" + gameObject.name);
@@ -272,7 +313,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	{
 		_speedConstant = MaxSpeed;
 		if (!_pathNodes[_currentPathNode].GetComponent<Waypoint>().IsFirstOnRoad) return;
-		if (_isGoingStraightAtCross || _isGoingStraightAtJunction || _rightJunctionCrossing || _rightCross)
+		if (IsGoingStraightAtCross || IsGoingStraightAtJunction || RightJunctionCrossing || RightCross)
 		{
 			_speedConstant = MaxSpeed;
 		}
@@ -335,8 +376,10 @@ public class VehicleBehaviour : MonoBehaviour {
 		}
 
 		print(gameObject.name + " collided on " + _currentRoad.gameObject.name);
-		GetComponentInParent<TrafficDensity>().Despawn(gameObject);
-		Debug.Break();
+		if (!CompareTag("firebrigade"))
+		{
+			GetComponentInParent<TrafficDensity>().Despawn(gameObject);
+		}
 	}
 	
 }

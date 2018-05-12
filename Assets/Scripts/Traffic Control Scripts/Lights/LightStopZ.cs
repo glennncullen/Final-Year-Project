@@ -35,12 +35,12 @@ public class LightStopZ : MonoBehaviour {
 		if (other.gameObject.GetComponent<CarFrontCollider>() == null) return;
 		VehicleAtLight = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(VehicleAtLight == null) return;
-		if (VehicleAtLight.NextRoad == null && !VehicleAtLight._isUnableToMove)
+		if (VehicleAtLight.NextRoad == null && !VehicleAtLight.IsUnableToMove)
 		{
 			VehicleAtLight.SetNextRoad();
 		}
-		VehicleAtLight.BuildNextPath();
 		_controller.CheckRemoveZ(VehicleAtLight);
+		VehicleAtLight.BuildNextPath();
 		VehicleAtLight.LightStopZs.Remove(this);
 		VehicleAtLight = null;
 	}

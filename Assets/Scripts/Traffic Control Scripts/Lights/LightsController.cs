@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Traffic_Control_Scripts.Communication;
 using UnityEngine;
 
 public class LightsController : MonoBehaviour
@@ -13,6 +14,14 @@ public class LightsController : MonoBehaviour
 	// waiting vehicles
 	private List<VehicleBehaviour> _vehiclesOnX;
 	private List<VehicleBehaviour> _vehiclesOnZ;
+	
+	// light boxes
+	public lightBox xSouth;
+	public lightBox xNorth;
+	public lightBox zEast;
+	public lightBox zWest;
+
+	public bool allRed = false;
 	
 	// initialise
 	private void Awake()
@@ -27,23 +36,37 @@ public class LightsController : MonoBehaviour
 	// update
 	private void FixedUpdate()
 	{
-		GetLightState();
-		if (_xLightsRedYellowGreen[2])
+		if (IsCrosssectionOnPath())
 		{
-			MoveTrafficOnX();
+			CheckMoveInEmergency();
 		}
-		else if (_xLightsRedYellowGreen[0] || _xLightsRedYellowGreen[1])
+		else
 		{
-			StopTrafficOnX();
+			GetLightState();
+			if (_xLightsRedYellowGreen[2])
+			{
+				MoveTrafficOnX();
+			}
+			else if (_xLightsRedYellowGreen[0] || _xLightsRedYellowGreen[1])
+			{
+				StopTrafficOnX();
+			}
+
+			if (_zLightsRedYellowGreen[2])
+			{
+				MoveTrafficOnZ();
+			}
+			else if (_zLightsRedYellowGreen[0] || _zLightsRedYellowGreen[1])
+			{
+				StopTrafficOnZ();
+			}
 		}
 
-		if (_zLightsRedYellowGreen[2])
+		if (!allRed) return;
+		foreach (TrafficLightControl t in GetComponentsInChildren<TrafficLightControl>())
 		{
-			MoveTrafficOnZ();
-		}
-		else if (_zLightsRedYellowGreen[0] || _zLightsRedYellowGreen[1])
-		{
-			StopTrafficOnZ();
+			t.allRed();
+			allRed = false;
 		}
 	}
 
@@ -56,6 +79,21 @@ public class LightsController : MonoBehaviour
 	}
 	
 	
+	// is cross section on emergency route
+	public bool IsCrosssectionOnPath()
+	{
+		TrafficLightControl[] lights = GetComponentsInChildren<TrafficLightControl>();
+		foreach (TrafficLightControl t in lights)
+		{
+			if (t.isOnPath)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	// stop traffic on X but allow right crossing cars to pass
 	// if they have been waiting
 	private void StopTrafficOnX()
@@ -65,7 +103,7 @@ public class LightsController : MonoBehaviour
 			for (int i = _vehiclesOnX.Count - 1; i >= 0; i--)
 			{
 				VehicleBehaviour vehicle = _vehiclesOnX[i];
-				if (!vehicle._rightCross) continue;
+				if (!vehicle.RightCross) continue;
 				vehicle.Continue();
 				_vehiclesOnX.Remove(vehicle);
 			}
@@ -84,7 +122,7 @@ public class LightsController : MonoBehaviour
 		for(int i = _vehiclesOnX.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesOnX[i];
-			if (vehicle.NextRoad == null && !vehicle._isUnableToMove)
+			if (vehicle.NextRoad == null && !vehicle.IsUnableToMove)
 			{
 				vehicle.SetNextRoad();
 			}
@@ -96,19 +134,19 @@ public class LightsController : MonoBehaviour
 					vehicle.SetNextRoad();
 				}
 			}
-			if (vehicle._isUnableToMove)
+			if (vehicle.IsUnableToMove)
 			{
 				vehicle.Stop();
 			}
-			if (!vehicle._rightCross)
+			if (!vehicle.RightCross)
 			{
 				foreach (LightStopX lightStop in GetComponentsInChildren<LightStopX>())
 				{
 					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
-					if ((vehicle._isGoingStraightAtCross && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
-					    || (vehicle._leftCross && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
-					    || (vehicle._leftJunctionJoin && !lightStop.LeftTurn.TrafficInLane)
-					    || (vehicle._rightJunctionJoin && !lightStop.RightTurn.TrafficInLane)
+					if ((vehicle.IsGoingStraightAtCross && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					    || (vehicle.LeftCross && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					    || (vehicle.LeftJunctionJoin && !lightStop.LeftTurn.TrafficInLane)
+					    || (vehicle.RightJunctionJoin && !lightStop.RightTurn.TrafficInLane)
 					)
 					{
 						vehicle.Continue();
@@ -164,7 +202,7 @@ public class LightsController : MonoBehaviour
 			for (int i = _vehiclesOnZ.Count - 1; i >= 0; i--)
 			{
 				VehicleBehaviour vehicle = _vehiclesOnZ[i];
-				if (!vehicle._rightCross && !vehicle._rightJunctionCrossing) continue;
+				if (!vehicle.RightCross && !vehicle.RightJunctionCrossing) continue;
 				vehicle.Continue();
 				_vehiclesOnZ.Remove(vehicle);
 			}
@@ -196,18 +234,18 @@ public class LightsController : MonoBehaviour
 					vehicle.SetNextRoad();
 				}
 			}
-			if (vehicle._isUnableToMove)
+			if (vehicle.IsUnableToMove)
 			{
 				vehicle.Stop();
 			}
-			else if (vehicle._isGoingStraightAtCross || vehicle._leftCross
-			    || vehicle._isGoingStraightAtJunction || vehicle._leftJunctionLeave)
+			else if (vehicle.IsGoingStraightAtCross || vehicle.LeftCross
+			    || vehicle.IsGoingStraightAtJunction || vehicle.LeftJunctionLeave)
 			{
 				foreach (LightStopZ lightStop in GetComponentsInChildren<LightStopZ>())
 				{
 					if (!ReferenceEquals(lightStop.VehicleAtLight, vehicle)) continue;
-					if (((vehicle._isGoingStraightAtCross || vehicle._isGoingStraightAtJunction) && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
-					    || ((vehicle._leftCross || vehicle._leftJunctionLeave) && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					if (((vehicle.IsGoingStraightAtCross || vehicle.IsGoingStraightAtJunction) && !lightStop.StraightOn.TrafficInLane && !lightStop.Front.TrafficInLane)
+					    || ((vehicle.LeftCross || vehicle.LeftJunctionLeave) && !lightStop.LeftTurn.TrafficInLane && !lightStop.Front.TrafficInLane)
 					)
 					{
 						vehicle.Continue();
@@ -255,13 +293,71 @@ public class LightsController : MonoBehaviour
 		}
 	}
 	
+	
+	// check lights during an emergency
+	private void CheckMoveInEmergency()
+	{
+		for (int i = _vehiclesOnZ.Count - 1; i >= 0; i--)
+		{
+			VehicleBehaviour vehicle = _vehiclesOnZ[i];
+			foreach (LightStopZ lightStop in GetComponentsInChildren<LightStopZ>())
+			{
+				if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) &&
+				    lightStop.gameObject.name.Equals("East to West") &&
+				    zEast.greenLight.activeSelf)
+				{
+					vehicle.SetNextRoad();
+					vehicle.Continue();
+					_vehiclesOnZ.Remove(vehicle);
+					break;
+				}
+				if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) &&
+				    lightStop.gameObject.name.Equals("West to East") &&
+				    zWest.greenLight.activeSelf)
+				{
+					vehicle.SetNextRoad();
+					vehicle.Continue();
+					_vehiclesOnZ.Remove(vehicle);
+					break;
+				}
+				vehicle.Stop();
+			}
+		}
+		
+		for(int i = _vehiclesOnX.Count-1; i >= 0; i--)
+		{
+			VehicleBehaviour vehicle = _vehiclesOnX[i];
+			foreach (LightStopX lightStop in GetComponentsInChildren<LightStopX>())
+			{
+				if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) &&
+				    lightStop.gameObject.name.Equals("South to North") &&
+				    xSouth.greenLight.activeSelf)
+				{
+					vehicle.SetNextRoad();
+					vehicle.Continue();
+					_vehiclesOnX.Remove(vehicle);
+					break;
+				}
+				if (ReferenceEquals(lightStop.VehicleAtLight, vehicle) &&
+				    lightStop.gameObject.name.Equals("North to South") &&
+				    xNorth.greenLight.activeSelf)
+				{
+					vehicle.SetNextRoad();
+					vehicle.Continue();
+					_vehiclesOnX.Remove(vehicle);
+					break;
+				}
+				vehicle.Stop();
+			}
+		}
+	}
 
 	
 	// receive message from X axis collider
 	public void NotifyX(VehicleBehaviour vehicle)
 	{
 		if (_vehiclesOnX.Contains(vehicle)) return;
-		if (!vehicle._rightCross && !vehicle._rightJunctionCrossing)
+		if (!vehicle.RightCross && !vehicle.RightJunctionCrossing)
 		{
 			_vehiclesOnX.Add(vehicle);
 		}
@@ -276,7 +372,7 @@ public class LightsController : MonoBehaviour
 	public void NotifyZ(VehicleBehaviour vehicle)
 	{
 		if (_vehiclesOnZ.Contains(vehicle)) return;
-		if (!vehicle._rightCross && !vehicle._rightJunctionCrossing)
+		if (!vehicle.RightCross && !vehicle.RightJunctionCrossing)
 		{
 			_vehiclesOnZ.Add(vehicle);
 		}
@@ -292,6 +388,10 @@ public class LightsController : MonoBehaviour
 	{
 		if (!_vehiclesOnX.Contains(vehicle)) return;
 		print(vehicle.gameObject.name + " not removed from X list in " + gameObject.name);
+		if (vehicle.CompareTag("firebrigade"))
+		{
+			vehicle.Continue();
+		}
 		_vehiclesOnX.Remove(vehicle);
 	}
 	
@@ -301,6 +401,10 @@ public class LightsController : MonoBehaviour
 	{
 		if (!_vehiclesOnZ.Contains(vehicle)) return;
 		print(vehicle.gameObject.name + " not removed from Z list in " + gameObject.name);
+		if (vehicle.CompareTag("firebrigade"))
+		{
+			vehicle.Continue();
+		}
 		_vehiclesOnX.Remove(vehicle);
 	}
 		

@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 54290035175025854}
   - component: {fileID: 114675411726455946}
   m_Layer: 0
-  m_Name: 'ID: 31'
+  m_Name: V W van
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,6 +880,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   MaxSteerAngle: 55
+  MaxSpeed: 50
+  MaxTorque: 1000
   WheelFrontLeft: {fileID: 146452769406445264}
   WheelFrontRight: {fileID: 146253432438151484}
   WheelBackLeft: {fileID: 146316185500910584}
@@ -887,21 +889,23 @@ MonoBehaviour:
   StartingRoad: {fileID: 0}
   DistanceFromWpToChange: 3
   StopVehicle: 0
+  _currentRoad: {fileID: 0}
   NextRoad: {fileID: 0}
   _smoothTurningSpeed: 5
   LightStopXs: []
   LightStopZs: []
   CrossLanes: []
   JunctionLanes: []
-  _leftCross: 0
-  _rightCross: 0
-  _leftJunctionJoin: 0
-  _rightJunctionJoin: 0
-  _leftJunctionLeave: 0
-  _rightJunctionCrossing: 0
-  _isGoingStraightAtJunction: 0
-  _isGoingStraightAtCross: 0
-  _isUnableToMove: 0
+  Fronts: []
+  LeftCross: 0
+  RightCross: 0
+  LeftJunctionJoin: 0
+  RightJunctionJoin: 0
+  LeftJunctionLeave: 0
+  RightJunctionCrossing: 0
+  IsGoingStraightAtJunction: 0
+  IsGoingStraightAtCross: 0
+  IsUnableToMove: 0
 --- !u!114 &114676642581857700
 MonoBehaviour:
   m_ObjectHideFlags: 1

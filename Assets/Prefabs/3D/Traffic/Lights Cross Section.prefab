@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 114872620539537448}
   m_Layer: 0
   m_Name: Lights Cross Section
-  m_TagString: Untagged
+  m_TagString: Test Lights
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3436,7 +3436,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487456808563990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -114.93997, y: 2.0891895, z: -65.21469}
+  m_LocalPosition: {x: -216.26, y: 2.02, z: 134.23001}
   m_LocalScale: {x: 1.2348788, y: 1.6840549, z: 1.2239166}
   m_Children:
   - {fileID: 4381928129142956}
@@ -11044,6 +11044,7 @@ MonoBehaviour:
   XGreenTime: 18
   ZGreenTime: 16
   transitionTime: 1
+  isOnPath: 0
 --- !u!114 &114125019534017930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11159,6 +11160,7 @@ MonoBehaviour:
   XGreenTime: 18
   ZGreenTime: 16
   transitionTime: 1
+  isOnPath: 0
 --- !u!114 &114325331754491534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11250,6 +11252,7 @@ MonoBehaviour:
   XGreenTime: 18
   ZGreenTime: 16
   transitionTime: 1
+  isOnPath: 0
 --- !u!114 &114494308786910696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11489,6 +11492,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22000e2d0f4a745678d119afda8fa687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xSouth:
+    redLight: {fileID: 1835368096260086}
+    yellowLight: {fileID: 1284221934181482}
+    greenLight: {fileID: 1114638359788568}
+  xNorth:
+    redLight: {fileID: 1946089165426696}
+    yellowLight: {fileID: 1425868038503656}
+    greenLight: {fileID: 1270590499376444}
+  zEast:
+    redLight: {fileID: 1879893182636276}
+    yellowLight: {fileID: 1531072272637648}
+    greenLight: {fileID: 1964826809945086}
+  zWest:
+    redLight: {fileID: 1416348549057324}
+    yellowLight: {fileID: 1443741649982560}
+    greenLight: {fileID: 1202215268182954}
 --- !u!114 &114902740362381518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11515,6 +11534,7 @@ MonoBehaviour:
   XGreenTime: 18
   ZGreenTime: 16
   transitionTime: 1
+  isOnPath: 0
 --- !u!114 &114971940341240790
 MonoBehaviour:
   m_ObjectHideFlags: 1

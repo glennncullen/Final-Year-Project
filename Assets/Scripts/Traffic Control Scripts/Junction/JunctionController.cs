@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Traffic_Control_Scripts.Communication;
 using UnityEngine;
 
 public class JunctionController : MonoBehaviour
@@ -41,6 +42,13 @@ public class JunctionController : MonoBehaviour
 		for(int i = _vehiclesTurning.Count-1; i >= 0; i--)
 		{
 			VehicleBehaviour vehicle = _vehiclesTurning[i];
+			if (Handler.IsSomethingOnFire && vehicle.CompareTag("firebrigade"))
+			{
+				vehicle.SetNextRoad();
+				vehicle.Continue();
+				_vehiclesTurning.Remove(vehicle);
+				continue;
+			}
 			if (vehicle.NextRoad == null)
 			{
 				vehicle.SetNextRoad();
@@ -55,15 +63,15 @@ public class JunctionController : MonoBehaviour
 				}
 			}
 
-			if (vehicle._isUnableToMove)
+			if (vehicle.IsUnableToMove)
 			{
 				vehicle.Stop();
 			}
-			else if (vehicle._leftJunctionLeave || vehicle._isGoingStraightAtJunction)
+			else if (vehicle.LeftJunctionLeave || vehicle.IsGoingStraightAtJunction)
 			{
 				_vehiclesTurning.Remove(vehicle);
 			}
-			else if (vehicle._rightJunctionCrossing)
+			else if (vehicle.RightJunctionCrossing)
 			{
 				if (_rightLane.TrafficInLane)
 				{
@@ -75,7 +83,7 @@ public class JunctionController : MonoBehaviour
 					_vehiclesTurning.Remove(vehicle);
 				}
 			}
-			else if (vehicle._rightJunctionJoin)
+			else if (vehicle.RightJunctionJoin)
 			{
 				if (_rightLane.TrafficInLane || _leftLane.TrafficInLane)
 				{
@@ -87,7 +95,7 @@ public class JunctionController : MonoBehaviour
 					_vehiclesTurning.Remove(vehicle);
 				}
 			}
-			else if (vehicle._leftJunctionJoin)
+			else if (vehicle.LeftJunctionJoin)
 			{
 				if (_rightLane.TrafficInLane)
 				{
