@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{0569ABA8-06F1-DC78-3D42-4E7740AFB54F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -39,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -51,310 +52,324 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CornerDrawHolder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CrossSection.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\IntersectionManager.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\LightingOptions.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MaterialFrequency.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderBase.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderCrossRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderFiveRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderJunction.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderSection.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OutterInner.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OverridableCrossSection.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OverridableMaterialFrequency.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadBuildData.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadCrossRoadOrder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\Roader.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadFiveRoadOrder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadJunctionOrder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\StreetData.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\StreetManager.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UnionDetails.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UVDATA.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UVSetBuilder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\VectorUvs.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsBasicRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsCrossRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsFiveRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsJunctionRoad.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\MeshSectionDetails.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\DropToGroundHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\GameObjectHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\MathsHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\NumberWrapper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\Radian.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadBuilderHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadConstructorHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadNodeHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\UnionHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\ICrossSection.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IDrawDetails.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IMaterialFrequency.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IRoadBuildData.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IRoadUnion.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadBuilder.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadNetworkLayout.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadNetworkNode.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionCorner.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionCross.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionEnd.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionFiveRoads.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionHelper.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionJunction.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionSixRoads.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\RectVector3.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainHeightDetails.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifier.cs" />
-     <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifierDetails.cs" />
-     <Compile Include="Assets\PubNub\Builders\ChannelGroup\AddChannelsToChannelGroupRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\ChannelGroup\DeleteChannelGroupRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\ChannelGroup\GetAllChannelsForGroupRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\ChannelGroup\GetChannelGroupsRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\ChannelGroup\RemoveChannelsFromGroupRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\History\DeleteMessagesRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\History\FetchMessagesRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\History\HistoryRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Presence\GetStateRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Presence\HereNowRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Presence\SetStateRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Presence\WhereNowRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\PubNubNonSubBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\PubSub\LeaveRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\PubSub\PublishRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\PubSub\SubscribeRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Push\AddChannelsToPushRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Push\ListPushProvisionsRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Push\RemoveAllPushChannelsForDeviceRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\Push\RemoveChannelsFromPushRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Builders\TimeRequestBuilder.cs" />
-     <Compile Include="Assets\PubNub\Crypto\MD5.cs" />
-     <Compile Include="Assets\PubNub\Crypto\PubnubCrypto.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\AddChannelsToChannelGroupBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\DeleteChannelGroupBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\GetAllChannelsForGroupBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\GetChannelGroupsBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\RemoveChannelsFromGroupBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\HIstory\DeleteMessagesBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\HIstory\FetchBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\HIstory\HistoryBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Presence\GetStateBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Presence\HereNowBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Presence\SetStateBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Presence\WhereNowBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\PubSub\FireBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\PubSub\PublishBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\PubSub\SubscribeBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\PubSub\UnsubscribeAllBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\PubSub\UnsubscribeBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Push\AddChannelsToPushBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Push\ListPushProvisionsBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Push\RemoveAllPushChannelsForDeviceBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\Push\RemoveChannelsFromPushBuilder.cs" />
-     <Compile Include="Assets\PubNub\EndPoints\TimeBuilder.cs" />
-     <Compile Include="Assets\PubNub\Entities\ChannelEntity.cs" />
-     <Compile Include="Assets\PubNub\Entities\ChannelIdentity.cs" />
-     <Compile Include="Assets\PubNub\Entities\ChannelParameters.cs" />
-     <Compile Include="Assets\PubNub\Entities\QueueStorage.cs" />
-     <Compile Include="Assets\PubNub\Enum\HTTPMethod.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNCurrentRequestType.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNErrorData.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNHeartbeatNotificationOption.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNLogVerbosity.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNOperationType.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNPushType.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNReconnectionPolicy.cs" />
-     <Compile Include="Assets\PubNub\Enum\PNStatusCategory.cs" />
-     <Compile Include="Assets\PubNub\Events\CustomEventArgs.cs" />
-     <Compile Include="Assets\PubNub\Events\EventExtenstions.cs" />
-     <Compile Include="Assets\PubNub\Examples\Example.cs" />
-     <Compile Include="Assets\PubNub\ExceptionHandlers\ExceptionHandlerEventArgs.cs" />
-     <Compile Include="Assets\PubNub\Helpers\CommonText.cs" />
-     <Compile Include="Assets\PubNub\Helpers\CustomException.cs" />
-     <Compile Include="Assets\PubNub\Helpers\Helpers.cs" />
-     <Compile Include="Assets\PubNub\Helpers\SafeDictionary.cs" />
-     <Compile Include="Assets\PubNub\Helpers\Utility.cs" />
-     <Compile Include="Assets\PubNub\Interface\IPubNubNoChannelsBuilder.cs" />
-     <Compile Include="Assets\PubNub\Interface\IPubNubNonSubscribeBuilder.cs" />
-     <Compile Include="Assets\PubNub\Interface\IPubNubSubcribeBuilder.cs" />
-     <Compile Include="Assets\PubNub\Logger\PNLoggingMethod.cs" />
-     <Compile Include="Assets\PubNub\Managers\PNLatencyManager.cs" />
-     <Compile Include="Assets\PubNub\Managers\QueueManager.cs" />
-     <Compile Include="Assets\PubNub\Managers\RequestQueue.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsAddChannelResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsAllChannelsResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsDeleteGroupResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsListAllResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsRemoveChannelResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\History\PNDeleteMessagesResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\History\PNFetchMessagesResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\History\PNHistoryResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PNResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PNStatus.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PNTimeResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNGetStateResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNHereNowResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNPresenceHeartbeatResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNSetStateResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNWhereNowResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Publish\PNPublishResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNLeaveRequestResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNMessageResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNPresenceEvent.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNPresenceEventResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\SubscribeEnvelope.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\SubscribeMessage.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\PubSub\TimetokenMetadata.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushAddChannelResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushListProvisionsResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushRemoveAllChannelsResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushRemoveChannelResult.cs" />
-     <Compile Include="Assets\PubNub\Models\Server\BuildRequests.cs" />
-     <Compile Include="Assets\PubNub\Models\Server\RequestState.cs" />
-     <Compile Include="Assets\PubNub\Models\Server\Subscription.cs" />
-     <Compile Include="Assets\PubNub\PlayModeTests\PlayModeCommon.cs" />
-     <Compile Include="Assets\PubNub\PlayModeTests\PlayModeTests.cs" />
-     <Compile Include="Assets\PubNub\PubNub.cs" />
-     <Compile Include="Assets\PubNub\PubNubUnity\PNConfiguration.cs" />
-     <Compile Include="Assets\PubNub\PubNubUnity\PubNubUnity.cs" />
-     <Compile Include="Assets\PubNub\PubNubUnity\PubNubUnityBase.cs" />
-     <Compile Include="Assets\PubNub\Serialization\JSONSerializer.cs" />
-     <Compile Include="Assets\PubNub\ThirdParty\MiniJSON.cs" />
-     <Compile Include="Assets\PubNub\WebRequest\PNUnityWebRequest.cs" />
-     <Compile Include="Assets\PubNub\WebRequest\UnityWebRequestWrapper.cs" />
-     <Compile Include="Assets\PubNub\Workers\HeartbeatWorker.cs" />
-     <Compile Include="Assets\PubNub\Workers\NonSubscribeWorker.cs" />
-     <Compile Include="Assets\PubNub\Workers\PresenceHeartbeatWorker.cs" />
-     <Compile Include="Assets\PubNub\Workers\SubscriptionWorker.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\Handler.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\Route.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionController.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionLane.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionStop.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\CrossLane.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\Front.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightsController.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopX.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopZ.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\DespawnPoint.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\RoadComms.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\SpawnPoint.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\TrafficDensity.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\Waypoint.cs" />
-     <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\WaypointPath.cs" />
-     <Compile Include="Assets\Scripts\Vehicle Scripts\CarBackCollider.cs" />
-     <Compile Include="Assets\Scripts\Vehicle Scripts\CarFrontCollider.cs" />
-     <Compile Include="Assets\Scripts\Vehicle Scripts\CarWheel.cs" />
-     <Compile Include="Assets\Scripts\Vehicle Scripts\VehicleBehaviour.cs" />
-     <Compile Include="Assets\Scripts\zzzUnused\CameraController.cs" />
-     <Compile Include="Assets\Scripts\zzzUnused\Car.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\CameraFacingBillboard.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\CollisionDestroy.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\defaultAudio.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\lightBlink.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\lightsControl.cs" />
-     <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\TrafficLightControl.cs" />
-     <Compile Include="Assets\Traffic Lights\SampleScene\script\FlyCamera.cs" />
-     <None Include="Assets\Traffic Lights\Readme.txt" />
-     <None Include="Assets\eWolfRoadBuilder\Textures\RoadMain\Legacy Textures - Try not to use.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.TestRunner">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Timeline">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Timeline">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.TreeEditor">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UIAutomation">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UIAutomation">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/Editor/UnityEditor.UIAutomation.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.GoogleAudioSpatializer">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.GoogleAudioSpatializer">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.HoloLens">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.HoloLens">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.SpatialTracking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.VR">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.OSXStandalone.Extensions">
- <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="BouncyCastle">
- <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
- </Reference>
- <Reference Include="JsonFx.Json">
- <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
- </Reference>
- <Reference Include="MarkerMetro.Unity.WinLegacy">
- <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Advertisements">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/Editor/UnityEditor.Advertisements.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Analytics">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/Editor/UnityEditor.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Purchasing">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.StandardEvents">
- <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CornerDrawHolder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\CrossSection.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\IntersectionManager.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\LightingOptions.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MaterialFrequency.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderBase.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderCrossRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderFiveRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderJunction.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\MeshBuilderSection.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OutterInner.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OverridableCrossSection.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\OverridableMaterialFrequency.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadBuildData.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadCrossRoadOrder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\Roader.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadFiveRoadOrder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\RoadJunctionOrder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\StreetData.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\StreetManager.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UnionDetails.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UVDATA.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\UVSetBuilder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\BuilderData\VectorUvs.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsBasicRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsCrossRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsFiveRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\DrawDetailsJunctionRoad.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\DrawDetails\MeshSectionDetails.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\DropToGroundHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\GameObjectHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\MathsHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\NumberWrapper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\Radian.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadBuilderHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadConstructorHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\RoadNodeHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Helpers\UnionHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\ICrossSection.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IDrawDetails.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IMaterialFrequency.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IRoadBuildData.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Interfaces\IRoadUnion.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadBuilder.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadNetworkLayout.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadNetworkNode.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionCorner.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionCross.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionEnd.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionFiveRoads.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionHelper.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionJunction.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\RoadUnion\RoadUnionSixRoads.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\RectVector3.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainHeightDetails.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifier.cs" />
+    <Compile Include="Assets\eWolfRoadBuilder\Scripts\Terrains\TerrainModifierDetails.cs" />
+    <Compile Include="Assets\PubNub\Builders\ChannelGroup\AddChannelsToChannelGroupRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\ChannelGroup\DeleteChannelGroupRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\ChannelGroup\GetAllChannelsForGroupRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\ChannelGroup\GetChannelGroupsRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\ChannelGroup\RemoveChannelsFromGroupRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\History\DeleteMessagesRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\History\FetchMessagesRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\History\HistoryRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Presence\GetStateRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Presence\HereNowRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Presence\SetStateRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Presence\WhereNowRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\PubNubNonSubBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\PubSub\LeaveRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\PubSub\PublishRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\PubSub\SubscribeRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Push\AddChannelsToPushRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Push\ListPushProvisionsRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Push\RemoveAllPushChannelsForDeviceRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\Push\RemoveChannelsFromPushRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Builders\TimeRequestBuilder.cs" />
+    <Compile Include="Assets\PubNub\Crypto\MD5.cs" />
+    <Compile Include="Assets\PubNub\Crypto\PubnubCrypto.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\AddChannelsToChannelGroupBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\DeleteChannelGroupBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\GetAllChannelsForGroupBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\GetChannelGroupsBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\ChannelGroup\RemoveChannelsFromGroupBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\HIstory\DeleteMessagesBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\HIstory\FetchBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\HIstory\HistoryBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Presence\GetStateBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Presence\HereNowBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Presence\SetStateBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Presence\WhereNowBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\PubSub\FireBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\PubSub\PublishBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\PubSub\SubscribeBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\PubSub\UnsubscribeAllBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\PubSub\UnsubscribeBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Push\AddChannelsToPushBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Push\ListPushProvisionsBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Push\RemoveAllPushChannelsForDeviceBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\Push\RemoveChannelsFromPushBuilder.cs" />
+    <Compile Include="Assets\PubNub\EndPoints\TimeBuilder.cs" />
+    <Compile Include="Assets\PubNub\Entities\ChannelEntity.cs" />
+    <Compile Include="Assets\PubNub\Entities\ChannelIdentity.cs" />
+    <Compile Include="Assets\PubNub\Entities\ChannelParameters.cs" />
+    <Compile Include="Assets\PubNub\Entities\QueueStorage.cs" />
+    <Compile Include="Assets\PubNub\Enum\HTTPMethod.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNCurrentRequestType.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNErrorData.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNHeartbeatNotificationOption.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNLogVerbosity.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNOperationType.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNPushType.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNReconnectionPolicy.cs" />
+    <Compile Include="Assets\PubNub\Enum\PNStatusCategory.cs" />
+    <Compile Include="Assets\PubNub\Events\CustomEventArgs.cs" />
+    <Compile Include="Assets\PubNub\Events\EventExtenstions.cs" />
+    <Compile Include="Assets\PubNub\Examples\Example.cs" />
+    <Compile Include="Assets\PubNub\ExceptionHandlers\ExceptionHandlerEventArgs.cs" />
+    <Compile Include="Assets\PubNub\Helpers\CommonText.cs" />
+    <Compile Include="Assets\PubNub\Helpers\CustomException.cs" />
+    <Compile Include="Assets\PubNub\Helpers\Helpers.cs" />
+    <Compile Include="Assets\PubNub\Helpers\SafeDictionary.cs" />
+    <Compile Include="Assets\PubNub\Helpers\Utility.cs" />
+    <Compile Include="Assets\PubNub\Interface\IPubNubNoChannelsBuilder.cs" />
+    <Compile Include="Assets\PubNub\Interface\IPubNubNonSubscribeBuilder.cs" />
+    <Compile Include="Assets\PubNub\Interface\IPubNubSubcribeBuilder.cs" />
+    <Compile Include="Assets\PubNub\Logger\PNLoggingMethod.cs" />
+    <Compile Include="Assets\PubNub\Managers\PNLatencyManager.cs" />
+    <Compile Include="Assets\PubNub\Managers\QueueManager.cs" />
+    <Compile Include="Assets\PubNub\Managers\RequestQueue.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsAddChannelResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsAllChannelsResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsDeleteGroupResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsListAllResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\ChannelGroup\PNChannelGroupsRemoveChannelResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\History\PNDeleteMessagesResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\History\PNFetchMessagesResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\History\PNHistoryResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PNResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PNStatus.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PNTimeResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNGetStateResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNHereNowResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNPresenceHeartbeatResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNSetStateResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Presence\PNWhereNowResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Publish\PNPublishResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNLeaveRequestResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNMessageResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNPresenceEvent.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\PNPresenceEventResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\SubscribeEnvelope.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\SubscribeMessage.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\PubSub\TimetokenMetadata.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushAddChannelResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushListProvisionsResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushRemoveAllChannelsResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Consumer\Push\PNPushRemoveChannelResult.cs" />
+    <Compile Include="Assets\PubNub\Models\Server\BuildRequests.cs" />
+    <Compile Include="Assets\PubNub\Models\Server\RequestState.cs" />
+    <Compile Include="Assets\PubNub\Models\Server\Subscription.cs" />
+    <Compile Include="Assets\PubNub\PlayModeTests\PlayModeCommon.cs" />
+    <Compile Include="Assets\PubNub\PlayModeTests\PlayModeTests.cs" />
+    <Compile Include="Assets\PubNub\PubNub.cs" />
+    <Compile Include="Assets\PubNub\PubNubUnity\PNConfiguration.cs" />
+    <Compile Include="Assets\PubNub\PubNubUnity\PubNubUnity.cs" />
+    <Compile Include="Assets\PubNub\PubNubUnity\PubNubUnityBase.cs" />
+    <Compile Include="Assets\PubNub\Serialization\JSONSerializer.cs" />
+    <Compile Include="Assets\PubNub\ThirdParty\MiniJSON.cs" />
+    <Compile Include="Assets\PubNub\WebRequest\PNUnityWebRequest.cs" />
+    <Compile Include="Assets\PubNub\WebRequest\UnityWebRequestWrapper.cs" />
+    <Compile Include="Assets\PubNub\Workers\HeartbeatWorker.cs" />
+    <Compile Include="Assets\PubNub\Workers\NonSubscribeWorker.cs" />
+    <Compile Include="Assets\PubNub\Workers\PresenceHeartbeatWorker.cs" />
+    <Compile Include="Assets\PubNub\Workers\SubscriptionWorker.cs" />
+    <Compile Include="Assets\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\PyroParticles\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\FireLightScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\Building.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Communication\Handler.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionController.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionLane.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Junction\JunctionStop.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\CrossLane.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\Front.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightsController.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopX.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Lights\LightStopZ.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\DespawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\RoadComms.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\SpawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\TrafficDensity.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\Waypoint.cs" />
+    <Compile Include="Assets\Scripts\Traffic Control Scripts\Traffic and Roads\WaypointPath.cs" />
+    <Compile Include="Assets\Scripts\Vehicle Scripts\CarBackCollider.cs" />
+    <Compile Include="Assets\Scripts\Vehicle Scripts\CarFrontCollider.cs" />
+    <Compile Include="Assets\Scripts\Vehicle Scripts\CarWheel.cs" />
+    <Compile Include="Assets\Scripts\Vehicle Scripts\Siren.cs" />
+    <Compile Include="Assets\Scripts\Vehicle Scripts\VehicleBehaviour.cs" />
+    <Compile Include="Assets\Scripts\zzzUnused\CameraController.cs" />
+    <Compile Include="Assets\Scripts\zzzUnused\Car.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\CameraFacingBillboard.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\CollisionDestroy.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\defaultAudio.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\lightBlink.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\lightsControl.cs" />
+    <Compile Include="Assets\Traffic Lights\PackageAssets\Scripts\TrafficLightControl.cs" />
+    <Compile Include="Assets\Traffic Lights\SampleScene\script\FlyCamera.cs" />
+    <None Include="Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\Traffic Lights\Readme.txt" />
+    <None Include="Assets\PyroParticles\Readme.txt" />
+    <None Include="Assets\eWolfRoadBuilder\Textures\RoadMain\Legacy Textures - Try not to use.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Library/resharper-unity-libs/nunit3.5.0/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIAutomation">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UIAutomation">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/Editor/UnityEditor.UIAutomation.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.GoogleAudioSpatializer">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GoogleAudioSpatializer">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx.Json">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/JsonFx.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkerMetro.Unity.WinLegacy">
+      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/MarkerMetro.Unity.WinLegacy.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/Editor/UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StandardEvents">
+      <HintPath>/Users/glennncullen/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{AC4A36B8-5F87-8608-27D3-B898CE8E80F5}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{AC4A36B8-5F87-8608-27D3-B898CE8E80F5}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -364,5 +379,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

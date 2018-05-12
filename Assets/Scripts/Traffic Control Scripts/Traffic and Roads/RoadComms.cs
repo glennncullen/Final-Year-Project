@@ -12,7 +12,6 @@ public class RoadComms : MonoBehaviour
 	
 	private void Awake()
 	{
-//		var pubNubBehaviour = 
 		_roadSegments = GetComponentsInChildren<WaypointPath>();
 		foreach (WaypointPath road in _roadSegments)
 		{

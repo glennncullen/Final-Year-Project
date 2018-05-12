@@ -38,6 +38,7 @@ public class TrafficLightControl : MonoBehaviour
 	public float ZGreenTime; // time for green on zaxis
 	public float transitionTime;// Time for yellow light to stay
 	private bool _allRed;
+	private Coroutine running;
 	
 	// variable to determine if traffic light is in the emergency vehicle's path
 	public bool isOnPath = false;
@@ -139,53 +140,55 @@ public class TrafficLightControl : MonoBehaviour
 	// Allow X and Z direction for specified period of time and vice versa
 	IEnumerator startLights() {
 		while(true) {
+			yield return new WaitForSeconds(4f);
 			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath())
 			{
 				if (isOnPath)
 				{
-					if (RoadFacing.redLight.name[RoadFacing.redLight.name.Length - 1] == 'z')
+					switch (RoadFacing.redLight.name[RoadFacing.redLight.name.Length - 1])
 					{
-						allowZdirection();
-						yield return new WaitForSeconds(4f);
-						continue;
-					}
-					else if (RoadFacing.redLight.name[RoadFacing.redLight.name.Length - 1] == 'x')
-					{
-						allowXdirection();
-						yield return new WaitForSeconds(4f);
-						continue;
+						case 'z':
+							allowZdirection();
+//							yield return new WaitForSeconds(4f);
+							break;
+						case 'x':
+							allowXdirection();
+//							yield return new WaitForSeconds(4f);
+							break;
 					}
 				}
-
 				else
 				{
 					allRed();
-					yield return new WaitForSeconds(4f);
+//					yield return new WaitForSeconds(4f);
 				}
 			}
-			
 			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
 			
-			yield return new WaitForSeconds(4f);
-			
+			if (CompareTag("Test Lights") && Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath())
+			{
+				print("continue 1");
+			}
 			allowXdirection();
 			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
 			PreviousLightGreenZ = zAxis[0].greenLight.activeSelf;
 			PreviousLightRedX = xAxis[0].redLight.activeSelf;
 			PreviousLightRedZ = zAxis[0].redLight.activeSelf;
 			yield return new WaitForSeconds(XGreenTime);
+			if (CompareTag("Test Lights") && Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath())
+			{
+				print("continue 2");
+			}
 			StopXDirection();
-			
-			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
-			
 			yield return new WaitForSeconds(2f);
+			if (CompareTag("Test Lights") && Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath())
+			{
+				print("continue 3");
+			}
 			allRed();
 			_allRed = true;
 			yield return new WaitForSeconds(0.5f);
 			_allRed = false;
-			
-			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
-			
 			yield return new WaitForSeconds(4f);
 			allowZdirection();
 			PreviousLightGreenX = xAxis[0].greenLight.activeSelf;
@@ -196,22 +199,26 @@ public class TrafficLightControl : MonoBehaviour
 			stopZDirection();
 			yield return new WaitForSeconds(2f);
 			allRed();
-
-			if (Handler.IsSomethingOnFire && GetComponentInParent<LightsController>().IsCrosssectionOnPath()) continue;
-
 			_allRed = true;
 			yield return new WaitForSeconds(0.5f);
 			_allRed = false;
 		}
 	}
 
-	
-	
-	
+
+	public void RestartLights()
+	{
+		StopCoroutine(running);
+		_allRed = false;
+		allRed();
+		running = StartCoroutine(startLights());
+	}
+
+
 	// Start traffic lights
 	void Start ()
 	{
-		StartCoroutine (startLights());	
+		running = StartCoroutine (startLights());	
 	}
 
 

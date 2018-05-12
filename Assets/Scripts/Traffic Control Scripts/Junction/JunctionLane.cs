@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Traffic_Control_Scripts.Communication;
 using UnityEngine;
 
 public class JunctionLane : MonoBehaviour
@@ -14,12 +15,12 @@ public class JunctionLane : MonoBehaviour
 		TrafficInLane = false;
 	}
 
-
 	private void OnTriggerEnter(Collider other)
 	{
+		if (other.gameObject.GetComponent<Siren>() != null) return;
 		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
 		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
-		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
+		var vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();
 		if(vehicle == null) return;
 		TrafficInLane = true;
 		_vehiclesInLane.Add(vehicle);
@@ -29,6 +30,7 @@ public class JunctionLane : MonoBehaviour
 	
 	private void OnTriggerExit(Collider other)
 	{
+		if (other.gameObject.GetComponent<Siren>() != null) return;
 		if (other.gameObject.GetComponent<CarFrontCollider>() != null) return;
 		if (other.gameObject.GetComponent<CarBackCollider>() != null) return;
 		VehicleBehaviour vehicle = other.gameObject.GetComponentInParent<VehicleBehaviour>();

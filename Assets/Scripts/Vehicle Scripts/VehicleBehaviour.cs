@@ -19,7 +19,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	public float MaxSpeed = 50f;
 	public float MaxTorque = 1000f;
 	private float MaxTurningSpeed = 40f;
-	private float MaxBrakeTorque = 2000f;
+	public float MaxBrakeTorque = 2000f;
 	
 
 	[Header("Wheel Colliders")]
@@ -37,8 +37,8 @@ public class VehicleBehaviour : MonoBehaviour {
 
 	// constants
 	private float _currentSpeed;
-	private float _speedConstant;
-	private float _brakeTorqueConstant;
+	public float _speedConstant;
+	public float _brakeTorqueConstant;
 	
 	// route control
 	private List<Transform> _pathNodes;
@@ -48,7 +48,8 @@ public class VehicleBehaviour : MonoBehaviour {
 	private Transform _previousRoad;
 	
 	// vehicle attributes
-	private bool _isBraking;
+	public bool _isBraking;
+	public bool EmergencyBrake;
 	private float _targetSteerAngle;
 	public float _smoothTurningSpeed = 5f;
 	
@@ -114,6 +115,7 @@ public class VehicleBehaviour : MonoBehaviour {
 		CheckSteerAngle();
 		if (Handler.IsSomethingOnFire && CompareTag("firebrigade")) EmergencyDriving();
 		else _speedConstant = MaxSpeed;
+		ReduceSpeed();
 		CheckBraking();
 		SmoothSteer();
 		if (!StopVehicle) Move();
@@ -141,7 +143,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	private void Move()
 	{
 		_currentSpeed = 2 * Mathf.PI * WheelFrontLeft.radius * WheelFrontLeft.rpm * 60 / 1000;
-		if (_currentSpeed < _speedConstant && (!_isBraking || !StopVehicle))
+		if (_currentSpeed < _speedConstant && (!_isBraking || !StopVehicle || !EmergencyBrake))
 		{
 			WheelFrontLeft.motorTorque = MaxTorque;
 			WheelFrontRight.motorTorque = MaxTorque;
@@ -174,6 +176,7 @@ public class VehicleBehaviour : MonoBehaviour {
 		IsGoingStraightAtCross = false;
 		IsGoingStraightAtJunction = false;
 		IsUnableToMove = false;
+		if (Handler.IsSomethingOnFire && CompareTag("firebrigade")) Handler.InformMove();
 	}
 	
 	
@@ -181,12 +184,43 @@ public class VehicleBehaviour : MonoBehaviour {
 	// drive like someone driving to a fire
 	private void EmergencyDriving()
 	{
-		_speedConstant = MaxSpeed * 2;
-		if (Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 15 &&
-		    _currentSpeed > 50 && _pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad)
+		if (IsGoingStraightAtCross)
 		{
-//			if(Handler.Instance.LookAhead().Substring(0, 5) != _currentRoad.gameObject.name.Substring(0, 5))
+			if (_previousRoad != null)
+			{
+				if (_previousRoad.gameObject.name.Substring(0, 5) == _currentRoad.gameObject.name.Substring(0, 5))
+				{
+					_speedConstant = MaxSpeed * 2;
+				}
+				else
+				{
+					_speedConstant = MaxSpeed;	
+				}
+			}
+			else
+			{
+				_speedConstant = MaxSpeed;
+			}
+		}
+		else
+		{
+			_speedConstant = MaxSpeed * 2;
+		}
+		if (Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 15 &&
+		     Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > 5)
+		{
+			if(_currentSpeed > 50 && 
+			   _pathNodes[_currentPathNode].GetComponent<Waypoint>().IsLastOnRoad &&
+			   Handler.Instance.LookAhead().Substring(0, 5) != _currentRoad.gameObject.name.Substring(0, 5))
+			{
 				_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position));
+			}
+
+			if (_currentRoad.GetComponent<WaypointPath>().TrafficLights == null) return;
+			if (_currentRoad.GetComponent<WaypointPath>().TrafficLights.GetAllRed())
+			{
+				_brakeTorqueConstant = CalculateBrakeTorque(Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position));
+			}
 		}
 		else
 		{
@@ -342,6 +376,15 @@ public class VehicleBehaviour : MonoBehaviour {
 		WheelFrontRight.steerAngle = Mathf.Lerp(WheelFrontRight.steerAngle, _targetSteerAngle, Time.deltaTime * _smoothTurningSpeed);
 	}
 
+	
+	// reduce speed of firebrigade when path is reached
+	private void ReduceSpeed()
+	{
+		if (!CompareTag("firebrigade") || Handler.IsSomethingOnFire) return;
+		if (!(_speedConstant > MaxSpeed + 5)) return;
+		_isBraking = true;
+		_brakeTorqueConstant = MaxBrakeTorque;
+	}
 
 	private void OnCollisionEnter(Collision other)
 	{

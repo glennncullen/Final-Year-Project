@@ -19,7 +19,7 @@ namespace Traffic_Control_Scripts.Communication
         // game variable
         public static bool IsSomethingOnFire = false;
         public static List<WaypointPath> Path = new List<WaypointPath>();
-//        public static List<WaypointPath> RemovePath = new List<WaypointPath>();
+        public static Building BuildingOnFire;
         
         
 
@@ -54,8 +54,6 @@ namespace Traffic_Control_Scripts.Communication
             // subscribe to these channels
             _channels = new List<string>()
             {
-                "ambulance-instructions", 
-                "traffic-light-instructions",
                 "route-to-fire"
             };
             _pubnub.Subscribe().Channels(_channels).Execute();
@@ -84,16 +82,6 @@ namespace Traffic_Control_Scripts.Communication
                 IsSomethingOnFire = true;
                 UpdatePath();
             }
-
-            if (messageEvent.MessageResult.Channel.Equals("traffic-light-instructions"))
-            {
-                
-            }
-
-            if (messageEvent.MessageResult.Channel.Equals("ambulance-instructions"))
-            {
-                
-            }
         }
         
         
@@ -117,13 +105,26 @@ namespace Traffic_Control_Scripts.Communication
                 Path[0].TrafficLights.isOnPath = false;
                 Path[0].TrafficLights.GetComponentInParent<LightsController>().allRed = true;
             }
-            Transform nextPath;
             Path.Remove(Path[0]);
-            nextPath = Path[0].GetComponent<Transform>();
+            Transform nextPath = Path[0].GetComponent<Transform>();
+            return nextPath;
+        }
+        
+        
+        // inform other systems that firebrigade has moved to next street
+        public static void InformMove()
+        {
             if (Path.Count == 1)  // crisis averted
             {
+                if (Path[0].TrafficLights != null)
+                {
+                    Path[0].TrafficLights.isOnPath = false;
+                    Path[0].TrafficLights.GetComponentInParent<LightsController>().allRed = true;
+                }
                 Path.Clear();
                 IsSomethingOnFire = false;
+                BuildingOnFire.ExtinguishFire();
+                BuildingOnFire = null;
                 _instance.PublishMessage("fire-extinguished", new Dictionary<string, object>(){
                 {
                     "extinguished",
@@ -138,14 +139,13 @@ namespace Traffic_Control_Scripts.Communication
                     true
                 }});
             }
-            return nextPath;
         }
 
         
         // look at the path coming up
         public string LookAhead()
         {
-            return Path[1].gameObject.name;
+            return Path.Count < 2 ? "no more streets to check" : Path[1].gameObject.name;
         }
 
         // send a message throught pub nub

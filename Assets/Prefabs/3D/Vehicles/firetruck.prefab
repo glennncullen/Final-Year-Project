@@ -97,6 +97,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1231409072954250
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4727823112297556}
+  - component: {fileID: 135494110917320250}
+  - component: {fileID: 54785986932713398}
+  - component: {fileID: 114670738669346514}
+  m_Layer: 0
+  m_Name: Siren
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1272338901037160
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,15 +412,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1176799150399942}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -74.9, y: -2.2039633, z: 2.6}
+  m_LocalRotation: {x: -0, y: -0.014808612, z: -0, w: 0.9998904}
+  m_LocalPosition: {x: 9.1, y: -1.2, z: -100.9}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4955686774773434}
   - {fileID: 4831053514549726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.697, z: 0}
 --- !u!4 &4607686694623682
 Transform:
   m_ObjectHideFlags: 1
@@ -433,6 +451,19 @@ Transform:
   m_Father: {fileID: 4955686774773434}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4727823112297556
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231409072954250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4831053514549726}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4749598445626600
 Transform:
   m_ObjectHideFlags: 1
@@ -458,6 +489,7 @@ Transform:
   m_Children:
   - {fileID: 4187890725164754}
   - {fileID: 4966774988403356}
+  - {fileID: 4727823112297556}
   m_Father: {fileID: 4583282814738966}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -794,6 +826,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54785986932713398
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231409072954250}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &64278581834936590
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -856,6 +903,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   MaxSteerAngle: 55
+  MaxSpeed: 50
+  MaxTorque: 1000
+  MaxBrakeTorque: 2000
   WheelFrontLeft: {fileID: 146997971094574726}
   WheelFrontRight: {fileID: 146347039863285878}
   WheelBackLeft: {fileID: 146506356807523616}
@@ -863,8 +913,12 @@ MonoBehaviour:
   StartingRoad: {fileID: 0}
   DistanceFromWpToChange: 3
   StopVehicle: 0
+  _speedConstant: 0
+  _brakeTorqueConstant: 0
   _currentRoad: {fileID: 0}
   NextRoad: {fileID: 0}
+  _isBraking: 0
+  EmergencyBrake: 0
   _smoothTurningSpeed: 5
   LightStopXs: []
   LightStopZs: []
@@ -915,6 +969,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetWheel: {fileID: 146347039863285878}
+--- !u!114 &114670738669346514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231409072954250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb0ba2204bf142c5b3597cf95f28c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114835834792471742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -939,6 +1004,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetWheel: {fileID: 146506356807523616}
+--- !u!135 &135494110917320250
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231409072954250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 60
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!146 &146347039863285878
 WheelCollider:
   m_ObjectHideFlags: 1

@@ -66,6 +66,7 @@ public class LightsController : MonoBehaviour
 		foreach (TrafficLightControl t in GetComponentsInChildren<TrafficLightControl>())
 		{
 			t.allRed();
+			t.RestartLights();
 			allRed = false;
 		}
 	}
@@ -182,7 +183,7 @@ public class LightsController : MonoBehaviour
 				}
 			}
 		}
-
+		
 		if (vehiclesTurningRight != 2) return;
 		for(int i = _vehiclesOnX.Count-1; i >= 0; i--)
 		{

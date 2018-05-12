@@ -786,6 +786,7 @@ MonoBehaviour:
   MaxSteerAngle: 55
   MaxSpeed: 50
   MaxTorque: 1000
+  MaxBrakeTorque: 2000
   WheelFrontLeft: {fileID: 146144673688775348}
   WheelFrontRight: {fileID: 146802450552077068}
   WheelBackLeft: {fileID: 146986623530898706}
@@ -793,8 +794,12 @@ MonoBehaviour:
   StartingRoad: {fileID: 0}
   DistanceFromWpToChange: 3
   StopVehicle: 0
+  _speedConstant: 0
+  _brakeTorqueConstant: 0
   _currentRoad: {fileID: 0}
   NextRoad: {fileID: 0}
+  _isBraking: 0
+  EmergencyBrake: 0
   _smoothTurningSpeed: 5
   LightStopXs: []
   LightStopZs: []

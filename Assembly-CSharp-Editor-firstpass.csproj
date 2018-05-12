@@ -116,9 +116,6 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="ConsoleE">
-      <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle">
       <HintPath>/Users/glennncullen/Documents/College/Unity/Final Year Project/Assets/PubNub/ThirdParty/BouncyCastle.dll</HintPath>
     </Reference>

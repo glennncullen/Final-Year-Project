@@ -65,7 +65,7 @@ public class WaypointPath : MonoBehaviour
 	public void IncreaseCongestion()
 	{
 		_congestion++;
-//		NotifyCongestionChange();
+		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
 	
@@ -73,7 +73,7 @@ public class WaypointPath : MonoBehaviour
 	public void DecreaseCongestion()
 	{
 		_congestion--;
-//		NotifyCongestionChange();
+		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
 	// send new congestion to AI
