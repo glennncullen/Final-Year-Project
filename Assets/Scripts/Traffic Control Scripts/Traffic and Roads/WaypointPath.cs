@@ -65,7 +65,6 @@ public class WaypointPath : MonoBehaviour
 	public void IncreaseCongestion()
 	{
 		Congestion++;
-		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
 	
@@ -73,11 +72,10 @@ public class WaypointPath : MonoBehaviour
 	public void DecreaseCongestion()
 	{
 		Congestion--;
-		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
 	// send new congestion to AI
-	private void NotifyCongestionChange()
+	public void NotifyCongestionChange()
 	{
 		Dictionary<string, object> message = new Dictionary<string, object>();
 		message.Add("road", gameObject.name);

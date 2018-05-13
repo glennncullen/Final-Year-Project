@@ -192,7 +192,7 @@ public class VehicleBehaviour : MonoBehaviour {
 			if (_previousRoad != null)
 			{
 				if (_previousRoad.gameObject.name.Substring(0, 5) == _currentRoad.gameObject.name.Substring(0, 5) &&
-				    _currentRoad.GetComponent<WaypointPath>().Congestion == 0)
+				    _currentRoad.GetComponent<WaypointPath>().Congestion == 1)
 				{
 					_speedConstant = MaxSpeed * 2;
 				}
@@ -206,7 +206,7 @@ public class VehicleBehaviour : MonoBehaviour {
 				_speedConstant = MaxSpeed;
 			}
 		}
-		else if(_currentRoad.GetComponent<WaypointPath>().Congestion == 0)
+		else if(_currentRoad.GetComponent<WaypointPath>().Congestion == 1)
 		{
 			_speedConstant = MaxSpeed * 2;
 		}
@@ -260,11 +260,6 @@ public class VehicleBehaviour : MonoBehaviour {
 		_currentRoad = NextRoad;
 		_currentRoad.GetComponent<WaypointPath>().IncreaseCongestion();
 		NextRoad = null;
-		if (_currentRoad == null)
-		{
-			print("BuildNextPath _currentRoad is null:\t" + gameObject.name);
-			Debug.Break();
-		}
 		Transform[] pathTransforms = _currentRoad.GetComponentsInChildren<Transform>();
 		_pathNodes = new List<Transform>();
 		foreach(Transform waypoint in pathTransforms){
@@ -281,14 +276,7 @@ public class VehicleBehaviour : MonoBehaviour {
 	public void SetNextRoad()
 	{
 		Dictionary<String, Transform> dict;
-		if (CompareTag("firebrigade"))
-		{
-			dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPathForFirebrigade();
-		}
-		else
-		{
-			dict = _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
-		}
+		dict = CompareTag("firebrigade") ? _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPathForFirebrigade() : _currentRoad.GetComponent<WaypointPath>().GetNextRandomWaypointPath();
 		String[] roadChoice = dict.Keys.ToArray();
 		NextRoad = dict[roadChoice[0]];
 		LeftCross = false;

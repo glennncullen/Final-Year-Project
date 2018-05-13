@@ -30,6 +30,10 @@ namespace Traffic_Control_Scripts.Communication
 				}
 			}
 			if (checkIsNull) return;
+			foreach (WaypointPath path in GameObject.Find("Roads").GetComponentsInChildren<WaypointPath>())
+			{
+				path.NotifyCongestionChange();
+			}
 			Dictionary<string, object> message = new Dictionary<string, object>();
 			message.Add("start", GameObject.Find("Firebrigade").GetComponent<VehicleBehaviour>()._currentRoad.gameObject.name);
 			message.Add("end", ConnectedRoad.gameObject.name);

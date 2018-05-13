@@ -16,7 +16,7 @@ namespace Traffic_Control_Scripts.Communication
         private static Handler _instance;
         
         
-        // game variable
+        // simulation variables
         public static bool IsSomethingOnFire = false;
         public static List<WaypointPath> Path = new List<WaypointPath>();
         public static Building BuildingOnFire;
@@ -51,7 +51,7 @@ namespace Traffic_Control_Scripts.Communication
 
             _pubnub.SusbcribeCallback += Callback;
 
-            // subscribe to these channels
+            // subscribe to this channels
             _channels = new List<string>()
             {
                 "route-to-fire"
