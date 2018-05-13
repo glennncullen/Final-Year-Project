@@ -39,8 +39,8 @@ public class LightStopX : MonoBehaviour
 		{
 			VehicleAtLight.SetNextRoad();
 		}
-		VehicleAtLight.BuildNextPath();
 		_controller.CheckRemoveX(VehicleAtLight);
+		VehicleAtLight.BuildNextPath();
 		VehicleAtLight.LightStopXs.Remove(this);
 		VehicleAtLight = null;
 	}

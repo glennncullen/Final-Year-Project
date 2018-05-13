@@ -20,11 +20,22 @@ namespace Traffic_Control_Scripts.Communication
 		private void OnMouseDown()
 		{
 			if(Handler.IsSomethingOnFire) return;
+			bool checkIsNull = true;
+			foreach (FireBaseScript fire in _fires)
+			{
+				if (fire != null)
+				{
+					checkIsNull = false;
+					break;
+				}
+			}
+			if (checkIsNull) return;
 			Dictionary<string, object> message = new Dictionary<string, object>();
 			message.Add("start", GameObject.Find("Firebrigade").GetComponent<VehicleBehaviour>()._currentRoad.gameObject.name);
 			message.Add("end", ConnectedRoad.gameObject.name);
 			Handler.Instance.PublishMessage("fire-in-progress", message);
 			Handler.BuildingOnFire = this;
+
 			foreach (FireBaseScript fire in _fires)
 			{
 				Instantiate(Explosion, fire.transform.position, Quaternion.LookRotation(fire.transform.forward), fire.transform);

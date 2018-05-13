@@ -120,6 +120,9 @@ public class VehicleBehaviour : MonoBehaviour {
 		SmoothSteer();
 		if (!StopVehicle) Move();
 		UpdateWaypoint();
+		if (!EmergencyBrake || Handler.IsSomethingOnFire) return;
+		EmergencyBrake = false;
+		Continue();
 	}
 
 
@@ -188,7 +191,8 @@ public class VehicleBehaviour : MonoBehaviour {
 		{
 			if (_previousRoad != null)
 			{
-				if (_previousRoad.gameObject.name.Substring(0, 5) == _currentRoad.gameObject.name.Substring(0, 5))
+				if (_previousRoad.gameObject.name.Substring(0, 5) == _currentRoad.gameObject.name.Substring(0, 5) &&
+				    _currentRoad.GetComponent<WaypointPath>().Congestion == 0)
 				{
 					_speedConstant = MaxSpeed * 2;
 				}
@@ -202,9 +206,13 @@ public class VehicleBehaviour : MonoBehaviour {
 				_speedConstant = MaxSpeed;
 			}
 		}
-		else
+		else if(_currentRoad.GetComponent<WaypointPath>().Congestion == 0)
 		{
 			_speedConstant = MaxSpeed * 2;
+		}
+		else
+		{
+			_speedConstant = MaxSpeed;
 		}
 		if (Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) < 15 &&
 		     Vector3.Distance(transform.position, _pathNodes[_currentPathNode].position) > 5)

@@ -25,7 +25,7 @@ public class WaypointPath : MonoBehaviour
 
 	// private variables
 	private List<Transform> _nodes = new List<Transform>();
-	private int _congestion = 0;
+	public int Congestion = 0;
 
 	// set first and last nodes on Waypoint path
 	private void Awake()
@@ -64,7 +64,7 @@ public class WaypointPath : MonoBehaviour
 	// increase the congestion counter
 	public void IncreaseCongestion()
 	{
-		_congestion++;
+		Congestion++;
 		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
@@ -72,7 +72,7 @@ public class WaypointPath : MonoBehaviour
 	// decrease the congestion counter
 	public void DecreaseCongestion()
 	{
-		_congestion--;
+		Congestion--;
 		if(!Handler.IsSomethingOnFire) NotifyCongestionChange();
 	}
 
@@ -81,7 +81,7 @@ public class WaypointPath : MonoBehaviour
 	{
 		Dictionary<string, object> message = new Dictionary<string, object>();
 		message.Add("road", gameObject.name);
-		message.Add("congestion", _congestion);
+		message.Add("congestion", Congestion);
 		Handler.Instance.PublishMessage("update-congestion", message);
 	}
 
@@ -89,7 +89,7 @@ public class WaypointPath : MonoBehaviour
 	// get the congestion on the road
 	public int GetCongestion()
 	{
-		return _congestion;
+		return Congestion;
 	}
 
 

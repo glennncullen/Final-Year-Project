@@ -90,10 +90,10 @@ namespace DigitalRuby.PyroParticles
 
         protected virtual void Start()
         {
-            if (AudioSource != null)
-            {
-                AudioSource.Play();
-            }
+//            if (AudioSource != null)
+//            {
+//                AudioSource.Play();
+//            }
 
             // precalculate so we can multiply instead of divide every frame
             stopTimeMultiplier = 1.0f / StopTime;

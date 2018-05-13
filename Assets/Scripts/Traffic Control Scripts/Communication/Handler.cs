@@ -124,7 +124,6 @@ namespace Traffic_Control_Scripts.Communication
                 Path.Clear();
                 IsSomethingOnFire = false;
                 BuildingOnFire.ExtinguishFire();
-                BuildingOnFire = null;
                 _instance.PublishMessage("fire-extinguished", new Dictionary<string, object>(){
                 {
                     "extinguished",
